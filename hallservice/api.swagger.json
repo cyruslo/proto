@@ -1,0 +1,2596 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hallservice/ApplyGunSerialNumber": {
+            "post": {
+                "summary": "请求申请一个炮台的编号",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.ApplyGunSerialNumberRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.ApplyGunSerialNumberReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/GetExtendCurrency": {
+            "post": {
+                "summary": "获取扩展货币信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetExtendCurrencyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetExtendCurrencyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/GetGunSerialNumInfo": {
+            "post": {
+                "summary": "玩家获取自己的炮台信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetGunSerialNumInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGunSerialNumInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/GetJumpInfo": {
+            "post": {
+                "summary": "获取玩家的跳转信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetJumpInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetJumpInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/GetPetShareData": {
+            "post": {
+                "summary": "获取共享数据（宠物相关）",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetPetShareDataRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetPetShareDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/GetWingState": {
+            "post": {
+                "summary": "获取玩家是否拥有翅膀",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetWingStateRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetWingStateReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnAwardUserTelephoneBill": {
+            "post": {
+                "summary": "/hallservice/OnAwardUserTelephoneBill",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.AwardUserTelephoneBillReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnCommonUserSignLogAdd": {
+            "post": {
+                "summary": "签到",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonUserSignLogAddRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.CommonUserSignLogAddReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnConsumeGameProps": {
+            "post": {
+                "summary": "/hallservice/OnConsumeGameProps",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.ConsumeGamePropsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnExchangeGameProps": {
+            "post": {
+                "summary": "/hallservice/OnExchangeGameProps",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.ExchangeGamePropsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGameTransferStatAdd": {
+            "post": {
+                "summary": "/hallservice/OnGameTransferStatAdd",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GameTransferStatAddReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetActReward": {
+            "post": {
+                "summary": "/hallservice/OnGetActReward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetActRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetActRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetByPartnerUserid": {
+            "post": {
+                "summary": "/hallservice/OnGetByPartnerUserid",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetByPartnerUseridRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetByPartnerUseridReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetCardGame": {
+            "post": {
+                "summary": "/hallservice/OnGetCardGame",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetCardGameReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetCardType": {
+            "post": {
+                "summary": "/hallservice/OnGetCardType",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetCardTypeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetGameProps": {
+            "post": {
+                "summary": "/hallservice/OnGetGameProps",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetGamePropsRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGamePropsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetGamePropsForServer": {
+            "post": {
+                "summary": "/hallservice/OnGetGamePropsForServer",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGamePropsForServerReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetGameQuest": {
+            "post": {
+                "summary": "/hallservice/OnGetGameQuest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetGameQuestRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGameQuestReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetGameReward": {
+            "post": {
+                "summary": "/hallservice/OnGetGameReward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetGameRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGameRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetGameSignConfig": {
+            "post": {
+                "summary": "获取GameSignConfig配置",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetGameSignConfigRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetGameSignConfigReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetIsBind": {
+            "post": {
+                "summary": "查询是否绑定(微信等合作商)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetIsBindRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetIsBindReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetModifyFlag": {
+            "post": {
+                "summary": "/hallservice/OnGetModifyFlag",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetModifyFlagRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetModifyFlagReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetPassportID": {
+            "post": {
+                "summary": "/hallservice/OnGetPassportID",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetPassportIDRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetPassportIDReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetPayMoney": {
+            "post": {
+                "summary": "/hallservice/OnGetPayMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetPayMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetTableUserRecord": {
+            "post": {
+                "summary": "查询房间信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetTableUserRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetTableUserRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetUserMoney": {
+            "post": {
+                "summary": "/hallservice/OnGetUserMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetUserMoneyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetUserMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetUserTicket": {
+            "post": {
+                "summary": "/hallservice/OnGetUserTicket",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetUserTicketRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetUserTicketReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetVipInfo": {
+            "post": {
+                "summary": "查询vip点数信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetVipInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetVipInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnGetVipInfos": {
+            "post": {
+                "summary": "获取Vip天数信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.GetVipInfosRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.GetVipInfosReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnPartnerUserLogin": {
+            "post": {
+                "summary": "/hallservice/OnPartnerUserLogin",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.PartnerUserLoginRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.PartnerUserLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnTimeToCall": {
+            "post": {
+                "summary": "/hallservice/OnTimeToCall",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.TimeToCallRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.TimeToCallReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnUpdateGameSignConfig": {
+            "post": {
+                "summary": "让服务器重载GameSignConfig配置",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UpdateGameSignConfigReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnUserAccountLogin": {
+            "post": {
+                "summary": "/hallservice/OnUserAccountLogin",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.UserAccountLoginRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UserAccountLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnUserInfoUserEnterGame": {
+            "post": {
+                "summary": "/hallservice/OnUserInfoUserEnterGame",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UserInfoUserEnterGameReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnUserInfoUserExitGame": {
+            "post": {
+                "summary": "/hallservice/OnUserInfoUserExitGame",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UserInfoUserExitGameReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/OnWechatSign": {
+            "post": {
+                "summary": "/hallservice/OnWechatSign",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.WechatSignRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.WechatSignReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/UpdateExtendCurrency": {
+            "post": {
+                "summary": "更新扩展货币信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.UpdateExtendCurrencyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UpdateExtendCurrencyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/UpdateJumpInfo": {
+            "post": {
+                "summary": "获取玩家的跳转信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.UpdateJumpInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UpdateJumpInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        },
+        "/hallservice/UpdatePetShareData": {
+            "post": {
+                "summary": "更新共享数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallservice.service.v1.UpdatePetShareDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallservice.service.v1.Hallservice"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".hallservice.service.v1.ActivityDetails": {
+            "type": "object",
+            "properties": {
+                "Num": {
+                    "type": "integer"
+                },
+                "State": {
+                    "type": "integer"
+                },
+                "PropsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.RewardInfo"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.ApplyGunSerialNumberReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "这个字段与game_id组成redis的key 这样的话这个接口可以通用"
+                },
+                "pid": {
+                    "type": "integer",
+                    "description": "申请玩家pid"
+                },
+                "MaxNumber": {
+                    "type": "integer",
+                    "description": "炮台编号能达到的最大的编号数字 闭区间"
+                },
+                "un_use_list": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "有写编号不吉利不能使用 通过这个字段传进来去除掉"
+                }
+            },
+            "description": "请求申请炮台编号的结构体"
+        },
+        ".hallservice.service.v1.ApplyGunSerialNumberRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "description": "错误码 -1表示非法 0表示正确"
+                },
+                "serial_num": {
+                    "type": "integer",
+                    "description": "返回序列编号"
+                }
+            },
+            "description": "请求申请炮塔编号的返回值的结构体"
+        },
+        ".hallservice.service.v1.AwardUserTelephoneBillReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "par": {
+                    "type": "integer",
+                    "description": "票面价值 单位为元"
+                },
+                "sign": {
+                    "type": "string",
+                    "description": "唯一签名"
+                }
+            }
+        },
+        ".hallservice.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.CommonUserSignLogAddReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "GameId": {
+                    "type": "integer"
+                },
+                "SignType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.CommonUserSignLogAddRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "DayIsSign": {
+                    "type": "boolean"
+                },
+                "Days": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.ConsumeGamePropsReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.ExchangeGamePropsReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "Cnt": {
+                    "type": "integer"
+                },
+                "PropType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.ExtendCurrencyInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "货币唯一ID"
+                },
+                "num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GameProps": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropCnt": {
+                    "type": "integer"
+                },
+                "PropType": {
+                    "type": "integer"
+                },
+                "ValidTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GameQuest": {
+            "type": "object",
+            "properties": {
+                "QuestID": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "TriggerType": {
+                    "type": "string"
+                },
+                "Trigger": {
+                    "type": "string"
+                },
+                "QuestProgress": {
+                    "type": "integer"
+                },
+                "QuestFinish2": {
+                    "type": "integer"
+                },
+                "State": {
+                    "type": "integer"
+                },
+                "OrderNum": {
+                    "type": "integer"
+                },
+                "RewardData": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.RewardInfo"
+                    }
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "QuestFinish1": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GameSignConfigInfo": {
+            "type": "object",
+            "properties": {
+                "SignDay": {
+                    "type": "integer"
+                },
+                "AwardType": {
+                    "type": "integer"
+                },
+                "AwardTypeDesc": {
+                    "type": "string"
+                },
+                "AwardAmount": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GameTransferStatAddReq": {
+            "type": "object",
+            "properties": {
+                "gameID": {
+                    "type": "string"
+                },
+                "arenaID": {
+                    "type": "string"
+                },
+                "roomID": {
+                    "type": "string"
+                },
+                "stype": {
+                    "type": "string"
+                },
+                "income": {
+                    "type": "string"
+                },
+                "expend": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetActRewardReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "Activity": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetActRewardRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.RewardInfo"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.GetByPartnerUseridReq": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetByPartnerUseridRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetCardGameReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetCardTypeReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetExtendCurrencyReq": {
+            "type": "object",
+            "properties": {
+                "gameID": {
+                    "type": "integer"
+                },
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetExtendCurrencyRsp": {
+            "type": "object",
+            "properties": {
+                "currencyList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.ExtendCurrencyInfo"
+                    },
+                    "description": "当前扩展货币信息"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGamePropsForServerReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGamePropsReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGamePropsRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.GameProps"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameQuestReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "QuestType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameQuestRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "DeadTime": {
+                    "type": "integer"
+                },
+                "ActivityNum": {
+                    "type": "integer"
+                },
+                "TotalAct": {
+                    "type": "integer"
+                },
+                "QuestData": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.GameQuest"
+                    }
+                },
+                "ActivityList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.ActivityDetails"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameRewardReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "QuestID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameRewardRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.RewardInfo"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameSignConfigReq": {
+            "type": "object",
+            "properties": {
+                "GameId": {
+                    "type": "integer"
+                },
+                "SignType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGameSignConfigRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Config": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.GameSignConfigInfo"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.GetGunSerialNumInfoReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer",
+                    "description": "游戏世界ID"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Key值"
+                },
+                "pid": {
+                    "type": "integer",
+                    "description": "玩家PID"
+                }
+            },
+            "description": "请求获取某个炮台的编号信息"
+        },
+        ".hallservice.service.v1.GetGunSerialNumInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "description": "获取的错误码编号 -1表示非法 0表示正确"
+                },
+                "serial_num": {
+                    "type": "integer",
+                    "description": "获取的编号"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "description": "获取的时间 时间戳"
+                }
+            },
+            "description": "获取某个炮台编号信息的返回值"
+        },
+        ".hallservice.service.v1.GetIsBindReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PartnerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetIsBindRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "IsBind": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetJumpInfoReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetJumpInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "info": {
+                    "$ref": "#/definitions/.hallservice.service.v1.JumpInfo"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetModifyFlagReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetModifyFlagRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "flag": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetPassportIDReq": {
+            "type": "object",
+            "properties": {
+                "usr": {
+                    "type": "string"
+                },
+                "pwd": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetPassportIDRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "passportID": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetPayMoneyReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetPetShareDataReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetPetShareDataRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/.hallservice.service.v1.PetShareData"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetTableUserRecordReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetTableUserRecordRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "McID": {
+                    "type": "integer"
+                },
+                "RoomNum": {
+                    "type": "integer"
+                },
+                "RoomPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetUserMoneyReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "TiSysType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetUserMoneyRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Amount": {
+                    "type": "integer"
+                },
+                "Ticket": {
+                    "type": "integer"
+                },
+                "ExtCoin": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetUserTicketReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetUserTicketRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "ticket": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetVipInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetVipInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "grade": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "frequenterScore": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "advDays": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetVipInfosReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetVipInfosRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "isVip": {
+                    "type": "boolean"
+                },
+                "isPermanentVip": {
+                    "type": "boolean"
+                },
+                "leftDays": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetWingStateReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "wingID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.GetWingStateRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.JumpInfo": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ServerID": {
+                    "type": "integer"
+                }
+            },
+            "description": "跳转游戏相关信息"
+        },
+        ".hallservice.service.v1.PartnerUserLoginReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PartnerID": {
+                    "type": "integer"
+                },
+                "MarkerID": {
+                    "type": "integer"
+                },
+                "Version": {
+                    "type": "string"
+                },
+                "UnionID": {
+                    "type": "string"
+                },
+                "NickName": {
+                    "type": "string"
+                },
+                "HeadimgUrl": {
+                    "type": "string"
+                },
+                "Sex": {
+                    "type": "integer"
+                },
+                "Json": {
+                    "type": "boolean"
+                },
+                "AppID": {
+                    "type": "string"
+                },
+                "OpenID": {
+                    "type": "string"
+                },
+                "Key": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.PartnerUserLoginRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "ret": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.PetShareData": {
+            "type": "object",
+            "properties": {
+                "wing": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.WingInfo"
+                    }
+                }
+            }
+        },
+        ".hallservice.service.v1.RewardInfo": {
+            "type": "object",
+            "properties": {
+                "Rewardcode": {
+                    "type": "integer"
+                },
+                "RewardNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.TimeToCallReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.TimeToCallRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "ResultTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdateExtendCurrencyReq": {
+            "type": "object",
+            "properties": {
+                "gameID": {
+                    "type": "integer"
+                },
+                "playerID": {
+                    "type": "integer"
+                },
+                "currencyList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.ExtendCurrencyInfo"
+                    },
+                    "description": "变动扩展货币信息"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdateExtendCurrencyRsp": {
+            "type": "object",
+            "properties": {
+                "currencyList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallservice.service.v1.ExtendCurrencyInfo"
+                    },
+                    "description": "当前扩展货币信息"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdateGameSignConfigReq": {
+            "type": "object",
+            "properties": {
+                "GameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdateJumpInfoReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "info": {
+                    "$ref": "#/definitions/.hallservice.service.v1.JumpInfo"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdateJumpInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.UpdatePetShareDataReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "data": {
+                    "$ref": "#/definitions/.hallservice.service.v1.PetShareData"
+                }
+            }
+        },
+        ".hallservice.service.v1.UserAccountLoginReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "VerifyToken": {
+                    "type": "string"
+                },
+                "Key": {
+                    "type": "string"
+                },
+                "MarkerID": {
+                    "type": "integer"
+                },
+                "Version": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.UserAccountLoginRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "ret": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "userid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.UserInfoUserEnterGameReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Flag": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.UserInfoUserExitGameReq": {
+            "type": "object",
+            "properties": {
+                "gameID": {
+                    "type": "string"
+                },
+                "userID": {
+                    "type": "string"
+                },
+                "flag": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallservice.service.v1.WechatSignReq": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallservice.service.v1.WechatSignRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "ret": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".hallservice.service.v1.WingInfo": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer"
+                },
+                "Status": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

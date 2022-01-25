@@ -1,0 +1,731 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package hallservice.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Hallservice {
+    rpc OnGetPassportID (GetPassportIDReq) returns (GetPassportIDRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetPassportID"
+        };
+    };
+	rpc OnGetModifyFlag (GetModifyFlagReq) returns (GetModifyFlagRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetModifyFlag"
+        };
+    };
+	rpc OnGetUserTicket (GetUserTicketReq) returns (GetUserTicketRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetUserTicket"
+        };
+    };
+    rpc OnGetUserMoney (GetUserMoneyReq) returns (GetUserMoneyRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetUserMoney"
+        };
+    };
+	rpc OnGetByPartnerUserid (GetByPartnerUseridReq) returns (GetByPartnerUseridRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetByPartnerUserid"
+        };
+    };
+	rpc OnPartnerUserLogin (PartnerUserLoginReq) returns (PartnerUserLoginRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnPartnerUserLogin"
+        };
+    };
+	rpc OnUserInfoUserEnterGame (UserInfoUserEnterGameReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnUserInfoUserEnterGame"
+        };
+    };
+	rpc OnWechatSign (WechatSignReq) returns (WechatSignRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnWechatSign"
+        };
+    };
+    rpc OnUserAccountLogin (UserAccountLoginReq) returns (UserAccountLoginRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnUserAccountLogin"
+        };
+    };
+	rpc OnGetGameProps (GetGamePropsReq) returns (GetGamePropsRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetGameProps"
+        };
+    };
+	rpc OnExchangeGameProps (ExchangeGamePropsReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnExchangeGameProps"
+        };
+    };
+	rpc OnGetGameQuest (GetGameQuestReq) returns (GetGameQuestRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetGameQuest"
+        };
+    };
+	rpc OnGetGameReward (GetGameRewardReq) returns (GetGameRewardRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetGameReward"
+        };
+    };
+	rpc OnGetActReward (GetActRewardReq) returns (GetActRewardRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetActReward"
+        };
+    };
+	rpc OnGetPayMoney (GetPayMoneyReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetPayMoney"
+        };
+    };
+	rpc OnTimeToCall (TimeToCallReq) returns (TimeToCallRsp){
+        option (google.api.http) = {
+            post:"/hallservice/OnTimeToCall"
+        };
+    };
+	rpc OnUserInfoUserExitGame (UserInfoUserExitGameReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnUserInfoUserExitGame"
+        };
+    };
+	rpc OnGameTransferStatAdd (GameTransferStatAddReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGameTransferStatAdd"
+        };
+    };
+	rpc OnGetGamePropsForServer (GetGamePropsForServerReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetGamePropsForServer"
+        };
+    };
+	rpc OnConsumeGameProps (ConsumeGamePropsReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnConsumeGameProps"
+        };
+    };
+	rpc OnGetCardGame (GetCardGameReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetCardGame"
+        };
+    };
+	rpc OnGetCardType (GetCardTypeReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/hallservice/OnGetCardType"
+        };
+    };
+	// 让服务器重载GameSignConfig配置
+	rpc OnUpdateGameSignConfig (UpdateGameSignConfigReq) returns (CommonResp){
+		option (google.api.http) = {
+            post:"/hallservice/OnUpdateGameSignConfig"
+        };
+	};
+	// 获取GameSignConfig配置
+	rpc OnGetGameSignConfig (GetGameSignConfigReq) returns (GetGameSignConfigRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnGetGameSignConfig"
+        };
+	};
+	// 签到
+	rpc OnCommonUserSignLogAdd (CommonUserSignLogAddReq) returns (CommonUserSignLogAddRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnCommonUserSignLogAdd"
+        };
+	};
+	// 获取Vip天数信息
+	rpc OnGetVipInfos (GetVipInfosReq) returns (GetVipInfosRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnGetVipInfos"
+        };
+	};
+	// 查询vip点数信息
+	rpc OnGetVipInfo (GetVipInfoReq) returns (GetVipInfoRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnGetVipInfo"
+        };
+	};
+	// 查询是否绑定(微信等合作商)
+	rpc OnGetIsBind (GetIsBindReq) returns (GetIsBindRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnGetIsBind"
+        };
+	};
+	// 查询房间信息
+	rpc OnGetTableUserRecord (GetTableUserRecordReq) returns (GetTableUserRecordRsp){
+		option (google.api.http) = {
+            post:"/hallservice/OnGetTableUserRecord"
+        };
+	};
+	// 获取扩展货币信息
+	rpc GetExtendCurrency (GetExtendCurrencyReq) returns (GetExtendCurrencyRsp){
+		option (google.api.http) = {
+            post:"/hallservice/GetExtendCurrency"
+        };
+	};
+	// 更新扩展货币信息
+	rpc UpdateExtendCurrency (UpdateExtendCurrencyReq) returns (UpdateExtendCurrencyRsp){
+		option (google.api.http) = {
+            post:"/hallservice/UpdateExtendCurrency"
+        };
+	};
+	// 获取共享数据（宠物相关）
+    rpc GetPetShareData (GetPetShareDataReq) returns (GetPetShareDataRsp){
+		option (google.api.http) = {
+            post:"/hallservice/GetPetShareData"
+        };
+	};
+	// 更新共享数据
+    rpc UpdatePetShareData (UpdatePetShareDataReq) returns (CommonResp){
+		option (google.api.http) = {
+            post:"/hallservice/UpdatePetShareData"
+        };
+	};
+	rpc OnAwardUserTelephoneBill (AwardUserTelephoneBillReq) returns (CommonResp){
+		option (google.api.http) = {
+            post:"/hallservice/OnAwardUserTelephoneBill"
+        };
+	};
+	// 获取玩家的跳转信息
+    rpc GetJumpInfo (GetJumpInfoReq) returns (GetJumpInfoRsp){
+		option (google.api.http) = {
+            post:"/hallservice/GetJumpInfo"
+        };
+	};
+	// 获取玩家的跳转信息
+    rpc UpdateJumpInfo (UpdateJumpInfoReq) returns (UpdateJumpInfoRsp){
+		option (google.api.http) = {
+            post:"/hallservice/UpdateJumpInfo"
+        };
+	};
+	//获取玩家是否拥有翅膀
+	rpc GetWingState (GetWingStateReq) returns (GetWingStateRsp){
+    	option (google.api.http) = {
+             post:"/hallservice/GetWingState"
+        };
+    };
+    //请求申请一个炮台的编号
+    rpc ApplyGunSerialNumber(ApplyGunSerialNumberReq)returns(ApplyGunSerialNumberRsp){
+        option (google.api.http) = {
+           post:"/hallservice/ApplyGunSerialNumber"
+        };
+    }
+    //玩家获取自己的炮台信息
+    rpc GetGunSerialNumInfo(GetGunSerialNumInfoReq)returns(GetGunSerialNumInfoRsp){
+        option (google.api.http) = {
+           post:"/hallservice/GetGunSerialNumInfo"
+        };
+    }
+}
+
+message GameSignConfigInfo {
+	int32		SignDay			= 1;	// 奖励天数
+	int32		AwardType		= 2;	// 1金币2房卡
+	string		AwardTypeDesc	= 3;	// 奖励描述
+	int32		AwardAmount		= 4;	// 奖励数量
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;
+}
+
+message GetPassportIDReq{
+	string usr = 1;
+	string pwd = 2;
+}
+
+message GetPassportIDRsp {
+    int32 code = 1;
+    string message = 2;
+	int32 passportID = 3;
+	string token = 4;
+}
+
+message GetModifyFlagReq {
+	int32 playerID = 1;
+}
+
+message GetModifyFlagRsp {
+    int32 code = 1;
+    string message = 2;
+	int32 flag = 3; 
+}
+
+message GetUserTicketReq {
+	string playerID = 1;
+}
+
+message GetUserTicketRsp {
+    int32 code = 1;
+    string message = 2;
+	int64 ticket = 3; 
+}
+
+message GetByPartnerUseridReq {
+	string uuid = 1;
+}
+
+message GetByPartnerUseridRsp {
+    int32 code = 1;
+    string message = 2;
+	int64 playerID = 3; 
+}
+
+message PartnerUserLoginReq {
+	int32 GameID = 1;
+	int32 PartnerID = 2;
+	int32 MarkerID = 3;
+	string Version = 4;
+	string UnionID = 5;
+	string NickName = 6;
+	string HeadimgUrl = 7;
+	int32 Sex = 8;
+	bool Json = 9;
+	string AppID = 10;
+	string OpenID = 11;
+	string Key = 12;
+}
+
+message PartnerUserLoginRsp {
+	int32 code = 1;
+    string message = 2;
+	bool ret = 3;
+	string token = 4;
+}
+
+message UserInfoUserEnterGameReq {
+	int32 GameID = 1;
+	int32 PlayerID = 2;
+	string Flag = 3;
+}
+
+message WechatSignReq {
+	string Url = 1;
+	int32 GameID = 2;
+}
+
+message WechatSignRsp {
+	int32 code = 1;
+    string message = 2;
+	bool ret = 3;
+}
+
+message UserAccountLoginReq {
+	int32 GameID = 1;
+	string VerifyToken = 2;
+    string Key = 3;
+	int32 MarkerID = 4;
+	string Version = 5;
+}
+
+message UserAccountLoginRsp {
+	int32 code = 1;
+    string message = 2;
+	bool ret = 3;
+	string token = 4;
+    int64 userid = 5;
+}
+
+message GetUserMoneyReq {
+	int32 GameID = 1;
+	int64 PlayerID = 2;
+	int32 TiSysType = 3;
+}
+
+message GetUserMoneyRsp {
+	int32 code = 1;
+    string message = 2;
+    int64 Amount = 3;
+    int32 Ticket = 4;
+    string ExtCoin = 5;
+}
+
+message GetGamePropsReq {
+	int32 PlayerID = 1;
+	int32 GameID = 2;	
+}
+
+message GameProps {
+	int32 PropID = 1;
+	int32 PropCnt = 2;
+	int32 PropType = 3;
+	int64 ValidTime = 4;
+}
+
+message GetGamePropsRsp {
+	int32 code = 1;
+    string message = 2;
+	repeated GameProps data = 3;
+}
+
+message ExchangeGamePropsReq {
+	int32 PlayerID = 1;
+	int32 GameID = 2;
+	int32 PropID = 3;
+	int32 Cnt = 4;
+	int32 PropType = 5;
+}
+
+message GetGameQuestReq {
+	int64 PlayerID = 1;
+	int32 GameID = 2;
+	int32 QuestType = 3;
+}
+
+message RewardInfo {
+	int32 Rewardcode = 1;
+	int32 RewardNum = 2;
+}
+
+message GameQuest {
+	string QuestID = 1;
+	int32 Type = 2;
+	string TriggerType = 3;
+	string Trigger = 4;
+	int32 QuestProgress = 5;
+	int32 QuestFinish2 = 6;
+	int32 State = 7;
+	int32 OrderNum = 8;
+	repeated RewardInfo RewardData = 9;
+	int32 ArenaID = 10;
+	int32 QuestFinish1 = 11;
+}
+
+message ActivityDetails {
+	int32 Num = 1;
+	int32 State = 2;
+	repeated RewardInfo PropsList = 3;
+}
+
+message GetGameQuestRsp {
+	int32 code = 1;
+    string message = 2;
+	int64 DeadTime = 3;
+	int32 ActivityNum = 4;
+	int32 TotalAct = 5;
+	repeated GameQuest QuestData = 6;
+	repeated ActivityDetails ActivityList = 7;
+}
+
+message GetGameRewardReq {
+	int32 PlayerID = 1;
+	int32 GameID = 2;
+	string QuestID = 3;
+}
+
+message GetGameRewardRsp {
+	int32 code = 1;
+    string message = 2;
+	repeated RewardInfo data = 3;
+}
+
+message GetActRewardReq {
+	int64 PlayerID = 1;
+	int32 GameID = 2;
+	int32 Activity = 3;
+}
+
+message GetActRewardRsp {
+	int32 code = 1;
+    string message = 2;
+	repeated RewardInfo data = 3;
+}
+
+message GetPayMoneyReq {
+	int64 PlayerID = 1;
+	int32 GameID = 2;
+	int32 Money = 3;
+}
+
+message TimeToCallReq {
+	int64 PlayerID = 1;	
+}
+
+message TimeToCallRsp {
+	int32 code = 1;
+    string message = 2;
+	int32 ResultTime = 3;
+}
+
+message UserInfoUserExitGameReq {
+	string gameID = 1;
+	string userID = 2;
+	string flag = 3;
+}
+
+message GameTransferStatAddReq {
+	string gameID = 1;
+	string arenaID = 2;
+	string roomID = 3;
+	string stype = 4;
+	string income = 5;
+	string expend = 6;
+}
+
+message GetGamePropsForServerReq {
+	int64 PlayerID = 1;
+	int32 GameID = 2;
+}
+
+message ConsumeGamePropsReq {
+	int64 PlayerID = 1;
+	string Data = 2;
+}
+
+message GetCardGameReq {
+	int64 PlayerID = 1;
+	string Data = 2;
+}
+
+message GetCardTypeReq {
+	int64 PlayerID = 1;
+	string Data = 2;
+}
+
+message UpdateGameSignConfigReq {
+	int32 GameId = 1;
+}
+
+message GetGameSignConfigReq {
+	int32 	GameId 		= 1;
+	int32	SignType	= 2;
+}
+
+message GetGameSignConfigRsp {
+	int32	code		= 1;
+	string	message		= 2;
+	repeated	GameSignConfigInfo Config	= 3;
+}
+
+message CommonUserSignLogAddReq {
+	int64	UserID		= 1;
+	int32	GameId		= 2;
+	int32	SignType	= 3;		// 0查询,1,2...按类型签到
+}
+
+message CommonUserSignLogAddRsp {
+	int32	code		= 1;
+	string	message		= 2;
+	bool	DayIsSign	= 3;
+	int32	Days		= 4;
+}
+
+message GetVipInfosReq {
+	int64 PlayerID 		= 1;
+}
+
+message GetVipInfosRsp {
+	int32  	code   			= 1;
+	string 	message 		= 2;
+	bool 	isVip			= 3;	// 是否vip用户
+	bool 	isPermanentVip 	= 4;	// 是否永久vip
+	int32 	leftDays 		= 5;	// 剩余天数
+}
+
+message GetVipInfoReq {
+	int64 	PlayerID 		= 1;
+}
+
+message GetVipInfoRsp {
+	int32	code   			= 1;
+	string 	message 		= 2;
+	int32 	grade 			= 3;
+	double 	score 			= 4;
+	double 	frequenterScore	= 5;
+	int32 	advDays 		= 6;
+}
+
+message GetIsBindReq {
+	int64 	PlayerID 		= 1;
+	int32	PartnerId		= 2;	// 1.微信 2.宜信 20.朋友玩
+}
+
+message GetIsBindRsp {
+	int32	code   			= 1;
+	string 	message 		= 2;
+	bool	IsBind			= 3;
+}
+
+message GetTableUserRecordReq {
+	int64 	PlayerID 		= 1;
+}
+
+message GetTableUserRecordRsp {
+	int32	code   			= 1;
+	string 	message 		= 2;
+	int32	McID			= 3;
+	int32	RoomNum			= 4;
+	string	RoomPassword	= 5;
+}
+
+message ExtendCurrencyInfo {
+	//货币唯一ID
+	int32 id = 1;
+	int64 num = 2;
+}
+
+message GetExtendCurrencyReq {
+	int32 gameID = 1;
+	int64 playerID = 2;
+}
+
+message GetExtendCurrencyRsp {
+	//当前扩展货币信息
+	repeated ExtendCurrencyInfo currencyList = 1;
+}
+
+message UpdateExtendCurrencyReq {
+	int32 gameID = 1;
+	int64 playerID = 2;
+	//变动扩展货币信息
+	repeated ExtendCurrencyInfo currencyList = 3;
+}
+
+message UpdateExtendCurrencyRsp {
+	//当前扩展货币信息
+	repeated ExtendCurrencyInfo currencyList = 1;
+}
+
+message GetPetShareDataReq {
+    int64 playerID = 1; 
+}
+
+message GetPetShareDataRsp {
+    int32	code   			= 1;
+    string 	message 		= 2; 
+    PetShareData  data  = 3;
+}
+
+message UpdatePetShareDataReq {
+    int64 playerID = 1;
+    PetShareData data    = 2;
+}
+
+message PetShareData {
+  repeated WingInfo wing = 1;
+}
+
+message WingInfo {
+  int32  Id = 1;
+  int32  Status = 2;
+}
+
+message AwardUserTelephoneBillReq {
+	int64 playerID = 1;
+	string phone = 2;
+	//票面价值 单位为元
+	int32 par = 3;
+	//唯一签名
+	string sign = 4;
+}
+
+//跳转游戏相关信息
+message JumpInfo {
+    int32 GameID = 1;
+    int32 ArenaID = 2;
+    int32 ServerID = 3;
+}
+
+message GetJumpInfoReq {
+    int64 playerID = 1; 
+}
+
+message GetJumpInfoRsp {
+	int32	code   			= 1;
+	string 	message 		= 2;
+    JumpInfo info 			= 3;
+}
+
+message UpdateJumpInfoReq {
+    int64 playerID = 1; 
+	JumpInfo info = 2;
+}
+
+message UpdateJumpInfoRsp {
+    int32	code   			= 1;		
+    string 	message 		= 2; 
+}
+
+message FakeUserInfo {
+	int64 playerID = 1; 
+}
+
+message GetWingStateReq {
+    int64 playerID = 1;
+    int32 wingID = 2;
+}
+
+message GetWingStateRsp {
+    int32	code   			= 1;
+    string 	message 		= 2;
+}
+
+message ExchangePropReq {
+    int64 playerId = 1;
+    int32 gameId = 2;
+    int32 propId = 3;
+    int32 num  = 4;
+}
+
+message ExchangePropRsp {
+     int32	code   			= 1;
+     string message 		= 2;
+     int32 targetId         = 3;
+     int32 num              = 4;
+}
+
+//请求申请炮台编号的结构体
+message ApplyGunSerialNumberReq
+{
+    int32 game_id = 1;
+    //这个字段与game_id组成redis的key 这样的话这个接口可以通用
+    string key = 2;
+    //申请玩家pid
+    int32 pid = 3;
+    //炮台编号能达到的最大的编号数字 闭区间
+    int32 MaxNumber =4;
+    //有写编号不吉利不能使用 通过这个字段传进来去除掉
+    repeated int32 un_use_list = 5;
+}
+
+//请求申请炮塔编号的返回值的结构体
+message ApplyGunSerialNumberRsp
+{
+    //错误码 -1表示非法 0表示正确
+    int32 code = 1;
+    //返回序列编号
+    int64 serial_num = 2;
+}
+
+//请求获取某个炮台的编号信息
+message GetGunSerialNumInfoReq
+{
+    //游戏世界ID
+    int32 game_id = 1;
+    // Key值
+    string  key = 2;
+    //玩家PID
+    int32 pid =3;
+}
+
+//获取某个炮台编号信息的返回值
+message GetGunSerialNumInfoRsp
+{
+    //获取的错误码编号 -1表示非法 0表示正确
+    int32 code = 1;
+    //获取的编号
+    int64 serial_num = 2;
+    //获取的时间 时间戳
+    int64 timestamp =3 ;
+}
