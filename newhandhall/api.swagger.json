@@ -1,0 +1,638 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/newhandhall/OnCompleteGuide": {
+            "post": {
+                "summary": "完成引导步骤",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.CompleteGuideReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetConfig": {
+            "post": {
+                "summary": "/////////////////////////////////客户端的http请求/////////////////////////////////////////////////////////////////",
+                "description": "获取服务器配置",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetConfigRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetConfigReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetGameInfo": {
+            "post": {
+                "summary": "获取游戏列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetGameInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetGameInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetGoldConsumeAndEarned": {
+            "post": {
+                "summary": "获取累计消耗获得货币数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetGoldConsumeAndEarnedRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetGoldConsumeAndEarnedReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetGuideData": {
+            "post": {
+                "summary": "获取引导步骤信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetGuideDataRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetGuideDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetHallIsLock": {
+            "post": {
+                "summary": "获取大厅解锁情况",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetHallIsLockRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetHallIsLockReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnGetNextGiftTime": {
+            "post": {
+                "summary": "获取下次免费礼包时间",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.GetNextGiftTimeRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.GetNextGiftTimeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnReceiveGift": {
+            "post": {
+                "summary": "获取免费礼包",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.ReceiveGiftReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnUnlockGame": {
+            "post": {
+                "summary": "解锁游戏",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.UnlockGameReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        },
+        "/newhandhall/OnUnlockHall": {
+            "post": {
+                "summary": "解锁大厅",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.newhandhall.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.newhandhall.service.v1.UnlockHallReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "newhandhall.service.v1.Newhandhall"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".newhandhall.service.v1.CommonRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            },
+            "description": "//////////////////////////////////////////////客户端协议\u003cbegin\u003e//////////////////////////////////////////////////////"
+        },
+        ".newhandhall.service.v1.CompleteGuideReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                },
+                "Index": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetConfigReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetConfigRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Config": {
+                    "type": "string"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGameInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGameInfoRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "LockId": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "UnlockId": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGoldConsumeAndEarnedReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGoldConsumeAndEarnedRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Consume": {
+                    "type": "integer"
+                },
+                "Earned": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGuideDataReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetGuideDataRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Index": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetHallIsLockReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetHallIsLockRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "IsUnlock": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetNextGiftTimeReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".newhandhall.service.v1.GetNextGiftTimeRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.newhandhall.service.v1.NextGiftTimeInfo"
+                    }
+                }
+            }
+        },
+        ".newhandhall.service.v1.NextGiftTimeInfo": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer"
+                },
+                "TimeLeft": {
+                    "type": "integer"
+                }
+            },
+            "description": "/////////////////////////////////////////////////嵌套\u003cbegin\u003e/////////////////////////////////////////////////////////"
+        },
+        ".newhandhall.service.v1.ReceiveGiftReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.UnlockGameReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                },
+                "GameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".newhandhall.service.v1.UnlockHallReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "ChannelId": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

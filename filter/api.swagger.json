@@ -1,0 +1,204 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/filter/FilterAdsWord": {
+            "post": {
+                "summary": "查询是否包含广告词",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.filter.service.v1.AdsFilterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.filter.service.v1.AdsFilterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "filter.service.v1.Filter"
+                ]
+            }
+        },
+        "/filter/FilterForbidWord": {
+            "post": {
+                "summary": "过滤违禁词",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.filter.service.v1.ForbidFilterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.filter.service.v1.ForbidFilterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "filter.service.v1.Filter"
+                ]
+            }
+        },
+        "/filter/FilterForbidWords": {
+            "post": {
+                "summary": "批量过滤违禁词",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.filter.service.v1.ForbidFilterWordsRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.filter.service.v1.ForbidFilterWordsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "filter.service.v1.Filter"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".filter.service.v1.AdsFilterReq": {
+            "type": "object",
+            "properties": {
+                "word": {
+                    "type": "string"
+                }
+            },
+            "description": "广告词过滤"
+        },
+        ".filter.service.v1.AdsFilterRsp": {
+            "type": "object",
+            "properties": {
+                "is_ads": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".filter.service.v1.ForbidFilterReq": {
+            "type": "object",
+            "properties": {
+                "word": {
+                    "type": "string"
+                }
+            },
+            "description": "违禁词过滤"
+        },
+        ".filter.service.v1.ForbidFilterRsp": {
+            "type": "object",
+            "properties": {
+                "is_forbid": {
+                    "type": "boolean"
+                },
+                "word": {
+                    "type": "string"
+                }
+            }
+        },
+        ".filter.service.v1.ForbidFilterWordsReq": {
+            "type": "object",
+            "properties": {
+                "words": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "批量过滤违禁词"
+        },
+        ".filter.service.v1.ForbidFilterWordsRsp": {
+            "type": "object",
+            "properties": {
+                "forbidWords": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.filter.service.v1.ForbidWord"
+                    }
+                }
+            }
+        },
+        ".filter.service.v1.ForbidWord": {
+            "type": "object",
+            "properties": {
+                "word": {
+                    "type": "string"
+                },
+                "forbid_word": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

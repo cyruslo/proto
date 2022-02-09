@@ -1,0 +1,484 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hallemail.service.v1.hallemail/Ping": {
+            "get": {
+                "summary": "/hallemail.service.v1.hallemail/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        },
+        "/hallemail/AddMailInfo": {
+            "post": {
+                "summary": "添加基础邮件",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallemail.service.v1.AddMailInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallemail.service.v1.AddMailInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        },
+        "/hallemail/PublishMail": {
+            "post": {
+                "summary": "服务器更新并发送邮件",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallemail.service.v1.PublishMailRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallemail.service.v1.PublishMailReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        },
+        "/hallemail/SendMailInfo": {
+            "post": {
+                "summary": "发送邮件(发送添加的基础邮件给到指定的用户)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallemail.service.v1.SendMailInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallemail.service.v1.SendMailInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        },
+        "hallemail/GetMailInfo": {
+            "post": {
+                "summary": "获取邮件信息(客户端请求)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallemail.service.v1.GetMailInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallemail.service.v1.GetMailInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        },
+        "hallemail/UserMailOperation": {
+            "post": {
+                "summary": "用户邮件操作(0.read 1.getreward 2.remove 3.deleteRedPoint)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallemail.service.v1.MailOpRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallemail.service.v1.MailOpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallemail.service.v1.hallemail"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".hallemail.service.v1.AddMailInfoReq": {
+            "type": "object",
+            "properties": {
+                "Title": {
+                    "type": "string"
+                },
+                "Content": {
+                    "type": "string"
+                },
+                "Users": {
+                    "type": "string"
+                },
+                "Reward": {
+                    "type": "string"
+                }
+            },
+            "description": "添加邮件"
+        },
+        ".hallemail.service.v1.AddMailInfoRsp": {
+            "type": "object",
+            "properties": {
+                "MailID": {
+                    "type": "integer"
+                },
+                "Users": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallemail.service.v1.GetMailInfoReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "PlatFormID": {
+                    "type": "integer"
+                }
+            },
+            "description": "获取邮件信息"
+        },
+        ".hallemail.service.v1.GetMailInfoResp": {
+            "type": "object",
+            "properties": {
+                "mailInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallemail.service.v1.MailInfo"
+                    }
+                }
+            }
+        },
+        ".hallemail.service.v1.MailInfo": {
+            "type": "object",
+            "properties": {
+                "nMailID": {
+                    "type": "integer"
+                },
+                "strMailTitle": {
+                    "type": "string"
+                },
+                "tWriteTime": {
+                    "type": "integer"
+                },
+                "tExpireTime": {
+                    "type": "integer"
+                },
+                "bIsRead": {
+                    "type": "boolean"
+                },
+                "bIsReward": {
+                    "type": "boolean"
+                },
+                "strContent": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "nRid": {
+                    "type": "integer"
+                },
+                "bIsRedPoint": {
+                    "type": "boolean"
+                },
+                "vecMailRewardInfos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hallemail.service.v1.MailRewardInfo"
+                    }
+                }
+            },
+            "description": "邮件结构体",
+            "required": [
+                "nMailID",
+                "strMailTitle",
+                "tWriteTime",
+                "tExpireTime",
+                "bIsRead",
+                "bIsReward",
+                "strContent",
+                "GameID",
+                "nRid",
+                "bIsRedPoint",
+                "vecMailRewardInfos"
+            ]
+        },
+        ".hallemail.service.v1.MailOpReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "op_id": {
+                    "type": "integer"
+                },
+                "mail_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "phy_id": {
+                    "type": "string"
+                },
+                "PlatFormID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "user_dbid",
+                "game_id",
+                "mail_id",
+                "phy_id",
+                "PlatFormID"
+            ]
+        },
+        ".hallemail.service.v1.MailOpRsp": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "op_id": {
+                    "type": "integer"
+                },
+                "success": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "mail_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "required": [
+                "user_dbid",
+                "op_id",
+                "success",
+                "message",
+                "mail_id"
+            ]
+        },
+        ".hallemail.service.v1.MailRewardInfo": {
+            "type": "object",
+            "properties": {
+                "nType": {
+                    "type": "integer"
+                },
+                "nAmount": {
+                    "type": "integer"
+                }
+            },
+            "description": "邮件道具",
+            "required": [
+                "nType",
+                "nAmount"
+            ]
+        },
+        ".hallemail.service.v1.PublishMailReq": {
+            "type": "object",
+            "properties": {
+                "Title": {
+                    "type": "string"
+                },
+                "Content": {
+                    "type": "string"
+                },
+                "Sender": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "StartTime": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "string"
+                },
+                "SendType": {
+                    "type": "integer"
+                },
+                "UserIDS": {
+                    "type": "string"
+                },
+                "RewordInfo": {
+                    "type": "string"
+                },
+                "GamePlatFormID": {
+                    "type": "integer"
+                }
+            },
+            "description": "邮件"
+        },
+        ".hallemail.service.v1.PublishMailRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "msgID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hallemail.service.v1.SendMailInfoReq": {
+            "type": "object",
+            "properties": {},
+            "description": "发送邮件"
+        },
+        ".hallemail.service.v1.SendMailInfoRsp": {
+            "type": "object",
+            "properties": {}
+        }
+    }
+}

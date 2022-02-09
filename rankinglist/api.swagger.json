@@ -1,0 +1,301 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/RankingList/GetHallRankingList": {
+            "post": {
+                "summary": "/RankingList/GetHallRankingList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rankinglist.service.v1.GetHallRankingListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rankinglist.service.v1.GetHallRankingListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rankinglist.service.v1.RankingList"
+                ]
+            }
+        },
+        "/RankingList/GetRankingList": {
+            "post": {
+                "summary": "/RankingList/GetRankingList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rankinglist.service.v1.GetRankingListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rankinglist.service.v1.GetRankingListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rankinglist.service.v1.RankingList"
+                ]
+            }
+        },
+        "/RankingList/UpdateRankingList": {
+            "post": {
+                "summary": "/RankingList/UpdateRankingList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rankinglist.service.v1.UpdateRankingListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rankinglist.service.v1.UpdateRankingListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rankinglist.service.v1.RankingList"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".rankinglist.service.v1.GetHallRankingListReq": {
+            "type": "object",
+            "properties": {
+                "GameId": {
+                    "type": "integer"
+                },
+                "StatTypeId": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameId",
+                "StatTypeId"
+            ]
+        },
+        ".rankinglist.service.v1.GetHallRankingListRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "TopStatData": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rankinglist.service.v1.TopStatData"
+                    }
+                },
+                "LastStatTime": {
+                    "type": "string"
+                },
+                "IsDisplay": {
+                    "type": "boolean"
+                },
+                "IsDisplayAvatar": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".rankinglist.service.v1.GetRankingListReq": {
+            "type": "object",
+            "properties": {
+                "GameId": {
+                    "type": "integer"
+                },
+                "RankType": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameId",
+                "RankType"
+            ]
+        },
+        ".rankinglist.service.v1.GetRankingListRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "RankInfoSize": {
+                    "type": "integer"
+                },
+                "RankInfoList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rankinglist.service.v1.RankInfo"
+                    }
+                }
+            }
+        },
+        ".rankinglist.service.v1.RankInfo": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "type": "string"
+                },
+                "UserId": {
+                    "type": "integer"
+                },
+                "UpdateTime": {
+                    "type": "string"
+                },
+                "Content": {
+                    "type": "string"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankKey": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".rankinglist.service.v1.TopStatData": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "type": "integer"
+                },
+                "NickName": {
+                    "type": "string"
+                },
+                "StatTypeId": {
+                    "type": "integer"
+                },
+                "StatValue": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "IsPublic": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".rankinglist.service.v1.UpdateRankingListReq": {
+            "type": "object",
+            "properties": {
+                "GameId": {
+                    "type": "integer"
+                },
+                "RankType": {
+                    "type": "integer"
+                },
+                "UserId": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankKey": {
+                    "type": "integer"
+                },
+                "UserName": {
+                    "type": "string"
+                },
+                "UpdateTime": {
+                    "type": "string"
+                },
+                "Content": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameId",
+                "RankType",
+                "Rank",
+                "UserName"
+            ]
+        },
+        ".rankinglist.service.v1.UpdateRankingListRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

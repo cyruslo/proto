@@ -1,0 +1,448 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/worldlog/OnEveryGameLog": {
+            "get": {
+                "summary": "/worldlog/OnEveryGameLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.worldlog.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ArenaID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ServerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "TableID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Money",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Gameno",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Chairno",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Tax",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Balance",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Iscoingame",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "BIsTrusteeship",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "worldlog.service.v1.Worldlog"
+                ]
+            }
+        },
+        "/worldlog/OnGetVipInfo": {
+            "get": {
+                "summary": "/worldlog/OnGetVipInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.worldlog.service.v1.GetVipInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "worldlog.service.v1.Worldlog"
+                ]
+            }
+        },
+        "/worldlog/OnRemoveUserLastMoney": {
+            "post": {
+                "summary": "/worldlog/OnRemoveUserLastMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.worldlog.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.worldlog.service.v1.RemoveUserLastMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "worldlog.service.v1.Worldlog"
+                ]
+            }
+        },
+        "/worldlog/OnSaveVipPoint": {
+            "get": {
+                "summary": "/worldlog/OnSaveVipPoint",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.worldlog.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ArenaID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ServerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Score",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "IP",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "worldlog.service.v1.Worldlog"
+                ]
+            }
+        },
+        "/worldlog/OnUserInfoVipGet": {
+            "get": {
+                "summary": "/worldlog/OnUserInfoVipGet",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.worldlog.service.v1.UserInfoVipGetRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "UserID",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "worldlog.service.v1.Worldlog"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".worldlog.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".worldlog.service.v1.EveryGameLogReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "TableID": {
+                    "type": "string"
+                },
+                "Money": {
+                    "type": "string"
+                },
+                "Gameno": {
+                    "type": "string"
+                },
+                "Chairno": {
+                    "type": "string"
+                },
+                "Tax": {
+                    "type": "string"
+                },
+                "Balance": {
+                    "type": "string"
+                },
+                "Iscoingame": {
+                    "type": "string"
+                },
+                "BIsTrusteeship": {
+                    "type": "string"
+                }
+            },
+            "description": "每局日志"
+        },
+        ".worldlog.service.v1.GetVipInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "string"
+                }
+            },
+            "description": "vip"
+        },
+        ".worldlog.service.v1.GetVipInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "grade": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "frequenterScore": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "advDays": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".worldlog.service.v1.RemoveUserLastMoneyReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".worldlog.service.v1.SaveVipPointReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "Score": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                }
+            },
+            "description": "vip点"
+        },
+        ".worldlog.service.v1.UserInfoVipGetReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "UserID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".worldlog.service.v1.UserInfoVipGetRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "supuserID": {
+                    "type": "integer"
+                },
+                "supsuserID": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

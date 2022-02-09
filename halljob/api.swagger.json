@@ -1,0 +1,260 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hallJob.service.v1.hallJob/Ping": {
+            "get": {
+                "summary": "/hallJob.service.v1.hallJob/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "hallJob.service.v1.hallJob"
+                ]
+            }
+        },
+        "/hallJob/Job/Push": {
+            "post": {
+                "summary": "推送消息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallJob.service.v1.PushMsgResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallJob.service.v1.PushMsgReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallJob.service.v1.hallJob"
+                ]
+            }
+        },
+        "/hallJob/Job/UserOffline": {
+            "post": {
+                "summary": "用户离线",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallJob.service.v1.UserOfflineResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallJob.service.v1.UserOfflineReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallJob.service.v1.hallJob"
+                ]
+            }
+        },
+        "/hallJob/Job/UserOnline": {
+            "post": {
+                "summary": "用户在线",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallJob.service.v1.UserOlineResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallJob.service.v1.UserOlineReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallJob.service.v1.hallJob"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".hallJob.service.v1.PushMsgReq": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "integer"
+                },
+                "uid": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "cmd": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "speed": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "cmd"
+            ]
+        },
+        ".hallJob.service.v1.PushMsgResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallJob.service.v1.UserOfflineReq": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "description": "用户离线",
+            "required": [
+                "uid",
+                "key"
+            ]
+        },
+        ".hallJob.service.v1.UserOfflineResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallJob.service.v1.UserOlineReq": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "integer"
+                }
+            },
+            "description": "用户在线",
+            "required": [
+                "key",
+                "hostname",
+                "uid"
+            ]
+        },
+        ".hallJob.service.v1.UserOlineResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

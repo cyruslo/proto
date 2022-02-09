@@ -1,0 +1,264 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package roomcenter.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service roomcenter {
+	//客户端获取进入的游戏房间服务器地址
+	rpc AllocRoom (AllocRoomReq) returns (AllocRoomRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/AllocRoom"
+        };
+	};
+	//游戏逻辑服上报更新房间人数
+	rpc PushRoomStatus (PushRoomStatusReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/PushRoomStatus"
+        };
+	};
+	//游戏逻辑服上报房间上下线状态（游戏服，启动和关闭时调用）
+	rpc PushOnlineStatus (OnlineStatusReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/PushOnlineStatus"
+        };
+	};
+	//游戏逻辑服上报心跳
+	rpc HeartBeat (HeartBeatReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/HeartBeat"
+        };
+	};
+	//上报号码
+	rpc OnUpdateCustomRoomNum (UpdateCustomRoomNum) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/OnUpdateCustomRoomNum"
+        };
+	};
+	//根据号码，获取游戏服务器地址
+	rpc OnGetCustomRoomAddress (GetCustomRoomAddress) returns (GetCustomRoomAddressResp){
+		option (google.api.http) = {
+            post:"/roomcenter/OnGetCustomRoomAddress"
+        };
+	};
+	//多人分配一个房间
+	rpc MultiPlayerAllocRoom (MultiPlayerAllocRoomReq) returns (AllocRoomRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/MultiPlayerAllocRoom"
+        };
+	};
+	//查询场列表
+	rpc QueryArena (QueryArenaReq) returns (QueryArenaRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/QueryArena"
+        };
+	};
+	//根据桌子数分配游戏服
+	rpc AllocCustomRoom (AllocRoomReq) returns (AllocRoomRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/AllocCustomRoom"
+        };
+	};
+	//查询房间信息
+	rpc QueryRoomList (QueryRoomListReq) returns (QueryRoomListRsp){
+		option (google.api.http) = {
+            post:"/roomcenter/QueryRoomList"
+        };
+	};
+	//查询场待更新版本
+	rpc QueryArenaNewVersion (QueryArenaNewVersionReq) returns (QueryArenaNewVersionRsp){
+		option (google.api.http) = {
+			post:"/roomcenter/QueryArenaNewVersion"
+		};
+	};
+	//更新场对外
+	rpc UpdateArenaNewVersion (UpdateArenaNewVersionReq) returns (UpdateArenaNewVersionRsp){
+		option (google.api.http) = {
+			post:"/roomcenter/UpdateArenaNewVersion"
+		};
+	};
+}
+
+enum ErrCode {
+	SUCCESS = 0;
+	ParamsErr = 100000;
+	ArenaInfoEmpty = 100001;
+}
+
+//客户端请求分配房间
+message AllocRoomReq
+{
+	int64 PlayerID = 1 	  [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID"']; 	// 用户ID
+	int32 GameID = 3	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'] ;		// 游戏ID
+	int32 GroupID = 4	  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'] ;	// 场ID
+	int32 Type = 5	      [(gogoproto.jsontag) = "Type", (gogoproto.moretags)='form:"Type"'] ;	// 分配游戏服地址模式，1：随机
+}
+
+message AllocRoomRsp
+{
+	int32 Code = 1   	  [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message =2 	  [(gogoproto.jsontag) = "Message"];  // 信息
+	string RoomID = 3 	  [(gogoproto.jsontag) = "RoomID"];		// 房间ID
+	string Address = 4    [(gogoproto.jsontag) = "Address"];	//游戏服的地址
+	int32 MaxTableNum = 5    [(gogoproto.jsontag) = "MaxTableNum", (gogoproto.moretags)='form:"MaxTableNum" '];	// 最大桌号限制
+
+}
+
+//游戏逻辑服上报更新房间人数和桌子数
+message PushRoomStatusReq
+{
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int32 GroupID = 2	  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+	string RoomID = 3	  [(gogoproto.jsontag) = "RoomID", (gogoproto.moretags)='form:"RoomID" validate:"required"'];		// 房间ID
+	int32 Count = 4		  [(gogoproto.jsontag) = "Count", (gogoproto.moretags)='form:"Count"'];						     //当前在线人数
+	int32 Total = 5		  [(gogoproto.jsontag) = "Total", (gogoproto.moretags)='form:"Total" validate:"required"'];		// 人数上限
+	int32 TableNum = 6    [(gogoproto.jsontag) = "TableNum", (gogoproto.moretags)='form:"TableNum"'];					// 当前房间内桌子数量
+	int32 TableID = 7     [(gogoproto.jsontag) = "TableID", (gogoproto.moretags)='form:"TableID"'];                     // 桌子ID
+	int32 TableUserNum = 8 [(gogoproto.jsontag) = "TableUserNum", (gogoproto.moretags)='form:"TableUserNum"'];	        //当前桌子的在线人数
+	bool TablePwd = 9      [(gogoproto.jsontag) = "TablePwd", (gogoproto.moretags)='form:"TablePwd"'];	        //桌子密码标识
+	string TableType = 10  [(gogoproto.jsontag) = "TableType", (gogoproto.moretags)='form:"TableType"'];	        //桌子类型，定义string支持各游戏扩展
+	int32 RobotCount = 11  [(gogoproto.jsontag) = "RobotCount", (gogoproto.moretags)='form:"RobotCount"'];				//机器人数量
+}
+message CommonRsp
+{
+	int32 Code = 1		  [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message =2 	  [(gogoproto.jsontag) = "Message"];  // 信息
+}
+
+//游戏逻辑服上报房间状态
+message OnlineStatusReq
+{
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int32 GroupID = 2	  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+	string RoomID = 3	  [(gogoproto.jsontag) = "RoomID", (gogoproto.moretags)='form:"RoomID" validate:"required"'];	// 房间ID
+	bool IsOnLine = 4	   [(gogoproto.jsontag) = "IsOnLine", (gogoproto.moretags)='form:"IsOnLine"'];// 上线状态(1上线 0 下线)
+	int32 Total = 5       [(gogoproto.jsontag) = "Total", (gogoproto.moretags)='form:"Total" validate:"required"'];	// 人数上限
+	string Address = 6    [(gogoproto.jsontag) = "Address", (gogoproto.moretags)='form:"Address" validate:"required"'];	// 游戏服务地址ip+port
+	int32 Version = 7    [(gogoproto.jsontag) = "Version", (gogoproto.moretags)='form:"Version" validate:"required"'];	// 游戏服务版本号
+	int32 MaxTableNum = 8    [(gogoproto.jsontag) = "MaxTableNum", (gogoproto.moretags)='form:"MaxTableNum" '];	// 最大桌号限制
+
+}
+
+//心跳
+message HeartBeatReq
+{
+	int32 GameID = 1	 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int32 GroupID = 2	 [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+	string RoomID = 3	 [(gogoproto.jsontag) = "RoomID", (gogoproto.moretags)='form:"RoomID" validate:"required"'];	// 房间ID
+}
+
+
+// 创建房间，上报号码
+message UpdateCustomRoomNum {
+	int32 GroupID = 1	 [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+	string RoomID = 2	 [(gogoproto.jsontag) = "RoomID", (gogoproto.moretags)='form:"RoomID" validate:"required"'];
+	int32 TableID = 3	 [(gogoproto.jsontag) = "TableID", (gogoproto.moretags)='form:"TableID"'];
+	int32 RoomNum = 4 	 [(gogoproto.jsontag) = "RoomNum", (gogoproto.moretags)='form:"RoomNum" validate:"required"'];
+	bool AddNew = 5 	 [(gogoproto.jsontag) = "AddNew", (gogoproto.moretags)='form:"AddNew"'];
+	int64 PlayerID = 6 	 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID"'];
+	int32 GameID = 7	 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+}
+
+// 根据房号，获取游戏服务地址
+message GetCustomRoomAddress {
+	int32 GameID = 1	 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID"'];
+	int32 GroupID = 2	 [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID"'];
+	int32 RoomNum = 3 	 [(gogoproto.jsontag) = "RoomNum", (gogoproto.moretags)='form:"RoomNum" validate:"required"'];
+}
+
+message GetCustomRoomAddressResp {
+	int32 Code = 1		  	  [(gogoproto.jsontag) = "Code"];
+	string Message = 2		  [(gogoproto.jsontag) = "Message"];
+	string Address = 3		  [(gogoproto.jsontag) = "Address"];
+	int32 TableID = 4		  [(gogoproto.jsontag) = "TableID"];
+	int32 GameID = 5	      [(gogoproto.jsontag) = "GameID"];
+	int32 ArenaID = 6	      [(gogoproto.jsontag) = "ArenaID"];
+}
+
+message MultiPlayerAllocRoomReq {
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'] ;		// 游戏ID
+	int32 GroupID = 2	  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'] ;	// 场ID
+	repeated int64 UserList = 3	  [(gogoproto.jsontag) = "UserList", (gogoproto.moretags)='form:"UserList" validate:"required"'] ;	// 用户列表
+}
+
+message QueryArenaReq {
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'] ;		// 游戏ID
+}
+
+message ArenaInfo {
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID"] ;    // 游戏ID
+	int32 GroupID = 2	  [(gogoproto.jsontag) = "GroupID"] ;	// 场ID
+	int64 MinMoney = 3	  [(gogoproto.jsontag) = "MinMoney"] ;	// 进入最少金币数
+	int64 MaxMoney = 4	  [(gogoproto.jsontag) = "MaxMoney"] ;	// 进入最多金币数
+	string Expand = 5	  [(gogoproto.jsontag) = "Expand"] ;	// 附加字段
+}
+
+message QueryArenaRsp {
+	repeated ArenaInfo ArenaList = 1	  [(gogoproto.jsontag) = "ArenaList"] ;	// 场列表
+}
+
+message QueryRoomListReq {
+	int32 GameID = 1	  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"']; 	//游戏ID
+	int32 GroupID = 2	  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];	//场ID
+	string RoomID = 3	  [(gogoproto.jsontag) = "RoomID", (gogoproto.moretags)='form:"RoomID"'];	// 房间ID，不传查所有
+}
+
+message TableInfo {
+	int32 TableID = 1		  [(gogoproto.jsontag) = "TableID"];	//桌子ID
+	int32 UserNum = 2 		  [(gogoproto.jsontag) = "UserNum"];	//桌子在线人数
+	bool TablePwd = 3 		  [(gogoproto.jsontag) = "TablePwd"];	//桌子密码标识
+	string TableType = 4      [(gogoproto.jsontag) = "TableType"];	//桌子类型
+}
+
+message RoomInfo {
+	string RoomID = 1	  [(gogoproto.jsontag) = "RoomID"];			//房间ID
+	int32  UserNum = 2    [(gogoproto.jsontag) = "UserNum"];		//房间在线人数
+	int32  UserTotal = 3  [(gogoproto.jsontag) = "UserTotal"];		//房间总人数
+	string Address = 4    [(gogoproto.jsontag) = "Address"];		//游戏服的地址
+	repeated TableInfo TableList = 5 [(gogoproto.jsontag) = "TableList"]; //桌子列表
+}
+
+message QueryRoomListRsp {
+	int32 Code = 1		  	  [(gogoproto.jsontag) = "Code"];
+	string Message = 2		  [(gogoproto.jsontag) = "Message"];
+	repeated RoomInfo RoomList = 5 [(gogoproto.jsontag) = "RoomList"]; //房间列表
+}
+
+message QueryArenaNewVersionReq {
+    int32 GameID = 1	 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];    
+}
+
+message ArenaVerInfo {
+    int32 GameID = 1		  			[(gogoproto.jsontag) = "GameID"];	
+    int32 GroupID = 2 		  			[(gogoproto.jsontag) = "GroupID"];
+    int32 Version = 3 		  			[(gogoproto.jsontag) = "Version"];
+    int32 Switch = 4       	  			[(gogoproto.jsontag) = "Switch"];
+	repeated int32 RoomIDs  = 5			[(gogoproto.jsontag) = "RoomIDs"];
+	int32 LastVersion = 6	  			[(gogoproto.jsontag) = "LastVersion"];
+	repeated int32 LastRoomIDs  = 7		[(gogoproto.jsontag) = "LastRoomIDs"];
+}
+
+message QueryArenaNewVersionRsp {
+	int32 Code = 1		  	  			[(gogoproto.jsontag) = "Code"];
+    string Message = 2		  			[(gogoproto.jsontag) = "Message"];
+	repeated ArenaVerInfo ArenaList = 3 [(gogoproto.jsontag) = "ArenaList"];
+}
+
+message UpdateArenaNewVersionReq {
+	int32 GameID = 1		  [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int32 GroupID = 2 		  [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+    int32 Version = 3 		  [(gogoproto.jsontag) = "Version", (gogoproto.moretags)='form:"Version" validate:"required"'];
+}
+
+message UpdateArenaNewVersionRsp {
+	int32 Code = 1		  	  			[(gogoproto.jsontag) = "Code"];
+    string Message = 2		  			[(gogoproto.jsontag) = "Message"];
+}

@@ -1,0 +1,548 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/ai_algo_dispatch/daxuan": {
+            "post": {
+                "summary": "打旋AI",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DaXuanResultRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DaXuanParamsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ai_algo_dispatch.service.v1.AiAlgoDispatch"
+                ]
+            }
+        },
+        "/ai_algo_dispatch/ddz": {
+            "post": {
+                "summary": "斗地主AI",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DdzResultRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DdzParamsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ai_algo_dispatch.service.v1.AiAlgoDispatch"
+                ]
+            }
+        },
+        "/ai_algo_dispatch/ddz_bid_action": {
+            "post": {
+                "summary": "斗地主叫地主请求",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DdzBidResultRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DdzBidParamsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ai_algo_dispatch.service.v1.AiAlgoDispatch"
+                ]
+            }
+        },
+        "/ai_algo_dispatch/texa": {
+            "post": {
+                "summary": "德州",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaResultRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaParamsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ai_algo_dispatch.service.v1.AiAlgoDispatch"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".ai_algo_dispatch.service.v1.DaXuanEnvInfo": {
+            "type": "object",
+            "properties": {
+                "step_dealer_idx": {
+                    "type": "integer"
+                },
+                "current_idx": {
+                    "type": "integer"
+                },
+                "ply_num": {
+                    "type": "integer"
+                },
+                "opt_list": {
+                    "type": "string"
+                },
+                "user_info": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DaXuanUserInfo"
+                    }
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.DaXuanParamsReq": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "integer"
+                },
+                "tid": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "TagAIEnvInfo": {
+                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.DaXuanEnvInfo"
+                }
+            },
+            "description": "打旋请求参数",
+            "required": [
+                "uid",
+                "tid",
+                "TagAIEnvInfo"
+            ]
+        },
+        ".ai_algo_dispatch.service.v1.DaXuanResultRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "integer"
+                },
+                "head": {
+                    "type": "string"
+                },
+                "tail": {
+                    "type": "string"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.DaXuanUserInfo": {
+            "type": "object",
+            "properties": {
+                "pos_idx": {
+                    "type": "integer"
+                },
+                "current_bet": {
+                    "type": "integer"
+                },
+                "previous_bet": {
+                    "type": "integer"
+                },
+                "hand_cards": {
+                    "type": "string"
+                },
+                "mango": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.DdzBidParamsReq": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "string"
+                },
+                "tid": {
+                    "type": "string"
+                },
+                "hands": {
+                    "type": "string"
+                },
+                "atype": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "integer"
+                },
+                "is_special": {
+                    "type": "integer"
+                },
+                "ai_num": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "uid",
+                "tid",
+                "hands",
+                "atype",
+                "ai_num"
+            ]
+        },
+        ".ai_algo_dispatch.service.v1.DdzBidResultRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "boolean"
+                },
+                "time": {
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.DdzParamsReq": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "string"
+                },
+                "tid": {
+                    "type": "string"
+                },
+                "ids": {
+                    "type": "string"
+                },
+                "order": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "record": {
+                    "type": "string"
+                },
+                "hands": {
+                    "type": "string"
+                },
+                "up_hands": {
+                    "type": "string"
+                },
+                "down_hands": {
+                    "type": "string"
+                },
+                "hold_up": {
+                    "type": "string"
+                },
+                "is_special": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "description": "斗地主请求参数",
+            "required": [
+                "uid",
+                "tid",
+                "ids",
+                "order",
+                "role",
+                "record",
+                "hands",
+                "up_hands",
+                "down_hands"
+            ]
+        },
+        ".ai_algo_dispatch.service.v1.DdzResultRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string"
+                },
+                "atype": {
+                    "type": "string"
+                },
+                "hold_up": {
+                    "type": "integer"
+                },
+                "time": {
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.TexaParamsReq": {
+            "type": "object",
+            "properties": {
+                "tid": {
+                    "type": "integer"
+                },
+                "chair": {
+                    "type": "integer"
+                },
+                "sb": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "dealer": {
+                    "type": "integer"
+                },
+                "users": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaUserDetail"
+                    }
+                },
+                "cid": {
+                    "type": "string"
+                },
+                "hands": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "money": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "stage": {
+                    "type": "string"
+                },
+                "commons": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "record": {
+                    "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaRecord"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "style": {
+                    "type": "integer"
+                },
+                "level": {
+                    "type": "string"
+                },
+                "online": {
+                    "type": "integer"
+                },
+                "sbCid": {
+                    "type": "string"
+                }
+            },
+            "description": "德州请求参数"
+        },
+        ".ai_algo_dispatch.service.v1.TexaRecord": {
+            "type": "object",
+            "properties": {
+                "preflop": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaUserAction"
+                    }
+                },
+                "flop": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaUserAction"
+                    }
+                },
+                "turn": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaUserAction"
+                    }
+                },
+                "river": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.ai_algo_dispatch.service.v1.TexaUserAction"
+                    }
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.TexaResultRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "integer"
+                },
+                "bets": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "time": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "tid": {
+                    "type": "integer"
+                },
+                "cid": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "string"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.TexaUserAction": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "integer"
+                },
+                "bet": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".ai_algo_dispatch.service.v1.TexaUserDetail": {
+            "type": "object",
+            "properties": {
+                "pid": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "hands": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "chips": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

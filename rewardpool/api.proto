@@ -1,0 +1,140 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package rewardpool.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+enum PoolTypeCode{
+    PoolTypeDefault = 0;
+    PoolA = 1;			// 奖金池A
+    PoolB = 2;			// 奖金池B
+}
+
+enum PoolIDCode{
+    PoolHundred = 0;   	// 百万大奖
+    PoolThousand = 1;  	// 千万大奖
+    PoolBillion = 2;   	// 亿万大奖
+}
+
+
+enum RewardPoolErrCode {
+    Success = 0;
+    GetRewardPoolConfigFail = 1000300;//获取配置失败
+    RewardPoolNumOverLimit = 1000301; // 奖励金额超出上限
+}
+
+service RewardPool {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+
+	// 奖池信息查询
+	rpc QueryPool(QueryPoolReq) returns (QueryPoolRsp) {
+        option (google.api.http) = {
+            post:"/RewardPool/QueryPool"
+        };
+    };
+	// 更新奖池金额
+    rpc UpdatePool(UpdatePoolReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/RewardPool/UpdatePool"
+        };
+    };
+    rpc AddRewardRecord(AddRewardRecordReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/RewardPool/AddRewardRecord"
+        };
+    };
+	// 查询游戏的所有奖池值(对外)
+	rpc QueryGamePools(QueryGamePoolsReq) returns (QueryGamePoolsRsp) {
+        option (google.api.http) = {
+            post:"/RewardPool/QueryGamePools"
+        };
+    };
+	// 查询指定游戏的中奖记录(对外)
+    rpc QueryRewardRecord(QueryRewardRecordReq) returns (QueryRewardRecordRsp) {
+        option (google.api.http) = {
+            post:"/RewardPool/QueryRewardRecord"
+        };
+    };
+}
+
+
+message CommonResp {
+    int32 Code = 1 [(gogoproto.jsontag) = "Code", (gogoproto.moretags)='form:"Code" '];       //0:成功
+    string Msg = 2 [(gogoproto.jsontag) = "Msg", (gogoproto.moretags)='form:"Msg" '];
+}
+
+
+message QueryPoolReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" validate:"required"'];
+    int32 ArenaID = 2 [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags) = 'form:"ArenaID"'];
+    int32 PoolTypeID = 3 [(gogoproto.jsontag) = "PoolTypeID", (gogoproto.moretags) = 'form:"PoolTypeID"'];
+}
+
+message QueryPoolRsp {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" validate:"required"'];
+    int32 ArenaID = 2 [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags) = 'form:"ArenaID"'];
+    int32 PoolTypeID = 3 [(gogoproto.jsontag) = "PoolTypeID", (gogoproto.moretags) = 'form:"PoolTypeID"'];
+	repeated PoolMoney Pools = 4 [(gogoproto.jsontag) = "Pools", (gogoproto.moretags) = 'form:"Pools"'];
+}
+
+message PoolMoney {
+	int32 PoolID = 1 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags) = 'form:"PoolID"'];
+    int64 Delta = 2 [(gogoproto.jsontag) = "Delta", (gogoproto.moretags) = 'form:"Delta"'];
+}
+
+message UpdatePoolReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" validate:"required"'];
+    int32 ArenaID = 2 [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags) = 'form:"ArenaID"'];
+	int32 PoolTypeID = 3 [(gogoproto.jsontag) = "PoolTypeID", (gogoproto.moretags) = 'form:"PoolTypeID"'];
+	repeated PoolMoney Pools = 4 [(gogoproto.jsontag) = "Pools", (gogoproto.moretags) = 'form:"Pools"'];
+}
+
+message GamePoolMoney {
+	int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" validate:"required"'];
+	int32 ArenaID = 2 [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags) = 'form:"ArenaID"'];
+	int32 PoolTypeID = 3 [(gogoproto.jsontag) = "PoolTypeID", (gogoproto.moretags) = 'form:"PoolTypeID"'];
+	int32 PoolID = 4 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags) = 'form:"PoolID"'];
+    int64 Money = 5 [(gogoproto.jsontag) = "Money", (gogoproto.moretags) = 'form:"Money"'];
+}
+
+message QueryGamePoolsReq {
+
+}
+
+message QueryGamePoolsRsp {
+	repeated GamePoolMoney Pools = 1 [(gogoproto.jsontag) = "Pools", (gogoproto.moretags) = 'form:"Pools"'];
+}
+
+message RecordDetail {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" '];
+    int32 PoolID = 2 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags) = 'form:"PoolID" '];
+    int64 Award = 3 [(gogoproto.jsontag) = "Award", (gogoproto.moretags) = 'form:"Award" '];
+    int64 UserID = 4 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags) = 'form:"UserID" '];
+	string Nickname = 5 [(gogoproto.jsontag) = "Nickname", (gogoproto.moretags) = 'form:"Nickname" '];
+	string Time = 6 [(gogoproto.jsontag) = "Time", (gogoproto.moretags) = 'form:"Time" '];
+	int32 PoolTypeID = 7 [(gogoproto.jsontag) = "PoolTypeID", (gogoproto.moretags) = 'form:"PoolTypeID" '];
+}
+
+message AddRewardRecordReq {
+    RecordDetail Record = 1 [(gogoproto.jsontag) = "Record", (gogoproto.moretags) = 'form:"Record" validate:"required"'];
+}
+
+message QueryRewardRecordReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags) = 'form:"GameID" validate:"required"'];
+}
+
+message QueryRewardRecordRsp {
+    repeated RecordDetail Records = 1 [(gogoproto.jsontag) = "Records", (gogoproto.moretags) = 'form:"Records" '];
+}
+

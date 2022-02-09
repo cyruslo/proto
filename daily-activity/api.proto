@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package dailyactivity.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service DailyActivity {
+
+  // 获取活跃度活动列表
+  rpc GetActivityTaskList (ActivityTaskReq) returns (ActivityTaskListResp){
+    option (google.api.http) = {
+      post:"/activity/GetActivityTaskList"
+    };
+  };
+
+  // 领取活跃度活动奖励
+  rpc ReceiveActivityAward (ReceiveAwardReq) returns (ReceiveAwardResp){
+    option (google.api.http) = {
+      post:"/activity/ReceiveActivityAward"
+    };
+  };
+
+  // 更新任务完成进度
+  rpc UpdateActivityTaskProgress (UpdateTaskProgressReq) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post:"/activity/UpdateActivityTaskProgress"
+    };
+  };
+
+}
+
+// 活跃度活动请求参数
+message ActivityTaskReq {
+  // 用户ID
+  int64 user_id = 1[(gogoproto.jsontag) = 'user_id'];
+}
+
+// 领取活跃度活动奖励请求体
+message ReceiveAwardReq {
+  // 用户ID
+  int64 user_id = 1[(gogoproto.jsontag) = 'user_id'];
+  // 领取类型
+  ReceiveType receive_type = 2[(gogoproto.jsontag) = 'receive_type'];
+  // 领取类型对应的ID
+  int32 target_id = 3[(gogoproto.jsontag) = 'target_id'];
+}
+
+// 领取类型
+enum ReceiveType {
+  // 无效
+  Invalid = 0;
+  // 开宝箱
+  OpenTreasureChest = 1;
+  // 完成任务奖励
+  TaskFinished = 2;
+}
+
+// 领取奖励返回值
+message ReceiveAwardResp {
+  // 奖励道具
+  repeated PropDetail props_list = 1[(gogoproto.jsontag) = 'props_list'];
+}
+
+// 更新任务进度请求体
+message UpdateTaskProgressReq {
+  // 用户ID
+  int64 user_id = 1[(gogoproto.jsontag) = 'user_id'];
+  // 任务ID
+  int32 task_id = 2[(gogoproto.jsontag) = 'task_id'];
+  // 任务完成增量
+  int64 delta = 3[(gogoproto.jsontag) = 'delta'];
+}
+
+// 活跃度活动列表返回值
+message ActivityTaskListResp {
+  // 总开关
+  bool is_open = 1[(gogoproto.jsontag) = 'is_open'];
+  // VIP等级限制
+  int32 vip_limit = 2[(gogoproto.jsontag) = 'vip_limit'];
+  // 会员奖励倍数
+  int32 vip_reward_multiples = 3[(gogoproto.jsontag) = 'vip_reward_multiples'];
+  // 今日活跃度
+  int64 today_finished = 4[(gogoproto.jsontag) = 'today_finished'];
+  // 本周活跃度
+  int64 week_finished = 5[(gogoproto.jsontag) = 'week_finished'];
+  // 今日宝箱
+  repeated TreasureChest today_treasure_chest = 6[(gogoproto.jsontag) = 'today_treasure_chest'];
+  // 本周宝箱
+  repeated TreasureChest week_treasure_chest = 7[(gogoproto.jsontag) = 'week_treasure_chest'];
+  // 任务列表
+  repeated ActivityTask task_list = 8[(gogoproto.jsontag) = 'task_list'];
+}
+
+// 宝箱信息以及领取状态
+message TreasureChest {
+  // 宝箱ID
+  int32 id = 1[(gogoproto.jsontag) = 'id'];
+  // 宝箱名字
+  string name = 2[(gogoproto.jsontag) = 'name'];
+  // 奖励道具
+  repeated PropDetail props_list = 3[(gogoproto.jsontag) = 'props_list'];
+  // 所需活跃度
+  int64 condition = 4[(gogoproto.jsontag) = 'condition'];
+  // 领取状态
+  TaskStatus status = 5[(gogoproto.jsontag) = 'status'];
+}
+
+// 任务信息以及完成状态
+message ActivityTask {
+  // 任务ID
+  int32 id = 1[(gogoproto.jsontag) = 'id'];
+  // 任务类型
+  int32 type = 2[(gogoproto.jsontag) = 'type'];
+  // 任务标题
+  string title = 3[(gogoproto.jsontag) = 'title'];
+  // 任务内容
+  string desc = 4[(gogoproto.jsontag) = 'desc'];
+  // 完成任务可得活跃度
+  int64 active_indicators = 5[(gogoproto.jsontag) = 'active_indicators'];
+  // 是否特殊任务
+  bool is_special = 6[(gogoproto.jsontag) = 'is_special'];
+  // 任务状态
+  TaskStatus status = 7[(gogoproto.jsontag) = 'status'];
+  // 完成量
+  int64 completed = 8[(gogoproto.jsontag) = 'completed'];
+  // 总量
+  int64 total = 9[(gogoproto.jsontag) = 'total'];
+  // 奖励道具
+  repeated PropDetail props_list = 10[(gogoproto.jsontag) = 'props_list'];
+
+}
+
+// 任务状态
+enum TaskStatus {
+  // 废弃
+  DisCard = 0;
+  // 未完成
+  Undone = 1;
+  // 可领取
+  Acceptable = 2;
+  // 已经领取
+  Received = 3;
+}
+
+// 道具信息
+message PropDetail {
+  // 道具ID
+  int32 id = 1[(gogoproto.jsontag) = 'id'];
+  // 道具数量
+  int32 count = 2[(gogoproto.jsontag) = 'count'];
+  // 道具名字
+  string name = 3[(gogoproto.jsontag) = 'name'];
+}

@@ -1,0 +1,87 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto2";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package chat.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service chatService {
+
+    // 系统消息
+    rpc SysMessages (SysMessagesReq) returns (SysMessagesResp){
+        option(google.api.http) = {
+            post:"chatService/SysMessages"
+        };
+    };
+
+    // 聊天
+    rpc HallChatMsg (HallChatMsgReq) returns (HallChatMsgResp){
+        option(google.api.http) = {
+            post:"chatService/HallChatMsg"
+        };
+    };
+
+    // 查询聊天消耗
+    rpc GetChatConsume(GetChatConsumeRep) returns (GetChatConsumeResp) {
+        option(google.api.http) = {
+            post:"chatService/GetChatConsume"
+        };
+    };
+}
+
+// 系统消息请求
+message SysMessagesReq{
+    required string words = 1;              // 消息内容
+    required int32  msgType = 2;            // 消息类型（1.跑马灯）
+    required int32  gameID= 3;              // 游戏ID
+    required int32  contentType = 4;        // 优先级
+    required int32  delaysec = 5;           // 延迟时间
+    required int32  ptypeID  = 6;           // 平台类型ID
+}
+
+message SysMessagesResp {
+    optional int32 result = 1;
+}
+
+message MarqueePushMsg {
+    optional string Msg = 1;
+    optional int32 ContentType = 2; // 优先级
+}
+
+// 聊天
+message HallChatMsgReq{
+    required int32  userID = 1;             // 用户ID
+    required string chatMsg = 2;            // 聊天消息内容
+    required int32  msgType = 3;            // 消息类型（1.金币 2.礼券 3.小喇叭）
+    required int32  ptypeID  = 4;           // 平台类型ID
+    optional int32  gameID = 5;             // 游戏ID
+    required string name = 6;               // 玩家昵称
+}
+
+message HallChatMsgResp {
+    optional int32 result = 1;// result请求结果（0.成功 -1.用户被禁言 -2.用户消息未到时间间隔 -3.今日发送条数已经到最大值 -4.服务内部错误）
+}
+
+message ChatPushMsg {
+    optional string Msg = 1;
+}
+
+message GetChatConsumeRep{
+    required int32 userID = 1;      // 用户ID
+    required int32 consumeType = 2; // 消耗类型（1.金币 2.礼券 3.小喇叭）
+}
+message GetChatConsumeResp{
+    optional int32 result = 1;      // 请求结果（0.成功）
+    optional string retMsg = 2;     // 错误消息
+    optional int32 consumeType = 3; // 消耗类型（1.金币 2.礼券 3.小喇叭）
+    optional int32 consumeNum = 4;  // 消耗数量
+}

@@ -1,0 +1,215 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package newhandhall.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Newhandhall {
+    ///////////////////////////////////客户端的http请求/////////////////////////////////////////////////////////////////
+    // 获取服务器配置
+    rpc OnGetConfig(GetConfigReq) returns (GetConfigRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetConfig"
+        };
+    };
+
+    // 获取引导步骤信息
+    rpc OnGetGuideData(GetGuideDataReq) returns (GetGuideDataRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetGuideData"
+        };
+    };
+
+    // 完成引导步骤
+    rpc OnCompleteGuide(CompleteGuideReq) returns (CommonRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnCompleteGuide"
+        };
+    };
+
+    // 获取下次免费礼包时间
+    rpc OnGetNextGiftTime(GetNextGiftTimeReq) returns (GetNextGiftTimeRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetNextGiftTime"
+        };
+    };
+
+    // 获取免费礼包
+    rpc OnReceiveGift(ReceiveGiftReq) returns (CommonRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnReceiveGift"
+        };
+    };
+
+    // 获取累计消耗获得货币数据
+    rpc OnGetGoldConsumeAndEarned(GetGoldConsumeAndEarnedReq) returns (GetGoldConsumeAndEarnedRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetGoldConsumeAndEarned"
+        };
+    };
+
+    // 解锁大厅
+    rpc OnUnlockHall(UnlockHallReq) returns (CommonRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnUnlockHall"
+        };
+    };
+
+    // 获取大厅解锁情况
+    rpc OnGetHallIsLock(GetHallIsLockReq) returns (GetHallIsLockRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetHallIsLock"
+        };
+    };
+
+    // 解锁游戏
+    rpc OnUnlockGame(UnlockGameReq) returns (CommonRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnUnlockGame"
+        };
+    };
+
+    // 获取游戏列表
+    rpc OnGetGameInfo(GetGameInfoReq) returns (GetGameInfoRsp) {
+        option (google.api.http) = {
+            post:"/newhandhall/OnGetGameInfo"
+        };
+    };
+}
+
+///////////////////////////////////////////////////枚举<begin>/////////////////////////////////////////////////////////
+// 错误码
+enum NewhandhallErrCode {
+    Success                     = 0;        // 成功
+    ParameterError              = 10001;    // 参数错误
+    DBError                     = 10002;    // 数据库错误
+    TimeNotEnough               = 10003;    // 时间还不够
+    ConsumeAndEarnedNotEnough   = 10004;    // 累计消耗/获得的金币不够
+    VipScoreNotEnough           = 10005;    // Vip经验不足
+    GuideIndexError             = 10006;    // 引导步骤错误
+    ConfigError                 = 10007;    // 配置错误
+}
+
+enum TaskStatus {
+    UnOpen			        = 0;		// 未开启
+    UnComplete		        = 1;		// 未完成
+    UnReceive		        = 2;		// 未领取
+    Done			        = 3;		// 完成(已领取)
+}
+///////////////////////////////////////////////////枚举<end>///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////嵌套<begin>/////////////////////////////////////////////////////////
+message NextGiftTimeInfo {
+    int32       Id          = 1;
+    int64       TimeLeft    = 2;    // 剩余时间
+}
+///////////////////////////////////////////////////嵌套<end>///////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////客户端协议<begin>//////////////////////////////////////////////////////
+message CommonRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+}
+
+message GetConfigReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+}
+
+message GetConfigRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    string  Config      = 3;
+}
+
+message GetGuideDataReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+}
+
+message GetGuideDataRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    int32   Index       = 3;    // 步骤
+}
+
+message CompleteGuideReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+    int32   Index       = 3;    // 步骤
+}
+
+message GetNextGiftTimeReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;
+    repeated int32   Id = 3;    // 礼包的Id
+}
+
+message GetNextGiftTimeRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    repeated NextGiftTimeInfo Data = 3;
+}
+
+message ReceiveGiftReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;
+    int32   Id          = 3;        // 礼包的Id
+}
+
+message GetGoldConsumeAndEarnedReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+}
+
+message GetGoldConsumeAndEarnedRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    int64   Consume     = 3;    // 累计消耗
+    int64   Earned      = 4;    // 累计获得
+}
+
+message UnlockHallReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+}
+
+message GetHallIsLockReq {
+    int64   PlayerId    = 1;
+}
+
+message GetHallIsLockRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    bool    IsUnlock      = 3;    // 是否解锁
+}
+
+message UnlockGameReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+    int32   GameId      = 3;    // 游戏ID
+}
+
+message GetGameInfoReq {
+    int64   PlayerId    = 1;
+    int32   ChannelId   = 2;    // 渠道号
+}
+
+message GetGameInfoRsp {
+    int32   Code        = 1;
+    string  Message     = 2;
+    repeated    int32   LockId      = 3;    // 未解锁的游戏ID
+    repeated    int32   UnlockId    = 4;    // 解锁的游戏ID
+}
+
+////////////////////////////////////////////////客户端协议<end>////////////////////////////////////////////////////////

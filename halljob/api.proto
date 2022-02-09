@@ -1,0 +1,90 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package hallJob.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service hallJob {
+
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+    
+    // 推送消息
+    rpc PushMsg(PushMsgReq) returns (PushMsgResp){
+        option (google.api.http) = {
+            post:"/hallJob/Job/Push"
+        };
+    };
+
+    // 用户在线
+    rpc UserOnline(UserOlineReq) returns (UserOlineResp){
+        option (google.api.http)= {
+            post:"/hallJob/Job/UserOnline"
+        };
+    };
+
+    // 用户离线
+    rpc UserOffline(UserOfflineReq) returns (UserOfflineResp){
+        option (google.api.http)= {
+            post:"/hallJob/Job/UserOffline"
+        };
+    };
+}
+
+enum OpCode {
+    Success = 0;
+    Failed = 1;
+}
+
+message PushMsgReq {
+    enum Type {
+        PUSH = 0;
+        BROADCAST = 1;
+    }
+    Type type = 1 [(gogoproto.moretags)='form:"type"'];//消息类型默认0推送单人,1推送所有
+    repeated int64 uid = 2 [(gogoproto.moretags)='form:"uid"'];
+    int32 cmd = 3[(gogoproto.moretags)='form:"cmd" validate:"required"'];
+    bytes msg = 4 [(gogoproto.moretags)='form:"msg"'];
+    int32 speed = 5[(gogoproto.moretags)='form:"speed"'];//发送速率
+}
+
+message PushMsgResp {
+    OpCode code = 1;
+    string msg = 2;
+}
+
+// 用户在线
+message UserOlineReq {
+    string key = 1 [(gogoproto.moretags)='form:"key" validate:"required"'];     // comet传递过来的key
+    string hostname = 2 [(gogoproto.moretags)='form:"hostname" validate:"required"'];
+    int64 uid = 3 [(gogoproto.moretags)='form:"uid" validate:"required"'];      // 用户uid
+}
+
+message UserOlineResp {
+    OpCode code = 1;
+    string msg = 2;
+}
+
+// 用户离线
+message UserOfflineReq {
+    int64 uid = 1 [(gogoproto.moretags)='form:"uid" validate:"required"'];
+    string key = 2 [(gogoproto.moretags)='form:"key" validate:"required"'];     // comet传递过来的key
+}
+
+message UserOfflineResp {
+    OpCode code = 1;
+    string msg = 2;
+}
+
+
+

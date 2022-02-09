@@ -1,0 +1,167 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto2";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package HallActivity.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+// 大厅活动
+service HallActivity {
+    // 客户端登录后获取红包相关的数据
+    rpc OnUserLogin(UserLoginReq) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "hallactivity/OnUserLogin"
+        };
+    };
+
+    // 开红包
+    rpc OpenRedEnvelope(HallOpenRedEnvelopesReq) returns (HallOpenRedEnvelopesRsp) {
+        option (google.api.http) = {
+            post: "hallactivity/OpenRedEnvelope"
+        };
+    };
+
+    // 分享增加可抢红包的次数
+    rpc ShareAddCount(ShareAddCountReq) returns (ShareData){
+        option (google.api.http) = {
+            post: "hallactivity/ShareAddCount"
+        };
+    };
+    // 戳泡泡
+    rpc JabBubble(HallBubbleReq) returns (HallBubbleResp) {
+        option (google.api.http) = {
+            post: "hallactivity/JabBubble"
+        };
+    };
+    // 查询体验场活动信息
+    rpc QueryGameActivityInfo(QueryGameActivityInfoReq) returns (QueryGameActivityInfoRsp){
+        option (google.api.http) = {
+            post: "hallactivity/QueryGameActivityInfo"
+        };
+    };
+    // 更新体验场活动次数信息
+    rpc UpdateGameActivityInfo(UpdateGameActivityInfoReq) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "hallactivity/UpdateGameActivityInfo"
+        };
+    };
+}
+
+message UserLoginReq {
+    required int64 UserID = 1;
+    required int32 GameID = 2;
+}
+
+enum enumRecordStatus {
+    RERS_NONE     = 0;
+    RERS_START    = 1;
+    RERS_CONTINUE = 2;
+    RERS_END      = 3;
+}
+
+enum enumRecordType {
+    NONE         = 0;
+    GRAND        = 1; // 游戏内的大奖记录
+    PERSONAL     = 2; // 个人记录
+    NORMAL       = 3; // 游戏内最近的记录
+}
+
+// 请求打开红包
+message HallOpenRedEnvelopesReq {
+    required int32 user_dbid = 1;  // 玩家id
+    required string avata    = 2;  // 用户头像url
+    required string nickname = 3;  // 用户昵称长度,不包含结束符
+}
+
+// 玩家打开红包返回
+message HallOpenRedEnvelopesRsp {
+    optional int64 bonus_pool                    = 1; // 红包奖金池
+    optional int32 red_envelopes_count           = 2; // 红包的数量
+    optional int64 user_coin                     = 3; // 用户的金币数
+    optional RedEnvelopesInfo red_envelopes_info = 4; // 红包信息
+    optional int32 status                        = 5; // 操作结果(0:失败, 1:成功)
+}
+
+//红包信息
+message RedEnvelopesInfo {
+    optional int32  user_dbid       = 1; // 玩家id
+    optional string avata           = 2; // 用户头像url
+    optional string nickname        = 3; // 用户昵称长度,不包含结束符
+    optional uint64 tick            = 4; // 本地时区距1970.1.1.0秒的秒数
+    optional string data            = 5; // 抢到的红包信息
+    optional int64  coin            = 6; // 获取的红包金币
+    optional int64  luck_coin       = 7; // 额外的金币
+    optional int32  luck_type       = 8; // 额外的类型
+    optional bool   grand_prize     = 9; // 是否为大奖记录
+}
+
+// 用户登录时 发送游戏内红包记录及红包活动信息
+message HallRedEnvelopesInfoRsp {
+    optional int32 user_dbid           = 1;	// 玩家id
+    optional int32 red_envelopes_count = 2;  // 红包的数量
+    optional int64 luckyNum            = 3;  // 幸运数字
+}
+
+// 给用户发送红包记录（大奖、个人红包记录 共用此协议 e_type区分）
+message HallRedEnvelopesRecordRsp {
+    repeated RedEnvelopesInfo grand_prize_recore = 1;
+    optional int32 idx = 2;     // 1表示开始 2表示中间 3表示结束                    -> enumRecordStatus
+    optional int32 e_type = 3;  // 1:大奖记录 2:个人红包记录  3:游戏内最近红包记录  -> enumRecordType
+}
+
+// 玩家中大奖时 广播提示
+message HallRedEnvelopesNotice {
+    optional int64 luckNumber                    = 1; // 幸运数字
+    optional RedEnvelopesInfo red_envelopes_info = 2; // 红包信息
+}
+
+message ShareAddCountReq {
+    required int32 user_dbid = 1;	// 玩家id
+}
+
+message ShareData {
+    optional int32 user_dbid = 1;  // 玩家id
+    optional bool  share     = 2;  // 是否分享
+}
+
+//////////////////戳泡泡
+message HallBubbleReq {
+    required int32 user_dbid = 1;	// 玩家id
+    required int32 bubles_id = 2;	// 被戳破的泡泡id
+}
+
+message HallBubbleResp {
+    required int32 user_dbid = 1; // 玩家id
+    required int32 count     = 2; // 泡泡被戳破，随机到的金币数
+    optional bool  can_get   = 3; //今日戳破泡泡获得金币后，是否还能再戳破泡泡发送该协议到服务器 ,默认true:可以
+    required int32 bubles_id = 4; // 被戳破的泡泡id
+}
+
+////////////////////// 查询活动信息
+message QueryGameActivityInfoReq
+{
+    required int32 game_id = 1;
+    required int32 user_dbid = 2;
+}
+
+message QueryGameActivityInfoRsp
+{
+    required int32 result 		= 1;			//0:失败, 1:成功
+    required int32 game_id 		= 2;
+    required int32 user_dbid 	= 3;
+    optional string data 		= 4;			//活动信息{"EnterLimit": {"cur": 0, "max": 0, "ts": 0}}
+}
+
+message UpdateGameActivityInfoReq {
+    required int32 game_id = 1;
+    required int32 user_dbid = 2;
+    required int32 count = 3;
+}

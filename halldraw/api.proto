@@ -1,0 +1,263 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package halldraw.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+enum GameCommand {
+    // Test
+    Test = 0;
+    // 抽奖
+    Player_Draw = 1;
+    // 合成
+    Player_Compose = 2;
+    // 刷新
+    Player_Refresh = 3;
+    // 玩家抽奖列表
+    Player_DrawList = 4;
+    // 上报分享次数
+    Player_Share = 5;
+    // 碎片兑换
+    Player_Exchange = 6;
+    // 获取记录
+    Player_Record = 7;
+    // 请求欧皇宝箱奖励
+    Player_GetActBoxReward = 8;
+    // 请求欧皇宝箱领奖记录
+    Player_GetActBoxHistory = 9;
+    // 请求宝箱领取状态
+    Player_GetActBoxRewardStatus = 10;
+}
+enum ErrCode {
+    Succ = 0;
+    Fragment_Not_Enough = 10000; //碎片不足
+    Fragment_Update = 10001; //碎片不足
+    Fragment_Deduct = 10002; //碎片扣失败
+    Fragment_Compose = 10003; //碎片合成失败
+    Draw_List_NotExist = 10004; //抽奖列表不存在
+    Prop_Update = 10005; //道具更新失败
+    Coin_Deduct = 10006; //扣金币失败
+    Draw_InGame = 10007; //抽奖失败用户在游戏中不能抽奖
+    Refresh_Times_NotEnough = 10008; //刷新次数不足
+    IsShared = 10009; //分享失败
+    DrawInterval = 10010; //抽奖时间间隔不够
+    DrawParameter = 10011; //参数错误
+    ExchangeFail = 10012; //兑换失败
+    ActiveIsColse = 10013; //获得已关闭
+    TokenFail = 10014; //token校验失败
+    ActBox_OutTime = 10015; //不在活动时间内
+    ActBox_Had_Got = 10016; //宝箱已经领取完成
+    Get_Box_Fail = 10017; //获取宝箱奖励失败
+}
+
+message props {
+    int32 id = 1;
+    int32 num = 2;
+    int32 level = 3;
+    int32 position = 4;
+}
+
+message Player_ExchangeReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_ExchangeRsp {
+    int32 result = 1;
+    int32 fragment = 2 [(gogoproto.jsontag) = "fragment", (gogoproto.moretags) = 'validate:"required"'];
+    int32 ret_coin = 3;
+}
+
+message Player_DrawListReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_DrawListRsp {
+    repeated props items = 1;
+    int64 time_start = 2;
+    int64 time_end = 3;
+    int32 fragment = 4;
+    int32 refresh_times = 5 [(gogoproto.jsontag) = "refresh_times", (gogoproto.moretags) = 'validate:"required"'];
+    int32 consume_type = 6;
+    int32 consume_num = 7;
+    int32 need_fragment = 8;
+    bool have_Dragon = 9 [(gogoproto.jsontag) = "have_Dragon", (gogoproto.moretags) = 'validate:"required"'];
+    int32 result = 10;
+}
+
+message Player_DrawReq {
+    int64 user_id = 1;
+    int32 times = 2;
+    string token = 3;
+    string nick_name = 4;
+}
+
+message Player_DrawRsp {
+    repeated props items = 1;
+    int32 result = 2;
+    int32 ret_coin = 3;
+    int32 coin_num = 4;
+}
+
+message Player_ComposeReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_ComposeRsp {
+    int32 result = 1;
+    props item = 2;
+    int32 ret_coin = 3;
+    int32 fragment = 4 [(gogoproto.jsontag) = "fragment", (gogoproto.moretags) = 'validate:"required"'];
+}
+
+message Player_RefreshReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_RefreshRsp {
+    repeated props items = 1;
+    int32 refresh_times = 2 [(gogoproto.jsontag) = "refresh_times", (gogoproto.moretags) = 'validate:"required"'];
+    int32 result = 3;
+    int32 consume_type = 4;
+    int32 consume_num = 5;
+}
+
+message Player_ShareReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_ShareRsp {
+    int32 result = 1;
+    int32 refresh_times = 2 [(gogoproto.jsontag) = "refresh_times", (gogoproto.moretags) = 'validate:"required"'];
+}
+
+message Player_RecordReq {
+
+}
+message record {
+    int32 id = 1;
+    int64 timestamp = 2;
+    string nick_name = 3;
+}
+message Player_RecordRsp {
+    repeated record records = 1;
+    int32 result = 2;
+}
+
+message Player_GetActBoxRewardStatusReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message Player_GetActBoxRewardStatusRsp {
+    int32 result = 1;
+    int32 status = 2 [(gogoproto.jsontag) = "status", (gogoproto.moretags) = 'validate:"required"'];
+    int32 box_id = 3 [(gogoproto.jsontag) = "box_id", (gogoproto.moretags) = 'validate:"required"'];
+}
+
+message Player_GetActBoxRewardReq {
+    int64 user_id = 1;
+    string token = 2;
+}
+
+message box {
+    int32 box_id = 1 [(gogoproto.jsontag) = "box_id", (gogoproto.moretags) = 'validate:"required"'];
+    string box_name = 2;
+    int32 reward_type = 3;
+    int32 reward_num = 4;
+}
+
+message Player_GetActBoxRewardRsp {
+    int32 result = 1;
+    box box_reward = 2;
+}
+
+message Player_GetActBoxHistoryReq {
+    int32 top_num = 1; // 获取历史奖励条数
+}
+
+message history {
+    int64 user_id = 1;
+    box box_reward = 2;
+}
+
+message Player_GetActBoxHistoryRsp {
+    int32 result = 1;
+    repeated history history_list = 2;
+}
+
+message CommonRsp {
+    int32 ret = 1 [(gogoproto.jsontag) = "ret", (gogoproto.moretags) = 'validate:"required"'];
+    string ret_msg = 2;
+}
+
+service halldraw {
+    rpc Player_DrawList (Player_DrawListReq) returns (Player_DrawListRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/list"
+        };
+    }
+    rpc Player_Draw (Player_DrawReq) returns (Player_DrawRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/draw"
+        };
+    }
+    rpc Player_Compose (Player_ComposeReq) returns (Player_ComposeRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/compose"
+        };
+    }
+    rpc Player_Refresh (Player_RefreshReq) returns (Player_RefreshRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/refresh"
+        };
+    }
+    rpc Player_Share (Player_ShareReq) returns (Player_ShareRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/share"
+        };
+    }
+    rpc Player_Exchange (Player_ExchangeReq) returns (Player_ExchangeRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/exchange"
+        };
+    }
+
+    rpc Player_Record (Player_RecordReq) returns (Player_RecordRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/record"
+        };
+    }
+
+    rpc Player_GetActBoxReward (Player_GetActBoxRewardReq) returns (Player_GetActBoxRewardRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/GetActBoxReward"
+        };
+    }
+
+    rpc Player_GetActBoxHistory (Player_GetActBoxHistoryReq) returns (Player_GetActBoxHistoryRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/GetActBoxHistory"
+        };
+    }
+
+    rpc Player_GetActBoxRewardStatus (Player_GetActBoxRewardStatusReq) returns (Player_GetActBoxRewardStatusRsp) {
+        option (google.api.http) = {
+            post:"/halldraw/GetActBoxRewardStatus"
+        };
+    }
+}

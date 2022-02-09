@@ -1,0 +1,158 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package demo.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service PersonPool {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+    // 3、奖金怪物查询
+    rpc ConfigInfo(CommonReq) returns (ConfigInfoResp) {
+        option (google.api.http) = {
+            post:"/PersonPool/Query/ConfigInfo"
+        };
+    };
+
+    // 5、玩家抽奖奖励获取
+    rpc GetReward(GetRewardReq) returns (GetRewardResp) {
+        option (google.api.http) = {
+            post:"/PersonPool/Get/Reward"
+        };
+    };
+
+
+    // 7、查询数据
+    rpc QueryPoolInfo(PoolInfoReq) returns (PoolInfoResp) {
+        option (google.api.http) = {
+            post:"/PersonPool/Query/PoolInfo"
+        };
+    };
+
+    // 6、更新将池状态和分数
+    rpc UploadPoolInfo(UploadPoolReq) returns (UploadPoolResp) {
+        option (google.api.http) = {
+            post:"/PersonPool/Upload/PoolInfo"
+        };
+    };
+
+    // 7、更新将池状态和分数(重构版本使用)
+    rpc EditPoolInfo(UploadPoolReq) returns (UploadPoolResp) {
+        option (google.api.http) = {
+            post:"/PersonPool/Edit/PoolInfo"
+        };
+    };
+}
+
+
+message CommonReq{
+    int32 GameID =1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PoolID =2 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags)='form:"PoolID" validate:"required"'];
+    int64 UserID =3 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+}
+
+
+message ConfigInfoResp{
+    int64 PersonPollMaxNum = 1   [(gogoproto.jsontag) = "PersonPollMaxNum", (gogoproto.moretags)='form:"PersonPollMaxNum" '];
+    float PersonPollKillRate = 2   [(gogoproto.jsontag) = "PersonPollKillRate", (gogoproto.moretags)='form:"PersonPollKillRate" '];
+    repeated int64 MonsterList = 3  [(gogoproto.jsontag) = "MonsterList", (gogoproto.moretags)='form:"MonsterList" '];
+    bool ClosePoolButton = 4   [(gogoproto.jsontag) = "ClosePoolButton", (gogoproto.moretags)='form:"ClosePoolButton" '];
+    repeated LotteryDetail LotteryList  = 5  [(gogoproto.jsontag) = "LotteryList", (gogoproto.moretags)='form:"LotteryList" '];
+}
+
+message LotteryDetail{
+    string LotteryName = 1 [(gogoproto.jsontag) = "LotteryName", (gogoproto.moretags)='form:"LotteryName"'];
+    int32 LotteryID = 2 [(gogoproto.jsontag) = "LotteryID", (gogoproto.moretags)='form:"LotteryID"'];
+    int64 TargetNum = 3 [(gogoproto.jsontag)= "TargetNum", (gogoproto.moretags)='form:"TargetNum"'];
+    repeated ThingDetail LotteryReward = 4 [(gogoproto.jsontag) = "LotteryReward", (gogoproto.moretags)='form:"LotteryReward"'];
+}
+
+message ThingDetail{
+    string Name = 1 [(gogoproto.jsontag) = "Name", (gogoproto.moretags)='form:"Name"'];
+    int64 ID = 2 [(gogoproto.jsontag) = "ID", (gogoproto.moretags)='form:"ID"'];
+    RewardThingType TypeID = 3 [(gogoproto.jsontag) = "TypeID", (gogoproto.moretags)='form:"TypeID"'];
+    string ImagePath = 4 [(gogoproto.jsontag) = "ImagePath", (gogoproto.moretags)='form:"ImagePath"'];
+    int64 Num = 5 [(gogoproto.jsontag)= "Num", (gogoproto.moretags)='form:"Num"'];
+}
+
+message GetRewardReq{
+    int32 GameID =1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PoolID =2 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags)='form:"PoolID" validate:"required"'];
+    int64 UserID =3 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+    int32 LotteryType = 4 [(gogoproto.jsontag) = "LotteryType", (gogoproto.moretags)='form:"LotteryType"'];
+}
+
+message GetRewardResp{
+    repeated ThingDetail LotteryReward = 1 [(gogoproto.jsontag) = "LotteryReward", (gogoproto.moretags)='form:"LotteryReward"'];
+    int64 NowPoolScore = 2 [(gogoproto.jsontag) = "NowPoolScore", (gogoproto.moretags)='form:"NowPoolScore"'];
+    repeated ThingDetail GoodList = 3 [(gogoproto.jsontag) = "GoodList", (gogoproto.moretags)='form:"GoodList"'];
+    string RewardID  = 4 [(gogoproto.jsontag) = "RewardID", (gogoproto.moretags)='form:"RewardID"'];
+}
+
+message PoolInfoReq{
+    int32 GameID =1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PoolID =2 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags)='form:"PoolID" validate:"required"'];
+    int64 UserID =3 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+}
+
+message PoolInfoResp{
+    int64 NowPoolNum = 1 [(gogoproto.jsontag) = "NowPoolNum", (gogoproto.moretags)='form:"NowPoolNum"'];// 当前奖池积分
+    bool PoolButton = 2 [(gogoproto.jsontag) = "PoolButton", (gogoproto.moretags)='form:"PoolButton"'];//  当前奖池开关
+}
+
+
+message UploadPoolReq{
+    int32 GameID =1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PoolID =2 [(gogoproto.jsontag) = "PoolID", (gogoproto.moretags)='form:"PoolID" validate:"required"'];
+    int64 UserID =3 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+    bool PoolButton = 4 [(gogoproto.jsontag) = "PoolButton", (gogoproto.moretags)='form:"PoolButton"'];//  当前奖池开关
+    uint64 PoolScore = 5 [(gogoproto.jsontag) = "PoolScore", (gogoproto.moretags)='form:"PoolScore" '];
+}
+
+message UploadPoolResp{
+    bool IsUpload = 1  [(gogoproto.jsontag) = "IsUpload", (gogoproto.moretags)='form:"IsUpload" '];
+}
+
+
+
+
+//奖池状态
+enum PersonPoolStatusCode{
+    InitCode = 0;
+    CanLottery = 1;//1可抽奖
+    NotLottery = 2;//2未能抽奖
+    StopUploadPool  = 3;//3奖池停止累积
+    LimitPool = 4;//4 奖池达到上限
+}
+
+enum PersonPoolID {
+    PoolIDInitCode = 0;
+    FishCatch = 1001; //四人  二人 飞机捕鱼共用的将池
+}
+
+enum PersonPoolErrCode {
+    ThingNotModify = 0;
+    GetPersonPoolConfigFail = 100200; //获取配置失败
+    PersonPoolLimit = 100201; //奖池超出上限
+    UserNotLottery = 100202; // 未达到抽奖所需最低积分
+    NotFoundUserData =  100203; // 没有找到用户数据
+    UploadDataFail =  100204; // 没有找到用户数据
+    LockComplete =  100205; // 领奖锁竞争
+}
+
+enum RewardThingType {
+    ThingTypeInit = 0;
+    Gold = 1; //金币
+    Ticket = 2; //奖券
+    Missile = 3; // 导弹
+}

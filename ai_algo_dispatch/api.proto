@@ -1,0 +1,180 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package ai_algo_dispatch.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service AiAlgoDispatch {
+    //斗地主AI
+    rpc Ddz (DdzParamsReq) returns (DdzResultRsp){
+        option (google.api.http) = {
+            post:"/ai_algo_dispatch/ddz"
+        };
+    };
+    //斗地主叫地主请求
+    rpc DdzBidAction (DdzBidParamsReq) returns (DdzBidResultRsp){
+        option (google.api.http) = {
+            post:"/ai_algo_dispatch/ddz_bid_action"
+        };
+    };
+    //德州
+    rpc Texa (TexaParamsReq) returns (TexaResultRsp){
+        option (google.api.http) = {
+            post:"/ai_algo_dispatch/texa"
+        };
+    };
+    //打旋AI
+    rpc DaXuan (DaXuanParamsReq) returns (DaXuanResultRsp){
+        option (google.api.http) = {
+            post:"/ai_algo_dispatch/daxuan"
+        };
+    };
+}
+
+//斗地主请求参数
+message DdzParamsReq
+{
+    string uid = 1 [(gogoproto.moretags) = 'validate:"required"'];
+    string tid = 2 [(gogoproto.moretags) = 'validate:"required"'];
+    string ids = 3 [(gogoproto.moretags) = 'validate:"required"'];
+    string order = 4 [(gogoproto.moretags) = 'validate:"required"'];
+    string role = 5 [(gogoproto.moretags) = 'validate:"required"'];
+    string record = 6 [(gogoproto.moretags) = 'validate:"required"'];
+    string hands = 7 [(gogoproto.moretags) = 'validate:"required"'];
+    string up_hands = 8 [(gogoproto.moretags) = 'validate:"required"'];
+    string down_hands = 9 [(gogoproto.moretags) = 'validate:"required"'];
+    string hold_up = 10;
+    string is_special = 11;
+    int64 timestamp = 12;
+}
+
+message DdzResultRsp
+{
+    int32 code = 1;
+    string message = 2;
+    string action = 3;
+    string atype = 4;
+    int32 hold_up = 5;
+    float time = 6;
+}
+
+message DdzBidParamsReq
+{
+    string uid = 1 [(gogoproto.moretags) = 'validate:"required"'];
+    string tid = 2 [(gogoproto.moretags) = 'validate:"required"'];
+    string hands = 3 [(gogoproto.moretags) = 'validate:"required"'];
+    string atype = 4 [(gogoproto.moretags) = 'validate:"required"'];
+    int32 level = 5;
+    int32 is_special = 6;
+    int32 ai_num = 7 [(gogoproto.moretags) = 'validate:"required"'];
+    int64 timestamp = 8;
+}
+
+message DdzBidResultRsp
+{
+    int32 code = 1;
+    string message = 2;
+    bool action = 3 [(gogoproto.jsontag) = "action"];
+    float time = 4;
+}
+
+//德州请求参数
+message TexaParamsReq
+{
+    int32 tid = 1;
+    int32 chair = 2 [(gogoproto.jsontag) = "chair"];
+    repeated int64 sb = 3 [(gogoproto.jsontag) = "sb"];
+    int32 dealer = 4 [(gogoproto.jsontag) = "dealer"];
+    map<string, TexaUserDetail> users = 5;
+    string cid = 6;
+    repeated int32 hands = 7;
+    double money = 8 [(gogoproto.jsontag) = "money"];
+    string stage = 9;
+    repeated int32 commons = 10 [(gogoproto.jsontag) = "commons"];
+    TexaRecord record = 11;
+    int64 timestamp = 12;
+    int32 style = 13;
+    string level = 14;
+    int32 online = 15;
+    string sbCid = 16;
+}
+
+message TexaUserDetail 
+{
+    int64 pid = 1;
+    string name = 2;
+    repeated int32 hands = 3;
+    int64 chips = 4 [(gogoproto.jsontag) = "chips"];
+}
+
+message TexaRecord
+{
+    repeated TexaUserAction preflop = 1;
+    repeated TexaUserAction flop = 2;
+    repeated TexaUserAction turn = 3;
+    repeated TexaUserAction river = 4;
+}
+
+message TexaUserAction 
+{
+    string cid = 1;
+    int32 action = 2 [(gogoproto.jsontag) = "action"];
+    int64 bet = 3 [(gogoproto.jsontag) = "bet"];
+}
+
+message TexaResultRsp
+{
+    int32 code = 1;
+    string message = 2;
+    int32 action = 3;
+    double bets = 4;
+    float time = 5;
+    int32 tid = 6;
+    string cid = 7;
+    string level = 8;
+}
+
+message DaXuanUserInfo
+{
+    int32 pos_idx = 1;
+    int32 current_bet = 2;
+    int32 previous_bet = 3;
+    string hand_cards = 4;
+    int32 mango = 5;
+}
+
+message DaXuanEnvInfo
+{
+    int32 step_dealer_idx = 1;
+    int32 current_idx = 2;
+    int32 ply_num = 3;
+    string opt_list = 4;
+    repeated DaXuanUserInfo user_info = 5;
+}
+
+//打旋请求参数
+message DaXuanParamsReq
+{
+    int64 uid = 1 [(gogoproto.moretags) = 'validate:"required"'];
+    int32 tid = 2 [(gogoproto.moretags) = 'validate:"required"'];
+    int64 timestamp = 3;
+    DaXuanEnvInfo TagAIEnvInfo = 4 [(gogoproto.moretags) = 'validate:"required"'];
+}
+
+message DaXuanResultRsp
+{
+    int32 code = 1;
+    string message = 2;
+    int32 action = 3;
+    string head = 4;
+    string tail = 5;
+}
+

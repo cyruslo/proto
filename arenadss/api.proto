@@ -1,0 +1,995 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package arenaServer.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+//service ArenaServer {
+ //   rpc GameRegister (RegisterGame) returns (CommonResp){
+  //      option (google.api.http) = {
+   //         post:"/arenaServer/GameRegister"
+    //    };
+    //};
+//}
+
+service ArenaServer {
+    rpc onMatchList (GMatchDetailsReq) returns (GMatchDetailsRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onMatchList"
+        };
+    };
+
+
+
+    rpc onSignUp (GSignUpReq) returns (GSignUpRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onSignUp"
+        };
+    };
+
+
+    rpc onRankList (GRankListReq) returns (GRankListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onRankList"
+        };
+    };
+
+
+
+    rpc onMatchStatus (MatchStatusReq) returns (MatchStatusRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onMatchStatus"
+        };
+    };
+
+
+
+    rpc onWeekRecord (GWeekRecordReq) returns (GWeekRecordRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onWeekRecord"
+        };
+    };
+
+
+
+    rpc onAwardList (GAwardListReq) returns (GAwardListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onAwardList"
+        };
+    };
+
+
+
+    rpc onAwardCount (AwardCountReq) returns (AwardCountRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onAwardCount"
+        };
+    };
+
+
+    rpc onAward (GGetAwardReq) returns (GGetAwardRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onAward"
+        };
+    };
+
+
+    rpc onGetFamousList (GFamousListReq) returns (GFamousListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onGetFamousList"
+        };
+    };
+
+
+    rpc onGetDailyTask (GDailyTaskReq) returns (GDailyTaskRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onGetDailyTask"
+        };
+    };
+	rpc onGetTaskFish (RewardTaskGetReq) returns (RewardTaskGetRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onGetTaskFish"
+        };
+    };
+	rpc onUpdateTaskFish (RewardTaskUpdateReq) returns (CommonResp){
+		option (google.api.http) = {
+			post:"/arenaServer/onUpdateTaskFish"
+		};
+    };
+
+	rpc onReportStatusRequest (ReportStatusReqV2) returns (CommonResp){
+		option (google.api.http) = {
+			post:"/arenaServer/onReportStatusRequest"
+		};
+    };
+
+}
+
+enum ArenaMsgCode {
+	AMC_InvalId = 0;
+
+	//客户端-公共部分
+	AMC_C_MatchStatus = 1;      //比赛的提示
+	AMC_C_ShareStatus = 2;      //用户分享
+	AMC_C_AwardList   = 3;      //奖励列表
+	AMC_C_GetAward    = 4;      //领取奖励
+	AMC_C_AwardCount  = 5;      //数量奖励
+	AMC_C_RankList    = 6;      //排行板信息
+	
+	//客户端-全民赛
+	AMC_C_PMatchList   = 30;      //比赛列表
+	AMC_C_PSignUp      = 31;      //客户端-报名/继续游戏
+	
+	//客户端-快速赛
+	AMC_C_FMatchList      = 50;     //比赛列表
+	AMC_C_FWaitMatch      = 51;     //等待比赛开始
+	AMC_C_FCancelMatch    = 52;     //取消报名
+	AMC_C_FSignUp         = 53;     //客户端-报名/继续游戏
+	AMC_C_FConfirm        = 54;     //确认开始比赛
+	AMC_C_FRobotLogin     = 55;     //机器人的信息
+	AMC_C_FRobotJoinMatch = 56;     //请求机器人参加比赛
+	AMC_C_FRobotHeart     = 57;     //机器人的心跳检测
+	
+	//客户端-大师赛
+	AMC_C_GMatchDetails   = 70;     //比赛详情
+	AMC_C_GSignUp         = 71;     //报名/继续游戏
+	AMC_C_GRankList       = 72;     //排行榜
+	AMC_C_GWeekRecord     = 73;     //本周战绩
+	AMC_C_GAwardList      = 74;     //奖励列表
+	AMC_C_GFamousList  	  = 75;		//名人堂列表
+	AMC_C_GGetAward 	  = 76;		//领奖
+	AMC_C_GDailyTask   = 77;		//获取每日任务
+	//服务器部分-公共部分
+	AMC_S_GameCountDown    = 100;     //比赛倒计时
+	
+	//服务器部分-全民赛
+	AMC_S_PReportStatus    = 130;     //上报用户状态
+	AMC_S_PReportMatch     = 131;     //上报场数据
+	AMC_S_PGameEnd         = 132;     //比赛结束
+
+	//服务器部分-快速比赛
+	AMC_S_FReportStatus     = 150;   //上报用户状态
+	AMC_S_FReportMatch      = 151;   //上报场数据
+	AMC_S_FSettlement       = 152;   //通知用户上传最后的数据
+	AMC_S_FGameEnd          = 153;   //比赛结束
+	AMC_C_FRobotNameSyn     = 154;   //机器人的名字同步
+	//服务器部分-大师赛
+	AMC_S_GReportStatus		= 155; 	//上报比赛状态
+	AMC_S_GReportMatch      = 156;   //上报场数据
+	AMC_S_GGameEnd          = 157;   //比赛结束
+	AMC_S_GGameSettlement   = 158;   //比赛结算
+	AMC_S_GKayValue  		= 159;   //更新Value
+}
+
+enum ArenaMsgErrorCode {
+	AMEC_InvalId           = 0;
+	AMEC_Sucess            = 1;  //成功
+	AMEC_Param             = 2;  //参数错误
+	AMEC_PlayerNotExist    = 3;  //玩家不存在
+	AMEC_PlayerNotGameing  = 4;  //用户不在游戏内
+	AMEC_UnserializeFailed = 5;  //反序列化失败
+	AMEC_DeserializeFailed = 6;  //序列化失败
+	AMEC_FreshUserMoney    = 7;  //刷新玩家金币失败
+	AMEC_SystemError       = 8;  //系统错误
+	AMEC_SqlConn           = 9;  //sql conn 为空
+	AMEC_Infos             = 10; //拉取报名数据
+	AMEC_VipLevel          = 11; //vip等级不足,报名失败
+	AMEC_Money             = 12; //金币不足,报名失败
+	AMEC_Share             = 13; //用户没分享
+	AMEC_JoinTime          = 14; //用户报名搭到上限
+	AMEC_MatchNotExist     = 15; //比赛不存在
+	AMEC_MatchNotOpen      = 16; //比赛未开启
+	AMEC_SignUpFailed      = 17; //报名失败
+	AMEC_SignUpSucess      = 18; //报名成功
+	AMEC_NoAward           = 19; //没中奖
+	AMEC_Collection        = 20; //已经领取
+	AMEC_AwardSucess       = 21; //领取成功
+	AMEC_NotWaiting        = 22; //没有在匹配状态
+	AMEC_NotTable          = 23; //没有该房间
+	AMEC_TableStarted      = 24; //比赛已经开始
+	AMEC_PhoneFailed       = 25; //电话号码格式错误
+
+}
+
+//------------------------- 客户端部分-大师赛 ------------------------------------
+message HttpCommonRsp{
+	 int32 En   =1;	
+	 bytes Data  =2;      
+}
+
+message GAward{
+	 int32 Id = 1 [(gogoproto.jsontag) = "Id"];
+	 int64 Num = 2 [(gogoproto.jsontag) = "Num"];
+}
+message GRank{
+	 int32 Rank=1 [(gogoproto.jsontag) = "Rank"];
+	 int64 PlayerId=2 [(gogoproto.jsontag) = "PlayerId"];
+	 int64 Mark = 3 [(gogoproto.jsontag) = "Mark"];
+	 int32 RankStart =4 [(gogoproto.jsontag) = "RankStart"];
+	 int32 RankEnd = 5  [(gogoproto.jsontag) = "RankEnd"];
+	 string NickName=6 [(gogoproto.jsontag) = "NickName"];
+	 string Avatar=7 [(gogoproto.jsontag) = "Avatar"];
+	 GAward Awards=8 [(gogoproto.jsontag) = "Awards"];
+}
+message GDailyTaskReq{
+	 int32 MatchId = 1 [(gogoproto.jsontag) = "MatchId"];
+	 int64 PlayerId = 2[(gogoproto.jsontag) = "PlayerId"]; //用户ID
+}
+message GDailyTaskRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32 TargetScore = 3 [(gogoproto.jsontag) = "TargetScore"];//任务目标积分
+	 int32 AwardType = 4 [(gogoproto.jsontag) = "AwardType"];  //奖励类型
+	 int32 AwardNum = 5 [(gogoproto.jsontag) = "AwardNum"];   //奖励数量
+	 int32 FinishStatus = 6 [(gogoproto.jsontag) = "FinishStatus"];//完成状态
+}
+message GRankListReq{
+	 int32 MatchId = 1 [(gogoproto.jsontag) = "MatchId"];
+	 int64 PlayerId = 2 [(gogoproto.jsontag) = "PlayerId"]; //用户ID
+	 int32 Type = 3 [(gogoproto.jsontag) = "Type"]; //0 日排行，1本周排行 ，2上周排行
+}
+message GRankListRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32 Type = 3 [(gogoproto.jsontag) = "Type"];   		//0 日排行，1本周排行 ，2上周排行
+	 int32 SelfRank = 4 [(gogoproto.jsontag) = "SelfRank"]; 	//玩家自己的排名
+	 string FristDay =5 [(gogoproto.jsontag) = "FristDay"];	//本周第一天的日期
+	 string LastDay = 6 [(gogoproto.jsontag) = "LastDay"];	//本周最后一天的日期
+	 string CurDay =  7 [(gogoproto.jsontag) = "CurDay"];	//当前日期
+	repeated GRank Ranklist = 8; 	//排名列表
+}
+
+message GWeekRecordReq{
+	 int32 MatchId=1 [(gogoproto.jsontag) = "MatchId"];
+	 int64 PlayerId=2 [(gogoproto.jsontag) = "PlayerId"];
+}
+message WeekRecord{
+	 int32 WeekOne =1 [(gogoproto.jsontag) = "WeekOne"];
+	 int64 Mark = 2 [(gogoproto.jsontag) = "Mark"];
+	 int32 Status = 3 [(gogoproto.jsontag) = "Status"]; //1未开始,2未上榜今日排行,3等待结算,4 算入的分数,5未算入的分数
+}
+message GWeekRecordRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32 WeekOne =3 [(gogoproto.jsontag) = "WeekOne"];
+	 int32 WeekRank =4 [(gogoproto.jsontag) = "WeekRank"];
+	 int64 WeekMark =5  [(gogoproto.jsontag) = "WeekMark"];
+	 repeated WeekRecord WeekRecords=6;
+}
+message GConditions{
+	 int32 Id = 1 [(gogoproto.jsontag) = "Id"];
+	 int64 Num = 2 [(gogoproto.jsontag) = "Num"];
+}
+
+
+message GMatchDetailsReq{
+	 int64 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"]; //用户ID
+}
+message GMatchDetailsRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32 MatchId = 3 [(gogoproto.jsontag) = "MatchId"]; //比赛ID
+	 string StartTime = 4 [(gogoproto.jsontag) = "StartTime"]; //开始时间
+	 string EndTime = 5 [(gogoproto.jsontag) = "EndTime"]; //结束时间
+	 int64 WeekMark = 6 [(gogoproto.jsontag) = "WeekMark"]; //周积分
+	 int64 DayMark	= 7 [(gogoproto.jsontag) = "DayMark"];//日积分
+	 int32 Rank = 8 [(gogoproto.jsontag) = "Rank"];//今日排行
+	 int32 TotalRank = 9 [(gogoproto.jsontag) = "TotalRank"];//总排行人数
+	 repeated GConditions Condition = 10;//参赛条件
+	 GConditions Cost =11 [(gogoproto.jsontag) = "Cost"];	//报名费用
+	 int32 Additional = 12 [(gogoproto.jsontag) = "Additional"]; //加成比例
+	 int32 MatchStatus = 13 [(gogoproto.jsontag) = "MatchStatus"];//比赛状态 0未开始 1可报名 2继续比赛 3即将结束
+	
+}
+
+message GSignUpReq{
+	 int32 MatchId = 1 [(gogoproto.jsontag) = "MatchId"]; //比赛ID
+	 int64 PlayerId = 2 [(gogoproto.jsontag) = "PlayerId"]; //用户ID
+	 string Name = 3  [(gogoproto.jsontag) = "Name"]; //用户昵称
+	 string Icon = 4  [(gogoproto.jsontag) = "Icon"]; //用户头像
+}
+
+message GSignUpRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32  PlayerId	= 3 [(gogoproto.jsontag) = "PlayerId"];
+	 int32  MatchId  	= 4 [(gogoproto.jsontag) = "MatchId"];
+	 string  GameUrl    = 5 [(gogoproto.jsontag) = "GameUrl"];
+	 string  ArenaUrl   = 6 [(gogoproto.jsontag) = "ArenaUrl"];
+	 int32   Status = 7 [(gogoproto.jsontag) = "Status"]; //0 报名成功， 1报名费不够， 
+	 string  Msg = 8 [(gogoproto.jsontag) = "Msg"]; //0 报名成功， 1报名失败
+}
+message GFamousListReq{
+	 int32 MatchId = 1 [(gogoproto.jsontag) = "Msg"];  //比赛ID
+}
+message Famous{
+	 string date =1 [(gogoproto.jsontag) = "date"];
+	 string Avatar=2 [(gogoproto.jsontag) = "Avatar"];
+	 string Name = 3 [(gogoproto.jsontag) = "Name"];
+	 int64 Mark = 4 [(gogoproto.jsontag) = "Mark"];
+	 int64 PlayerId = 5 [(gogoproto.jsontag) = "PlayerId"];
+}
+message GFamousListRsp{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	repeated Famous FamousList =3;
+}
+//------------------------- 客户端部分-公用部分 ------------------------------------
+//AMC_C_MatchStatus:游戏的开启状态
+message MatchStatusReq
+{
+	 int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message MatchTips
+{
+	 int32  GameType    = 1;   //比赛类型
+	 int32  Type        = 2;   //子比赛类型
+	 string TypeTips    = 3;   //比赛类型描述
+}
+
+message MatchStatusRsp
+{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"];
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	repeated MatchTips Tips = 3;
+}
+
+//AMC_C_ShareStatus:用户分享
+message ShareStatusReq
+{
+	 int32 PlayerId = 1;
+	 int32 Type     = 2;
+	 int32 Id       = 3;   //场次Id
+	 bool  Status   = 4;  //用户微信分享状态
+}
+
+message ShareStatusRsp
+{
+	 int32 PlayerId = 1;
+	 int32 Type     = 2;
+	 int32 Id       = 3;   //场次Id
+	 int32 Core     = 4;   //
+}
+
+enum SignUpCore{
+	SC_Success = 0;  //成功
+	SC_Refresh = 1;  //重新刷新
+}
+
+//AMC_C_AwardList:奖励列表
+message AwardListReq
+{
+	 int32 PlayerId = 1;
+}
+message GAwardListReq
+{
+	 int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+message GAwardInfo
+{
+	 string Id    	 = 1 [(gogoproto.jsontag) = "Id"];
+	 string TypeTips = 2 [(gogoproto.jsontag) = "TypeTips"];
+	repeated GAward Awards	 = 3 ;
+	 string Date     = 4 [(gogoproto.jsontag) = "Date"];
+}
+message GAwardListRsp
+{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	repeated GAwardInfo AwardList = 3;
+	
+}
+
+message GGetAwardReq
+{
+	 int32  PlayerId  = 1 [(gogoproto.jsontag) = "PlayerId"];
+	repeated string Ids = 2 ;
+}
+message AwardRsp{
+	 string Ids = 1 [(gogoproto.jsontag) = "Ids"];
+	 int32  Status = 2 [(gogoproto.jsontag) = "Status"]; //0 领取成功， 1领取失败
+}
+message GGetAwardRsp
+{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32    PlayerId  = 3 [(gogoproto.jsontag) = "PlayerId"];
+	repeated AwardRsp AwardRsps = 4;
+}
+
+
+message AwardInfo
+{
+	 int32  Type     = 1;
+	 string TypeTips = 2;
+	 int32  Id       = 3;    
+	 int32  MoneyId  = 4; //1:金币; 2:礼卷; 3:话费
+	 int64  Money    = 5;
+	 string Date     = 6;
+}
+
+message AwardListRsp
+{
+
+	repeated AwardInfo AwardList = 1;
+}
+
+
+//AMC_C_GetAward:領取奖励
+message GetAwardData
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 string Date     = 3;
+	 int32  MoneyId  = 4;
+	 int64  Money    = 5;
+	 string Phone    = 6; 
+}
+
+message GetAwardReq
+{
+	 int32  PlayerId        = 1;
+	repeated GetAwardData AwardList = 2;
+}
+
+enum AwardCode
+{
+	AC_Success  = 0;
+	Ac_NotExist = 1;
+}
+
+message GetAwardRsp
+{
+	 int32        PlayerId  = 1;
+	repeated GetAwardData AwardList = 2;
+	 int32        Code      = 4;
+}
+
+//AMC_C_AwardCount:奖励数量
+message AwardCountReq
+{
+	 int32 PlayerId  = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message AwardCountRsp
+{
+	 int32 Code = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32 PlayerId  = 3 [(gogoproto.jsontag) = "PlayerId"];
+	 int32 Count     = 4 [(gogoproto.jsontag) = "Count"];
+}
+
+
+//比赛列表
+enum ConditionType 
+{	
+	No_z1 = 0;
+	CTYPE_Money    = 1;  //金币要求	
+	CTYPE_VipLevel = 2;  //vip等级要求
+	CTYPE_Share    = 3;  //分享要求
+}
+
+message Condition
+{
+	 int32 Type  = 1;
+	 int32 Value = 2;
+}
+
+enum MatchStatus
+{
+	No_z = 0;
+	MSTATUS_NotStart   = 1;  //活动未开始
+	MSTATUS_NotSignUp  = 2;  //还没报名
+	MSTATUS_Continue   = 3;  //继续比赛
+	MSTATUS_AlmostOver = 4;  //比赛即将结束
+	MSTATUS_WaitAward  = 5;  //等待颁奖
+	MSTATUS_End        = 6;  //游戏已经结束
+	MSTATUS_NotJoin    = 7;  //报名次数已用
+}
+
+message RankListReq
+{
+	 int32 PlayerId  = 1;
+	 int32 type      = 2;
+	 int32 Areantype = 3;
+}
+
+enum AwardUserType
+{
+	No_z2 = 0;
+	AUT_User     = 1; //用户具体信息
+	AUT_ScoreTip = 2; //分数提示
+}
+
+message RankListInfo
+{
+	 int32     StartRank = 1;
+	 int32     EndRank   = 2; 
+	 int32     UserType  = 3; //奖励玩家类型
+	 string    Name      = 4; //Type=1:姓名；Type = 2:描述提示
+	 string    Icon      = 5;
+	 int32     Mark      = 6;
+	 int32     AwardId   = 7;
+	 int64     Award     = 8;
+	 int32     Multiple  = 9;
+	 bool      Stars     = 10;
+}
+
+enum Areantype
+{
+	No_z3 = 0;
+	AT_Current  = 1; //本场
+	AT_Before   = 2; //上局
+	AT_Day      = 3; //当天
+}
+
+message RankListRsp
+{
+	 int32         Type      = 1;
+	 string        TypeTip   = 2;
+	 int32         Areantype = 3;  //Areantype=1:本局排行；Areantype=2:上局排行
+	repeated RankListInfo  RankList  = 4;
+	 int32         Rank      = 5;
+	 int32         TotalRank = 6;
+	 int32         Mark      = 7;
+}
+
+//------------------------- 客户端部分-全名赛 ------------------------------------
+enum TimeType
+{
+	No_z4 = 0;
+	TTYPE_Start = 1;  //开始时间
+	TTYPE_Award = 2;  //颁奖时间
+}
+
+//AMC_C_P_MatchList:全民比赛列表
+message PMatchInfo
+{
+	 int32       Type          = 1;   //比赛类型
+	 string      TypeTips      = 2;   //比赛类型描述
+	 int32       Id            = 3;   //场次Id
+	 int32       JoinTimes     = 4;   //已经参与次数
+	 int32       TotalTimes    = 5;   //共可参与次数
+	 int32       TimeStatus    = 6;   //时间状态
+	 int32       Hour          = 7;   //小时
+	 int32       Minute        = 8;   //分钟
+	 int32       Status        = 9;   //用户状态
+	repeated Condition   ConditionList = 10;  //报名条件
+	 int32       Rank          = 11;  //排名
+	 int32       TotalRank     = 12;  //总排名
+	 int64       Award         = 13;  //冠军奖励
+	 int32       Multiple      = 14;  //倍数
+	 int32       AwardCount    = 15;  //前几名有奖励
+}
+
+message PMatchListReq
+{
+	 int32 PlayerId = 1;
+}
+
+message  PMatchListRsp
+{
+	repeated PMatchInfo MatchList = 1;
+}
+
+//AMC_C_PSignUp
+message PSignUpReq {
+	 int32  PlayerId = 1;
+	 string Name     = 2;
+	 string Head     = 3;
+	 int32 Type      = 4;
+	 int32 Id        = 5;
+}
+
+message PSignUpRsp {
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int64  money    = 3;
+	 int32  core     = 4;
+}
+
+
+
+//AMC_C_P_RankList:排行板
+
+//------------------------- 客户端部分-快速比赛 ------------------------------------
+//AMC_C_F_MatchList:快速比赛列表
+message FMatchInfo
+{
+	 int32       Type          = 1;   //比赛类型
+	 string      TypeTips      = 2;   //比赛类型描述
+	 int32       Id            = 3;   //场次Id
+	 string      OpenTime      = 4;   //开放时间 
+	 int32       PlayerTimes   = 5;   //开赛人数
+	 int32       JoinTimes     = 6;   //已经参与次数
+	 int32       TotalTimes    = 7;   //共可参与次数，该字段为0表示不限制次数
+	 int32       MatchTime     = 8;   //参赛时间
+	repeated Condition   ConditionList = 9;   //报名条件
+	repeated int64       AwardList     = 10;  //奖励信息
+	 int32       Status        = 11;  //用户状态
+}
+
+message FMatchListReq
+{
+	 int32 PlayerId = 1;
+}
+
+message  FMatchListRsp
+{
+	repeated FMatchInfo MatchList = 1;
+}
+
+//AMC_C_FSignUp
+message PositionInfo
+{
+	 double Latitude = 1;
+	 double Longitude = 2;
+}
+
+message FSignUpReq {
+	 int32  PlayerId = 1;
+	 string Name     = 2;
+	 string Head     = 3;
+	 int32 Type      = 4;
+	 int32 Id        = 5;
+	 string Ip       = 6;
+	 PositionInfo Position = 7;
+}
+
+message FSignUpRsp {
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int64  money    = 3;
+	 int32  core     = 4;
+	 string Url      = 5;
+}
+
+//AMC_C_FWaitMatch:等待比赛开始
+message FWaitMatchReq
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+}
+
+enum FWaitMatchStatus
+{
+	WMS_NotJoin = 0; //没有参加报名
+	WMS_Waitng  = 1; //比赛匹配中
+	WMS_Confirm = 2; //比赛确认
+	WMS_Start   = 3; //开始比赛
+}
+
+message FWaitMatchRsp
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+	 int32  Status   = 4;
+	 int32  Join     = 5;
+	 int32  Total    = 6;
+}
+
+//AMC_C_FCancelMatch:取消报名
+message FCancelMatchReq
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+}
+message FCancelMatchRsp
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+	 int32  Result   = 4; //0:成功退出; 1:失败
+}
+
+
+//AMC_C_FConfirm
+message FConfirmReq
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+}
+message FConfirmRsp
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	 int32  PlayerId = 3;
+	 int32  Result   = 4; //0:成功; 1:失败
+}
+
+message FRobotLoginReq
+{
+	 int32  PlayerId = 1;
+}
+
+message FRobotLoginRsp
+{
+	 int32  PlayerId = 1;
+	 int32  Core     = 2;
+}
+
+message  FRobotJoinMatchRsp
+{
+	 int32 PlayerId   = 1;
+	 int32 Type       = 2;
+	 int32 Id         = 3;
+	 int32 Difficulty = 4;
+}
+
+message  FRobotHeartReq
+{
+	 int32 PlayerId   = 1;
+}
+
+message  FRobotHeartRsp
+{
+	 int32 PlayerId = 1;
+	 int32 Core     = 2; //1:用户存在不进行操作：3:用户不存在；重新发登录包
+}
+//---------------------- 游戏服务器-公共部分 ----------------------
+
+// redis消息封装
+// 消息协议
+message Message{
+	// 玩家ID
+	 int64 PlayerId = 1;
+	// 操作码
+	 int32 Ops = 2;
+	// 数据
+	 bytes Data = 3;
+	//长度 
+	 int32 Size = 4;
+}
+
+//AMC_S_ReportStatus
+enum GameStatus
+{	
+	No_z5 = 0;
+	GS_Enter = 1; //进入游戏
+	GS_Leave = 2; //离开游戏
+}
+
+message ReportStatusReq
+{
+	 int32  Type     = 1;
+	 int64  ServerId = 2;
+	 int64  Id       = 3;
+	 int64  PlayerId = 4;
+	 int32  Status   = 5;
+	 int64  TableId  = 6;
+}
+
+//AMC_S_GameCountDown:比赛倒计时
+message GameCountDown
+{
+	 int32 Type  = 1;
+	 int64 Id    = 2;
+	 int64 TableId = 3;
+	 int32 Sce   = 4;
+}
+
+//---------------------- 游戏服务器-大师赛 ----------------------
+message GReportMatchReq 
+{
+	 int64  PlayerId = 1;
+	 int32  Type     = 2;
+	 int64  Id       = 3;
+	 int64  MaxMark  = 4;  //玩家积分
+	 int32  Bullet    = 5;  //玩家剩下的子弹数
+	 int32  ReportType    = 6;  //上报类型
+}
+
+message GReportMatch 
+{
+	 int64  PlayerId = 1;
+	 int32  Type     = 2;
+	 int64  Id       = 3;
+	 int32  MaxMark  = 4;
+}
+
+message GReportMatchRsp 
+{
+	repeated GReportMatch Infos = 3;
+}
+message GGameEnd
+{
+	 int32 Type = 1;
+	 int32 Id   = 2;
+	
+}
+message GGameCountDown
+{
+	 int32 Type  = 1; 
+	 int64 Id    = 2;
+	 int32 Sce   = 4;
+}
+
+message GameSettlement
+{
+	 int32 Rank = 1;
+	 int32 Total = 2;
+	 int32 VipAddition=3;
+	 int32 ChallengeAddition=4;
+	 int64 CurMark = 5;
+	 int64 MaxMark = 6;
+	 int32 Type  = 7;
+	 int64 PlayerId = 8;
+}
+
+message UpdateKeyValue
+{
+	 string Key=1;
+	 string Value=2;
+}
+//---------------------- 游戏服务器-全民赛 ----------------------
+//AMC_S_P_ReportMatch
+message PReportMatchReq 
+{
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int32  Id       = 3;
+	 int32  MaxMark  = 4;  //玩家积分
+	 int32  Score    = 5;  //玩家剩下的子弹数
+}
+
+message PReportMatch 
+{
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int32  Id       = 3;
+	 int32  MaxMark  = 4;
+	 string Name     = 5;
+	 string Head     = 6;
+	 int32  RankIdx  = 7;
+}
+
+message PReportMatchRsp
+{
+	repeated PReportMatch Infos = 1;
+}
+
+//AMC_S_P_GameEnd:比赛结束
+message PGameEnd
+{
+	 int32 Type = 1;
+	 int32 Id   = 2;
+}
+
+//---------------------- 游戏服务器-快速比赛 ----------------------
+
+//AMC_S_F_ReportMatch
+message FReportMatchReq
+{
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int32  ServerId = 3;
+	 int32  TableId  = 4;
+	 int32  Mark     = 5;  //玩家积分
+	 int32  Score    = 6;  //玩家子弹数
+	 bool   RatioChange = 7;  //用户的子弹倍率发送变化
+}
+
+message FReportMatch 
+{
+	 int32  PlayerId = 1;
+	 int32  Type     = 2;
+	 int32  TableId  = 3;
+	 int32  MaxMark  = 4;  //玩家积分
+	 int32  RankIdx  = 5;
+	 int32  BulletCount = 6;
+	 int32  BulletTotal = 7;
+}
+
+message FReportMatchRsp
+{
+	repeated FReportMatch Infos = 1;
+}
+
+message FSettlementNotice
+{
+	 int32  Type     = 1;
+	 int32  Id       = 2;
+	repeated int32  TableId  = 3;
+}
+
+//AMC_S_F_GameEnd:比赛结束
+message FPlayerResult
+{
+	 int32  PlayerId = 1;
+	 int32  Rank  = 2;
+	 string Name  = 3;
+	 int32  Mark  = 4;
+	 int64  Award = 5;
+	 string Date  = 6;
+}
+
+message FGameEnd
+{
+	int32 Type = 1;
+	int32 Id   = 2;
+	repeated int32 TableId  = 3;
+	repeated FPlayerResult PlayerResultList = 4;
+}
+
+message FRobotNameSynReq{
+	 int32  Type     = 1;
+	 int32  ServerId = 2;
+	 int32  PlayerId = 3;
+}
+message FRobotNameSynRsp{
+	 int32  PlayerId = 1;
+	 string Name     = 2;
+}
+//---------------------- 大厅部分 ----------------------
+enum HallMsgCode {
+  HMC_Invalid = 0;
+  HMC_CHat = 1;
+}
+
+message Chat {
+	 string SectionWords = 1;
+	 string FilterWords = 2;
+	 int32 GameID = 3;
+	 int32 ContentType = 4;
+	 int32 Delaysec = 5;
+}
+
+//大厅显示用户的奖励数量HMC_AbyGameInfo
+message AbyGameInfo {
+	 int32 GameType = 1;
+	 int32 PlayerId = 2;
+	 int32 Count    = 3;
+	 int32 Status   = 4; //0:游戏还没开始；1:游戏已经开启
+	 string Tips    = 5;
+}
+
+message RewardFish{
+	 int32		id = 1  [(gogoproto.jsontag) = "id", (gogoproto.moretags)='validate:"required"'];					//鱼ID
+	 int32		num = 2  [(gogoproto.jsontag) = "num", (gogoproto.moretags)='validate:"required"'];		 			//鱼数量
+	 int32		capture_num = 3  [(gogoproto.jsontag) = "capture_num", (gogoproto.moretags)='validate:"required"']; //捕获数量
+}
+message RewardTaskGetReq{
+	int32 UserId = 1;
+}
+message RewardTaskGetRsp{
+	 int32 		 Code = 1 [(gogoproto.jsontag) = "Code"];
+	 string 	 Message = 2 [(gogoproto.jsontag) = "Message"];
+	 int32		 task_id = 3 [(gogoproto.jsontag) = "task_id", (gogoproto.moretags)='validate:"required"'];				//任务ID
+	 int32		 reward = 4 [(gogoproto.jsontag) = "reward", (gogoproto.moretags)='validate:"required"'];				//任务奖励
+	 int64		 clock = 5 [(gogoproto.jsontag) = "clock", (gogoproto.moretags)='validate:"required"'];					//悬赏时间
+	 int32       task_status = 6 [(gogoproto.jsontag) = "TaskStatus", (gogoproto.moretags)='validate:"required"'];			//任务状态
+	 repeated RewardFish reward_fish=7 [(gogoproto.jsontag) = "reward_fish", (gogoproto.moretags)='validate:"required"'];//悬赏鱼
+}
+
+message RewardTaskUpdateReq{
+	 int32 		 UserId =1 [(gogoproto.jsontag) = "UserId", (gogoproto.moretags)='validate:"required"'];					//用户ID
+ 	 int32		 task_id = 2 [(gogoproto.jsontag) = "task_id", (gogoproto.moretags)='validate:"required"'];					//任务ID
+	 int32		 reward = 3 [(gogoproto.jsontag) = "reward", (gogoproto.moretags)='validate:"required"'];					//任务奖励
+	 int64		 clock = 4 [(gogoproto.jsontag) = "clock", (gogoproto.moretags)='validate:"required"'];						//悬赏时间
+	 int32       task_status = 5 [(gogoproto.jsontag) = "TaskStatus", (gogoproto.moretags)='validate:"required"'];			//任务状态
+	 repeated RewardFish reward_fish = 6 [(gogoproto.jsontag) = "reward_fish", (gogoproto.moretags)='validate:"required"']; //悬赏鱼
+}
+
+message ReportStatusReqV2{
+	int32 user_id=1 [(gogoproto.jsontag) = "UserId", (gogoproto.moretags)='validate:"required"'];;
+	int32 status=2 [(gogoproto.jsontag) = "Status", (gogoproto.moretags)='validate:"required"'];;
+}
+message CommonResp{
+	int32 Code = 1 [(gogoproto.jsontag) = "Code"];
+	string Message = 2 [(gogoproto.jsontag) = "Message"];
+}

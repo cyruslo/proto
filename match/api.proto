@@ -1,0 +1,632 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package match.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service race {
+	//获取比赛详情
+	rpc MatchDetail (MatchDetailReq) returns (MatchDetailRsp){
+		option (google.api.http) = {
+            post:"/match/matchdetail"
+        };
+	};
+	//棋牌每局结算
+	rpc ChessSum (ChessSumReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/match/chesssum"
+        };
+	};
+    //捕鱼每局结算
+		rpc CatchSum (CatchSumReq) returns (CatchSumRsp){
+        option (google.api.http) = {
+            post:"/match/catchsum"
+        };
+    };
+	//多人快速赛局内积分上报
+	rpc CatchRoundSum (CatchRoundSumReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/match/catchroundsum"
+        };
+	};
+	//获取比赛局内排行
+	rpc RoundRank (RoundReq) returns (RoundRankRsp){
+		option (google.api.http) = {
+            post:"/match/roundrank"
+        };
+	};
+	//获取每日榜单
+	rpc DayRank (DayRankReq) returns (DayRankRsp){
+		option (google.api.http) = {
+            post:"/match/dayrank"
+        };
+	};
+	//获取奖励以及对应名但（大师赛独有）
+	rpc CatchDayRank (CatchDayRankReq) returns (CatchDayRankRsp){
+		option (google.api.http) = {
+            post:"/match/catchdayrank"
+        };
+	};
+	//获取每周榜单
+	rpc WeekRank (WeekRankReq) returns (WeekRankRsp){
+		option (google.api.http) = {
+            post:"/match/weekrank"
+        };
+	};
+	//获取日榜奖励
+	rpc GetRankReward (RankRewardReq) returns (RankRewardRsp){
+		option (google.api.http) = {
+            post:"/match/getrankreward"
+        };
+	};
+	//比赛报名
+	rpc MatchSign (MatchSignReq) returns (MatchSignRsp){
+		option (google.api.http) = {
+            post:"/match/matchsign"
+        };
+	};
+
+	//本周战绩
+	rpc WeekResult (WeekResultReq) returns (WeekResultRsp){
+		option (google.api.http) = {
+            post:"/match/weekresult"
+        };
+	};
+	//获取玩家排名（按期数）
+	rpc GetUserRank (CommonReq) returns (UserRankRsp){
+		option (google.api.http) = {
+            post:"/match/getuserrank"
+        };
+	};
+	//获取排名（按天数算）
+	rpc UserDayRank (CommonReq) returns (UserRankRsp){
+		option (google.api.http) = {
+            post:"/match/userdayrank"
+        };
+	};
+	//比赛内一局结算发将
+	rpc RoundEnd (RoundReq) returns (RoundEndRsp){
+		option (google.api.http) = {
+            post:"/match/roundend"
+        };
+	};
+	//比赛结束发奖
+	rpc MatchEnd (MatchEndReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/match/endreport"
+        };
+	};
+	//周榜单发奖励
+	rpc WeekRewardReport (WeekRewardReportReq) returns (CommonRsp){
+		option (google.api.http) = {
+            post:"/match/weekrewardreport"
+        };
+	};
+	//查询玩家奖励
+	rpc CheckUserReward (UserRewardReq) returns (UserRewardRsp){
+		option (google.api.http) = {
+            post:"/match/checkuserreward"
+        };
+	};
+	//获取浮动奖金池
+	rpc GetFloatBonusPool (FloatBonusPoolReq) returns (FloatBonusPoolRsp){
+		option (google.api.http) = {
+            post:"/match/getbonuspool"
+        };
+	};
+	//获取名人堂
+	rpc GetFamousHall (FamousHallReq) returns (FamousHallRsp){
+		option (google.api.http) = {
+            post:"/match/getfamoushall"
+        };
+	};
+	//拉去奖励的列表
+	rpc PullRewardList (RewardListReq) returns (RewardListRsp){
+		option (google.api.http) = {
+            post:"/match/pullrewardlist"
+        };
+	};
+	//获取比赛状态
+	rpc MatchStatus (MatchStatusReq) returns (MatchStatusRsp){
+		option (google.api.http) = {
+            post:"/match/matchstatus"
+        };
+	};
+	//多人同时报名
+	rpc FullMatchSign (FullMatchSignReq) returns (FullMatchSignRsp){
+		option (google.api.http) = {
+            post:"/match/fullmatchsign"
+        };
+	};
+	// 取消报名
+	rpc CancelMatchSign (CancelMatchSignReq) returns (CancelMatchSignRsp){
+		option (google.api.http) = {
+            post:"/match/cancelmatchsign"
+        };
+	};
+	// 取消报名
+	rpc GetOnlineRound (GetOnlineRoundReq) returns (GetOnlineRoundRsp){
+		option (google.api.http) = {
+            post:"/match/getonlineround"
+        };
+	};
+}
+
+message MatchDetailReq
+{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int64 UserID = 2	    [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];		// 用户ID
+	int32 Vip =3 			 [(gogoproto.jsontag) = "Vip", (gogoproto.moretags)='form:"Vip"'];
+}
+
+message MatchDetailRsp
+{
+	int32 Code = 1 [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message = 2 [(gogoproto.jsontag) = "Message"];   // 信息
+	repeated MatchDetail MatchList = 3 [(gogoproto.jsontag) = "MatchList"];
+}
+
+message MatchDetail {
+	string Name = 1; //比赛名称
+	int32 ID = 2;
+	int32 ArenaID = 3;		// 场ID
+	int32 ArenaTimeID = 4;		// 场ID
+	int32 LimitTimes = 5; //参赛次数限制
+	int32 Order = 6; //比赛客户端显示顺序
+	string EnterDeadline = 7; //比赛最后进入时间的限制
+	BeginDetail BeginType = 8; //开赛类型详情
+	EndDetail EndType = 9; //结赛类型详情
+	DateDetail MatchDate = 10;//结赛开赛日期详情
+	repeated ThingsDetail SignConditon = 11;//奖励列表
+	PayDetail SignPay = 12;
+	int32 MatchStatus = 13;
+	string DatePropert = 14;//赛程类型 day 日赛   week 周赛    identify 自定义赛
+	int32 NextVipRate = 15;
+	int32 NextTimesRate = 16;
+	RewardTimeDetail WeekRankRewardTime=17;
+}
+
+message RewardTimeDetail{
+	int32 RewardDay=1;
+	string RewardTime=2;		//开赛时间
+}
+
+message BeginDetail
+{
+	string BeginType=1;		//比赛类型 full 人满赛 cycle 循环赛 regular 定时赛
+	int32 FullNums=2;			//人满赛人数
+	string StartTime=3;		//开赛时间
+	int32 CycleRate=4; 		//循环赛间隔时间
+}
+message EndDetail
+{
+	string EndType=1;		//比赛类型 full 人满赛 cycle 循环赛 regular 定时赛
+	string EndTime=2;			//定时赛配置
+	int32 EndTotal=3;		//#参与局数配置
+	int32 LimitTime=4;
+}
+
+message DateDetail
+{
+	repeated int32 Week=1; //每周几开赛(周赛需要)
+	repeated int32 Month=2;// 开赛月份(自定义赛需要)
+	repeated int32 Day=3; //开赛日(自定义赛需要)
+}
+
+message PayDetail
+{
+	int32 MatchTimes = 1;
+	repeated ThingsDetail Pay = 2;
+
+}
+message ThingsDetail
+{
+	int32 ID = 1;//物品id
+	int64 num = 2; //物品数量
+}
+
+message ChessSumReq
+{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	repeated UserDetails UserList = 4  [(gogoproto.jsontag) = "UserList", (gogoproto.moretags)='form:"UserList" validate:"required"']; //用户列表
+	int64 BetAmount = 5   [(gogoproto.jsontag) = "BetAmount", (gogoproto.moretags)='form:"BetAmount" validate:"required"']; //当局总押注金额
+	int32 ArenaTimeID = 6	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+}
+message UserDetails
+{
+	int64 UserID = 1	    [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];		// 场ID
+	int64 Score = 2	        [(gogoproto.jsontag) = "Score", (gogoproto.moretags)='form:"Score" validate:"required"'];		// 场ID
+    int32 Vip =3          [(gogoproto.jsontag) = "Vip", (gogoproto.moretags)='form:"Vip" ']; //vip等级
+}
+message CommonRsp
+{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+}
+
+message DayRankReq {
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 BeforeDay  = 4		 [(gogoproto.jsontag) = "BeforeDay", (gogoproto.moretags)='form:"BeforeDay"'];
+	int64 EndRankPoint 	= 5		 [(gogoproto.jsontag) = "EndRankPoint", (gogoproto.moretags)='form:"EndRankPoint"'];
+	int64 UserID = 6	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" '];	//用户ID
+	int32 ArenaTimeID = 7	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+}
+
+message DayRankRsp {
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	int64 SelfRank = 3;
+	int64 SelfRankScore = 4;
+	repeated RankDetail DayRankList = 5 ; //用户列表
+}
+
+message CatchDayRankReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+	int64 UserID = 5	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" '];	//用户ID
+}
+
+message CatchDayRankRsp{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	int64 SelfRank = 3;
+	int64 SelfRankScore = 4;
+	repeated CatchRankDetail DayRankList = 5 ; //用户列表
+}
+
+message WeekRankReq
+{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 WeekBefore = 3	   [(gogoproto.jsontag) = "WeekBefore", (gogoproto.moretags)='form:"WeekBefore" '];	//用户ID
+	int32 ArenaID = 4	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int64 EndRankPoint 	= 5		 [(gogoproto.jsontag) = "EndRankPoint", (gogoproto.moretags)='form:"EndRankPoint"'];
+	int64 UserID = 6	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	int32 ArenaTimeID = 7	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+}
+
+message WeekRankRsp
+{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	int64 SelfRank = 3;
+	int64 SelfRankScore = 4;
+	repeated RankDetail WeekRankList = 5  ; //用户列表
+}
+
+message RankDetail{
+	int64 UserID = 1 ;	//用户ID
+	int64 RankScore =2 ;
+	int32 Rank =3;
+	repeated ThingsDetail RankRewardList = 4  ; //奖励列表
+}
+
+message CatchRankDetail{
+	repeated int32 Rank =1;
+	int64 FinalUserID =2;
+	int64 FinalScore =3;
+	repeated ThingsDetail RankRewardList = 4  ; //奖励列表
+}
+
+message CommonReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int64 UserID = 4	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	int32 ArenaTimeID = 5	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+}
+message RankRewardReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int64 UserID = 2	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	string RewardID =3 		[(gogoproto.jsontag) = "RewardID", (gogoproto.moretags)='form:"RewardID" validate:"required"'];	//用户ID
+}
+message RankRewardRsp{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	repeated ThingsDetail RewardList = 3  ; //奖励列表
+}
+
+message MatchSignReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		//比赛时间id
+	int64 UserID = 5	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	repeated ThingsDetail SignThinsList = 6   [(gogoproto.jsontag) = "SignThinsList", (gogoproto.moretags)='form:"SignThinsList" ']; //花费的报名列表
+}
+
+message MatchSignRsp{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	repeated ThingsDetail CostList = 3  ; //花费的报名列表
+	bool Join =4; //报名是否成功
+	int32 MatchSignCount=5; //报名次数
+}
+
+message CatchSumReq
+{
+    int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int64 UserID = 3	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+    int64 Score =4          [(gogoproto.jsontag) = "Score", (gogoproto.moretags)='form:"Score" validate:"required"']; //当局积分
+	int32 Vip =5         [(gogoproto.jsontag) = "Vip", (gogoproto.moretags)='form:"Vip"']; //vip等级
+	int32 ArenaID = 6	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 7	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+}
+
+message CatchSumRsp
+{
+    int32 Code = 1;		// 状态
+    string Message =2;   // 信息
+    int64 CurScore = 3;	//用户ID
+    int64 MaxScore =4; //今日最高积分
+    int64 Rank=5;      //此次排名
+    int64 RankTotal=6;   //此次排名总人数
+    int32 VipAddRate =7   ; //vip加成
+    int32 TimesAddRate =8   ; //参赛次数加成
+	int32 NextTimesAddRate =9   ; //参赛次数加成
+}
+
+message WeekResultReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int64 UserID = 4	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	int32 ArenaTimeID = 5	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+}
+message WeekResultRsp{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+    int64 WeekScore = 3;
+    int64 WeekRank = 4;
+	repeated UserRankDetail UserRankList = 5  ; //花费的报名列表
+}
+message UserRankDetail{
+	int32 RankDay = 1;		// 游戏ID
+	int64 RankScore = 2;		// 游戏ID
+	int64 RankRanking = 3;		// 游戏ID
+	int32 RankStatus = 4;		// 游戏ID
+}
+
+
+message UserRankRsp {
+	int32 Code = 1; // 状态
+	string Message = 2; // 信息
+	int64 Rank = 3; //排名
+	int64 RankScore = 4; //当局积分
+	int64 RankTotal = 5; //当局积分
+	int64 DifScore = 6; //当局积分
+	int64 WeekSumScore = 7; //本周积分
+}
+
+message MatchEndReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+}
+
+message WeekRewardReportReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+}
+
+message UserRewardReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int64 UserID = 2	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+}
+message UserRewardRsp{
+	int32 Code = 1; // 状态
+	string Message = 2; // 信息
+	repeated RewardDetail RewardList =3;
+}
+message RewardDetail{
+	int32 MatchID =1;
+	string RewardID = 2; // 状态
+	int64 Rank = 3;
+	int64 RankScore = 4;
+	string RewardTime = 5;
+	repeated ThingsDetail ThingsList = 6; //奖励列表
+	int32 ArenaID =7;
+}
+
+message FloatBonusPoolReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 多时间场对应的场的id
+}
+message FloatBonusPoolRsp{
+	int32 Code = 1; // 状态
+	string Message = 2; // 信息
+	int64 BonusPoolNum  =3;
+}
+
+
+message FamousHallReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	   [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];	//用户ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 多时间场对应的场的id
+}
+
+message FamousHallRsp{
+	int32 Code = 1; // 状态
+	string Message = 2; // 信息
+	repeated ChampionDetail ChampionList = 3;
+}
+
+message ChampionDetail{
+	int64 UserID = 1; // 状态
+	string BeginDate = 2; // 信息
+	string EndDate = 3; //排名
+	int64 RankScore = 4; //当局积分
+}
+
+message RewardListReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	string RewardType = 2	    [(gogoproto.jsontag) = "RewardType", (gogoproto.moretags)='form:"RewardType" validate:"required"'];		// 榜单排名类型
+}
+
+message RewardListRsp{
+	int32 Code = 1; // 状态
+	string Message = 2; // 信息
+	repeated MatchRewardDetail MatchRewardList = 3;
+}
+
+message MatchRewardDetail{
+	int32 MatchID = 1;		// 场ID
+	int32 ArenaID = 2;		// 场ID
+	int32 ArenaTimeID = 3;		// 多时间场对应的场的id
+	repeated RankRewardDetail RewardList = 4;
+}
+
+message RankRewardDetail{
+	repeated int32 Rank = 1; //排名列表
+	repeated ThingsDetail ThingsList = 2 ; //奖励列表
+}
+
+message MatchStatusReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+
+}
+message MatchStatusRsp {
+	int32 Code = 1 [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message = 2 [(gogoproto.jsontag) = "Message"];   // 信息
+	repeated MatchStatusDetail MatchStatusList =3;
+
+
+}
+message MatchStatusDetail{
+	int32 MatchID =1;
+	int32 ArenaID =2;
+	int32 ArenaTimeID =3;
+	string Name = 4;
+	string EnterDeadline=5; //比赛最后进入时间的限制
+	BeginDetail BeginType=6; //开赛类型详情
+	EndDetail EndType=7; //结赛类型详情
+	string DatePropert=8; //赛程类型 day 日赛   week 周赛    identify 自定义赛
+	DateDetail MatchDate=9; //结赛开赛日期详情
+	int32 MatchStatus = 10;
+	RewardTimeDetail WeekRankRewardTime=11;
+}
+
+
+message FullMatchSignReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 多时间场对应的场的id
+	int64 RoundID = 5	    [(gogoproto.jsontag) = "RoundID", (gogoproto.moretags)='form:"RoundID"'];		// 多时间场对应的局数的id
+	repeated PersonDetail PersonList = 6;
+}
+message PersonDetail{
+	int64 UserID = 1	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	repeated ThingsDetail SignThinsList = 6   [(gogoproto.jsontag) = "SignThinsList", (gogoproto.moretags)='form:"SignThinsList" ']; //花费的报名列表
+}
+
+message FullMatchSignRsp{
+	int32 Code = 1 [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message = 2 [(gogoproto.jsontag) = "Message"];   // 信息
+	repeated SignStatusDetail SignStatusList = 3;
+}
+
+message CancelMatchSignReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 多时间场对应的场的id
+	int64 RoundID = 5	    [(gogoproto.jsontag) = "RoundID", (gogoproto.moretags)='form:"RoundID"'];		// 多时间场对应的局数的id
+	repeated int64 UserList= 6	    [(gogoproto.jsontag) = "UserList", (gogoproto.moretags)='form:"UserList" validate:"required"'];
+}
+
+message CancelMatchSignRsp{
+	int32 Code = 1 [(gogoproto.jsontag) = "Code"];	// 状态
+	string Message = 2 [(gogoproto.jsontag) = "Message"];   // 信息
+	repeated CancelSignDetail UserList =3;
+}
+message CancelSignDetail{
+	int64 UserID = 1;	//用户ID
+	bool IsCancel =2 ; //报名是否成功取消
+	repeated ThingsDetail CostList = 3 ; //花费的报名列表
+}
+
+
+message SignStatusDetail{
+	int64 UserID = 1;	//用户ID
+	bool Join =2 ; //报名是否成功
+	int32 MatchSignCount=3; //报名次数
+	repeated ThingsDetail CostList = 4 ; //花费的报名列表
+
+}
+message CatchRoundSumReq {
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int64 UserID = 3	   [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];	//用户ID
+	int64 Score =4          [(gogoproto.jsontag) = "Score", (gogoproto.moretags)='form:"Score" ']; //当局积分
+	int32 Vip =5         [(gogoproto.jsontag) = "Vip", (gogoproto.moretags)='form:"Vip"']; //vip等级
+	int32 ArenaID = 6	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 7	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+	int64 RoundID = 8	    [(gogoproto.jsontag) = "RoundID", (gogoproto.moretags)='form:"RoundID"  validate:"required"'];		// 场ID
+}
+
+
+message RoundReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+	int64 RoundID = 5	    [(gogoproto.jsontag) = "RoundID", (gogoproto.moretags)='form:"RoundID"  validate:"required"'];		// 场ID
+
+}
+
+message RoundRankRsp
+{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	int32 RoundStatus = 3;		// 状态
+    int64 RoundFinalTime = 4;		// 状态
+	repeated RankDetail DayRankList = 5; //用户列表
+}
+
+message RoundEndRsp {
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	repeated RoundRankDetail RoundRankList = 3 ; //用户列表
+}
+
+
+message RoundRankDetail{
+	int64 UserID = 1 ;	//用户ID
+	int64 RankScore =2 ;
+	int32 Rank =3;
+	repeated RewardDetail RankRewardList = 4  ; //奖励列表
+}
+
+message GetOnlineRoundRsp{
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+	repeated int64 RoundID=3;
+}
+
+message GetOnlineRoundReq{
+	int32 GameID = 1	   [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];		// 游戏ID
+	int32 MatchID = 2	    [(gogoproto.jsontag) = "MatchID", (gogoproto.moretags)='form:"MatchID" validate:"required"'];		// 场ID
+	int32 ArenaID = 3	    [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='form:"ArenaID"'];		// 场ID
+	int32 ArenaTimeID = 4	    [(gogoproto.jsontag) = "ArenaTimeID", (gogoproto.moretags)='form:"ArenaTimeID"'];		// 场ID
+}

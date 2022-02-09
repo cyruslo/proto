@@ -1,0 +1,505 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/gs/OnGetPlayerIP": {
+            "post": {
+                "summary": "/gs/OnGetPlayerIP",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.GetPlayerIPResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gs.service.v1.GetPlayerIP"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnLoadValues": {
+            "post": {
+                "summary": "/gs/OnLoadValues",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.LoadValuesResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gs.service.v1.LoadValues"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnSetPlayerIP": {
+            "post": {
+                "summary": "/gs/OnSetPlayerIP",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gs.service.v1.SetPlayerIP"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnTurntableRecord": {
+            "get": {
+                "summary": "/gs/OnTurntableRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.TurntableRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "GameUrl",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnTurntableRecordInster": {
+            "get": {
+                "summary": "/gs/OnTurntableRecordInster",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Kind",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "ID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnTurntableRecordLog": {
+            "get": {
+                "summary": "/gs/OnTurntableRecordLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "PlayerID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Money",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Kind",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "GameID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "ID",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        },
+        "/gs/OnUpdateKeyValues": {
+            "post": {
+                "summary": "/gs/OnUpdateKeyValues",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gs.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gs.service.v1.UpdateKeyValues"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gs.service.v1.Gs"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".gs.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gs.service.v1.GetPlayerIP": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gs.service.v1.GetPlayerIPResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gs.service.v1.KeyValue": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "description": "附加数据",
+            "required": [
+                "Key",
+                "value"
+            ]
+        },
+        ".gs.service.v1.LoadValues": {
+            "type": "object",
+            "properties": {
+                "Keys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "GameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gs.service.v1.LoadValuesResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.gs.service.v1.KeyValue"
+                    }
+                }
+            }
+        },
+        ".gs.service.v1.SetPlayerIP": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "IP": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gs.service.v1.TurntableRecordInsterReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Kind": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gs.service.v1.TurntableRecordLogReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Kind": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gs.service.v1.TurntableRecordReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "GameUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gs.service.v1.TurntableRecordRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Kind": {
+                    "type": "integer"
+                },
+                "ID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gs.service.v1.UpdateKeyValues": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.gs.service.v1.KeyValue"
+                    }
+                },
+                "GameId": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

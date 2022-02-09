@@ -1,0 +1,293 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/account/GetLoginNameByPartnerUserID": {
+            "post": {
+                "summary": "/account/GetLoginNameByPartnerUserID",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.userinfoservice.service.v1.GetLoginNameByPartnerUserIDRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.userinfoservice.service.v1.GetLoginNameByPartnerUserIDReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "userinfoservice.service.v1.userinfoservice"
+                ]
+            }
+        },
+        "/account/GetQPUserInfoByParnerUserID": {
+            "post": {
+                "summary": "/account/GetQPUserInfoByParnerUserID",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.userinfoservice.service.v1.GetQPUserInfoByParnerUserIDRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.userinfoservice.service.v1.GetQPUserInfoByParnerUserIDReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "userinfoservice.service.v1.userinfoservice"
+                ]
+            }
+        },
+        "/account/PartnerChangeBind": {
+            "post": {
+                "summary": "/account/PartnerChangeBind",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.userinfoservice.service.v1.PartnerChangeBindRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.userinfoservice.service.v1.PartnerChangeBindReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "userinfoservice.service.v1.userinfoservice"
+                ]
+            }
+        },
+        "/vip/VIPInformation": {
+            "post": {
+                "summary": "/vip/VIPInformation",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.userinfoservice.service.v1.VIPInformationRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.userinfoservice.service.v1.VIPInformationReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "userinfoservice.service.v1.userinfoservice"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".userinfoservice.service.v1.GetLoginNameByPartnerUserIDReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "unionid": {
+                    "type": "string"
+                }
+            },
+            "description": "微信unionid取account"
+        },
+        ".userinfoservice.service.v1.GetLoginNameByPartnerUserIDRsp": {
+            "type": "object",
+            "properties": {
+                "loginName": {
+                    "type": "string"
+                }
+            }
+        },
+        ".userinfoservice.service.v1.GetQPUserInfoByParnerUserIDReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "unionid": {
+                    "type": "string"
+                }
+            },
+            "description": "获取微信绑定信息"
+        },
+        ".userinfoservice.service.v1.GetQPUserInfoByParnerUserIDRsp": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "bind_state": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".userinfoservice.service.v1.PartnerChangeBindReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "access_token": {
+                    "type": "string"
+                },
+                "openid": {
+                    "type": "string"
+                },
+                "unionid": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "authcode": {
+                    "type": "string"
+                }
+            },
+            "description": "微信绑定亲朋账号\n更换第三方账号绑定到新亲朋账号请求"
+        },
+        ".userinfoservice.service.v1.PartnerChangeBindRsp": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "authcode": {
+                    "type": "string"
+                }
+            },
+            "description": "更换第三方账号绑定到新亲朋账号回应"
+        },
+        ".userinfoservice.service.v1.VIPInformationReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                }
+            },
+            "description": "获取玩家VIP信息"
+        },
+        ".userinfoservice.service.v1.VIPInformationRsp": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "is_vip": {
+                    "type": "boolean"
+                },
+                "ispermanentvip": {
+                    "type": "boolean"
+                },
+                "left_days": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

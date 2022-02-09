@@ -1,0 +1,100 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package userinfoservice.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service userinfoservice {
+    rpc VIPInformation (VIPInformationReq) returns (VIPInformationRsp){
+        option (google.api.http) = {
+            post:"/vip/VIPInformation"
+        };
+    };
+    rpc GetLoginNameByPartnerUserID (GetLoginNameByPartnerUserIDReq) returns (GetLoginNameByPartnerUserIDRsp){
+        option (google.api.http) = {
+            post:"/account/GetLoginNameByPartnerUserID"
+        };
+    };
+    rpc GetQPUserInfoByParnerUserID (GetQPUserInfoByParnerUserIDReq) returns (GetQPUserInfoByParnerUserIDRsp){
+        option (google.api.http) = {
+            post:"/account/GetQPUserInfoByParnerUserID"
+        };
+    };
+    rpc PartnerChangeBind (PartnerChangeBindReq) returns (PartnerChangeBindRsp){
+        option (google.api.http) = {
+            post:"/account/PartnerChangeBind"
+        };
+    };	
+}
+
+//获取玩家VIP信息
+message VIPInformationReq
+{
+	int32 game_id = 1;
+	int32 user_dbid = 2;
+}
+
+message VIPInformationRsp
+{
+	int32 game_id = 1;		
+	int32 user_dbid = 2;	
+	bool is_vip = 3;		
+	bool ispermanentvip = 4;
+	int32 left_days = 5;
+}
+
+//微信unionid取account
+message GetLoginNameByPartnerUserIDReq
+{
+    int32 partner_id = 1;		
+    string unionid = 2;
+}
+
+message GetLoginNameByPartnerUserIDRsp
+{
+    string loginName = 1;
+}
+
+//获取微信绑定信息
+message GetQPUserInfoByParnerUserIDReq
+{
+    int32 partner_id = 1;
+    string unionid = 2;
+}
+
+message GetQPUserInfoByParnerUserIDRsp
+{
+    int32 user_id = 1;         // 0: 表示没有绑定亲朋账号; >0:表示绑定的亲朋账号ID
+    int32 bind_state = 2;      // 1：可以绑定; 0：不能绑定
+    string message = 3;        // 不为空字符串：需要在客户端显示
+}
+
+//微信绑定亲朋账号
+//更换第三方账号绑定到新亲朋账号请求
+message PartnerChangeBindReq
+{
+	int32 partner_id = 1;// 合作商 1：微信
+	string access_token = 2;
+	string openid = 3;
+	string unionid = 4;
+	int32 user_id = 5;//需要绑定的账号ID
+    string name = 6;
+	string password = 7;
+    string authcode = 8;
+}
+
+//更换第三方账号绑定到新亲朋账号回应
+message PartnerChangeBindRsp
+{
+	int32 error_code = 1;	// 登录结果标识（将映射到结果字符串表 1表示成功）
+	string message = 2;	//错误信息
+    string authcode = 3;
+}

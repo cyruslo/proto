@@ -1,0 +1,279 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/gamejobservice/broadcasttoallgameserver": {
+            "post": {
+                "summary": "给指定服务器发送消息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gamejob.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gamejob.service.v1.ServerOpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gamejob.service.v1.GameJobService"
+                ]
+            }
+        },
+        "/gamejobservice/onlogin": {
+            "post": {
+                "summary": "玩家登录游戏 grpc",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gamejob.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gamejob.service.v1.LoginOutReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gamejob.service.v1.GameJobService"
+                ]
+            }
+        },
+        "/gamejobservice/onlogout": {
+            "post": {
+                "summary": "玩家退出游戏 grpc",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gamejob.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gamejob.service.v1.LoginOutReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gamejob.service.v1.GameJobService"
+                ]
+            }
+        },
+        "/gamejobservice/sendtogameserver": {
+            "post": {
+                "summary": "给指定服务器发送消息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gamejob.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gamejob.service.v1.ServerOpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gamejob.service.v1.GameJobService"
+                ]
+            }
+        },
+        "/gamejobservice/sendtouser": {
+            "post": {
+                "summary": "给指定用户发送消息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gamejob.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gamejob.service.v1.UserOpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gamejob.service.v1.GameJobService"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".gamejob.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "Result": {
+                    "type": "integer"
+                },
+                "ErrorMsg": {
+                    "type": "string"
+                },
+                "Payload": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gamejob.service.v1.LoginOutReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                },
+                "Hostname": {
+                    "type": "string"
+                }
+            },
+            "description": "游戏服玩家登录、退出通用请求"
+        },
+        ".gamejob.service.v1.ServerOpReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ServerID": {
+                    "type": "integer"
+                },
+                "Ops": {
+                    "type": "integer"
+                },
+                "Payload": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gamejob.service.v1.UserOpReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Ops": {
+                    "type": "integer"
+                },
+                "Payload": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

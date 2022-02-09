@@ -1,0 +1,638 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hangup.service.v1.hangup/Ping": {
+            "get": {
+                "summary": "/hangup.service.v1.hangup/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/EndOffOnline": {
+            "post": {
+                "summary": "/hangup/EndOffOnline",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.EndOffOnlineRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.EndOffOnlineReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/FinishHangUp": {
+            "post": {
+                "summary": "/hangup/FinishHangUp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.FinishHangUpRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.FinishHangUpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/GetAward": {
+            "post": {
+                "summary": "/hangup/GetAward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.GetAwardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.GetAwardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/GetHangupResult": {
+            "post": {
+                "summary": "/hangup/GetHangupResult",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.GetHangupResultRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.GetHangupResultReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/OffOnline": {
+            "post": {
+                "summary": "/hangup/OffOnline",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.OffOnlineRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.OffOnlineReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/QueryHangupData": {
+            "post": {
+                "summary": "/hangup/QueryHangupData",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.QueryHangupDataRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.QueryHangupDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        },
+        "/hangup/QueryIslandStatus": {
+            "post": {
+                "summary": "/hangup/QueryIslandStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hangup.service.v1.QueryIslandStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hangup.service.v1.QueryIslandStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hangup.service.v1.hangup"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".hangup.service.v1.DetailInfo": {
+            "type": "object",
+            "properties": {
+                "MonsterID": {
+                    "type": "integer"
+                },
+                "IncomeMoney": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hangup.service.v1.EndOffOnlineReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "ServerID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Ratio": {
+                    "type": "integer"
+                },
+                "OffTime": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Consume": {
+                    "type": "integer"
+                },
+                "Income": {
+                    "type": "integer"
+                },
+                "MouserInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hangup.service.v1.DetailInfo"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "GroupID",
+                "ServerID",
+                "PlayerID",
+                "Ratio"
+            ]
+        },
+        ".hangup.service.v1.EndOffOnlineRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".hangup.service.v1.FinishHangUpReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "IslandID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID",
+                "IslandID"
+            ]
+        },
+        ".hangup.service.v1.FinishHangUpRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".hangup.service.v1.GetAwardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "IslandID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID",
+                "IslandID"
+            ]
+        },
+        ".hangup.service.v1.GetAwardRsp": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Ratio": {
+                    "type": "integer"
+                },
+                "OffTime": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Consume": {
+                    "type": "integer"
+                },
+                "Income": {
+                    "type": "integer"
+                },
+                "BetAmount": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hangup.service.v1.GetHangupResultReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "IslandID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID",
+                "IslandID"
+            ]
+        },
+        ".hangup.service.v1.GetHangupResultRsp": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Ratio": {
+                    "type": "integer"
+                },
+                "OffTime": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Consume": {
+                    "type": "integer"
+                },
+                "Income": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hangup.service.v1.IslandData": {
+            "type": "object",
+            "properties": {
+                "IslandID": {
+                    "type": "integer"
+                },
+                "LongTimeMin": {
+                    "type": "integer"
+                },
+                "LongTimeMax": {
+                    "type": "integer"
+                },
+                "GoldMin": {
+                    "type": "integer"
+                },
+                "GoldMax": {
+                    "type": "integer"
+                },
+                "RatioList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "MouseID": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".hangup.service.v1.IslandStatus": {
+            "type": "object",
+            "properties": {
+                "IslandID": {
+                    "type": "integer"
+                },
+                "IslandStatus": {
+                    "type": "integer"
+                },
+                "HangupIP": {
+                    "type": "string"
+                },
+                "HangupTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".hangup.service.v1.OffOnlineReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Ratio": {
+                    "type": "integer"
+                },
+                "LongTime": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "IslandID": {
+                    "type": "integer"
+                },
+                "WinLimit": {
+                    "type": "integer"
+                },
+                "LoseLimit": {
+                    "type": "integer"
+                },
+                "MouseID": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID",
+                "Ratio",
+                "LongTime",
+                "Money",
+                "IslandID",
+                "MouseID"
+            ]
+        },
+        ".hangup.service.v1.OffOnlineRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".hangup.service.v1.QueryHangupDataReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID"
+            ]
+        },
+        ".hangup.service.v1.QueryHangupDataRsp": {
+            "type": "object",
+            "properties": {
+                "IslandDataList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hangup.service.v1.IslandData"
+                    }
+                },
+                "IslandStatusList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hangup.service.v1.IslandStatus"
+                    }
+                }
+            }
+        },
+        ".hangup.service.v1.QueryIslandStatusReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PlayerID"
+            ]
+        },
+        ".hangup.service.v1.QueryIslandStatusRsp": {
+            "type": "object",
+            "properties": {
+                "IslandStatusList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.hangup.service.v1.IslandStatus"
+                    }
+                }
+            }
+        }
+    }
+}

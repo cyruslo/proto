@@ -1,0 +1,1302 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api/api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/task/BuyProps": {
+            "post": {
+                "summary": "购买道具上报",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.BuyPropsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GameEnd": {
+            "post": {
+                "summary": "一局结束上报",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.GameEndReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetActivityReward": {
+            "post": {
+                "summary": "获取活跃度奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.RewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.GetActivityRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetHallTaskList": {
+            "post": {
+                "summary": "大厅任务列表获取",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.HallTaskListResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.GetHallTaskReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetHallTaskReward": {
+            "post": {
+                "summary": "大厅任务奖励获取",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.RewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.HallTaskRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetRandReward": {
+            "post": {
+                "summary": "获取随机任务奖励，通过根据权重抽取",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.RewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.GetRandRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetRandTaskList": {
+            "post": {
+                "summary": "获取随机任务列表，目前海外地鼠在用",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.QueryTaskResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.QueryTaskReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetTaskList": {
+            "post": {
+                "summary": "获取任务列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.QueryTaskResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.QueryTaskReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/GetTaskReward": {
+            "post": {
+                "summary": "获取普通任务奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.RewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.GetTaskRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/ListHallMissions": {
+            "post": {
+                "summary": "/task/ListHallMissions",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.ListHallMissionsResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.ListHallMissionsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/PayMoney": {
+            "post": {
+                "summary": "充值上报",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.PayMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/PushOnLineStatus": {
+            "post": {
+                "summary": "在线时长 推送用户上下线",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.PushOnLineStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/ReceiveHallMissionReward": {
+            "post": {
+                "summary": "/task/ReceiveHallMissionReward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.ReceiveHallMissionRewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.ReceiveHallMissionRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/ReportedRequirement": {
+            "post": {
+                "summary": "/task/ReportedRequirement",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.ReportedRequirementResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.ReportedRequirementReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        },
+        "/task/SpecialAction": {
+            "post": {
+                "summary": "特殊动作上报 ， 棋牌打出 飞机 连队等 捕鱼 捕获特定的鱼等",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.task.service.v1.SpecialActionResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.task.service.v1.SpecialActionReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "task.service.v1.Task"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".task.service.v1.ActionDetails": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "integer"
+                },
+                "num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.ActivityDetails": {
+            "type": "object",
+            "properties": {
+                "num": {
+                    "type": "integer"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "props_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.PropsDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.BuyPropsReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "props_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.Date": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.GameEndReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "table_id": {
+                    "type": "integer"
+                },
+                "user_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.UserDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.GetActivityRewardReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "activity": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.GetHallTaskReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "task_property": {
+                    "type": "string"
+                },
+                "vip": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.GetRandRewardReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "task_property": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.GetTaskRewardReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "task_id": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.Groups": {
+            "type": "object",
+            "properties": {
+                "target_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "counts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "group_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.HallTaskListResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "deadline": {
+                    "type": "integer"
+                },
+                "ActiveBeginTime": {
+                    "type": "string"
+                },
+                "ActiveEndTime": {
+                    "type": "string"
+                },
+                "ActiveNowDay": {
+                    "type": "integer"
+                },
+                "ActiveStatus": {
+                    "type": "integer"
+                },
+                "task_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.TaskDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.HallTaskRewardReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "task_id": {
+                    "type": "string"
+                },
+                "vip": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.ListHallMissionsReq": {
+            "type": "object",
+            "properties": {
+                "app_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "mission_type": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.ListHallMissionsResp": {
+            "type": "object",
+            "properties": {
+                "mission_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.Missions"
+                    }
+                },
+                "reported_detail_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.ReportedDetailMap"
+                    }
+                },
+                "requirement_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.RequirementMap"
+                    }
+                },
+                "user_mission_state_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.UserMissionStateMap"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.Mission": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "app_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "source_type": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "is_need_join": {
+                    "type": "boolean"
+                },
+                "is_need_receive": {
+                    "type": "boolean"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "order": {
+                    "type": "integer"
+                },
+                "pre_time": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "dead_time": {
+                    "type": "string"
+                },
+                "pre_timestamp": {
+                    "type": "integer"
+                },
+                "start_timestamp": {
+                    "type": "integer"
+                },
+                "end_timestamp": {
+                    "type": "integer"
+                },
+                "dead_timestamp": {
+                    "type": "integer"
+                },
+                "cycle_type": {
+                    "type": "integer"
+                },
+                "cycle_index": {
+                    "type": "integer"
+                },
+                "limits": {
+                    "$ref": "#/definitions/.task.service.v1.Groups"
+                },
+                "activities": {
+                    "$ref": "#/definitions/.task.service.v1.Groups"
+                },
+                "requirements": {
+                    "$ref": "#/definitions/.task.service.v1.Groups"
+                },
+                "rewards": {
+                    "$ref": "#/definitions/.task.service.v1.Groups"
+                }
+            }
+        },
+        ".task.service.v1.Missions": {
+            "type": "object",
+            "properties": {
+                "missions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.Mission"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.OnlineDetail": {
+            "type": "object",
+            "properties": {
+                "leftTime": {
+                    "type": "integer"
+                },
+                "TargetTime": {
+                    "type": "integer"
+                },
+                "task_stage": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.PayMoneyReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.PropsDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "num": {
+                    "type": "integer"
+                },
+                "weight": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.PushOnLineStatusReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "is_online": {
+                    "type": "boolean"
+                },
+                "arena_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.QueryTaskReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "task_property": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.QueryTaskResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "deadline": {
+                    "type": "integer"
+                },
+                "current_activity": {
+                    "type": "integer"
+                },
+                "task_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.TaskDetails"
+                    }
+                },
+                "activity_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.ActivityDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.ReceiveHallMissionRewardReq": {
+            "type": "object",
+            "properties": {
+                "app_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "mission_id": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.ReceiveHallMissionRewardResp": {
+            "type": "object",
+            "properties": {
+                "props_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.PropsDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.ReportedDetail": {
+            "type": "object",
+            "properties": {
+                "requirement_id": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.ReportedDetailMap": {
+            "type": "object",
+            "properties": {
+                "reported_detail_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.ReportedDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.ReportedDetails": {
+            "type": "object",
+            "properties": {
+                "reported_details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.ReportedDetail"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.ReportedRequirementReq": {
+            "type": "object",
+            "properties": {
+                "app_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "reported_details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.ReportedDetail"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.ReportedRequirementResp": {
+            "type": "object",
+            "properties": {
+                "is_continue": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".task.service.v1.Requirement": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "desc": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                }
+            },
+            "description": "任务完成条件"
+        },
+        ".task.service.v1.RequirementMap": {
+            "type": "object",
+            "properties": {
+                "requirement_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/.task.service.v1.Requirement"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.RewardResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "props_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.PropsDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.SpecialActionReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "action_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.ActionDetails"
+                    }
+                }
+            }
+        },
+        ".task.service.v1.SpecialActionResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "is_continue": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".task.service.v1.TaskDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "trigger": {
+                    "type": "string"
+                },
+                "current": {
+                    "type": "integer"
+                },
+                "finish": {
+                    "type": "integer"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "order": {
+                    "type": "integer"
+                },
+                "props_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.task.service.v1.PropsDetails"
+                    }
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "everyday": {
+                    "type": "integer"
+                },
+                "TaskDate": {
+                    "$ref": "#/definitions/.task.service.v1.Date"
+                },
+                "OnlineDetail": {
+                    "$ref": "#/definitions/.task.service.v1.OnlineDetail"
+                },
+                "Desc": {
+                    "type": "string"
+                },
+                "Image": {
+                    "type": "string"
+                }
+            }
+        },
+        ".task.service.v1.UserDetails": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "is_win": {
+                    "type": "boolean"
+                },
+                "role": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".task.service.v1.UserMissionStateMap": {
+            "type": "object",
+            "properties": {
+                "user_mission_state_map": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,647 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package world.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service World {
+    rpc OnBaseUserInfoGet (BaseUserInfoReq) returns (BaseUserInfoRsp){
+        option (google.api.http) = {
+            post:"/world/OnBaseUserInfoGet"
+        };
+    };
+	rpc OnEnterRoom (EnterRoomReq) returns (EnterRoomRsp){
+        option (google.api.http) = {
+            post:"/world/OnEnterRoom"
+        };
+    };
+	rpc OnLeaveRoom (LeaveRoomReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnLeaveRoom"
+        };
+    };
+    rpc OnLeaveRoomLog (LeaveRoomLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnLeaveRoomLog"
+        };
+    };    
+    rpc OnUpdatePreventCheat (UpdatePreventCheatReq) returns (UpdatePreventCheatRsp){
+        option (google.api.http) = {
+            post:"/world/OnUpdatePreventCheat"
+        };
+    };
+    rpc OnRefreshUserMoney (RefreshUserMoneyReq) returns (RefreshUserMoneyRsp){
+        option (google.api.http) = {
+            post:"/world/OnRefreshUserMoney"
+        };
+    };
+    rpc OnCountPlayer (CountPlayerReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnCountPlayer"
+        };
+    };
+    rpc OnUpdateAwardGoldPool (UpdateAwardGoldPoolReq) returns (UpdateAwardGoldPoolRsp){
+        option (google.api.http) = {
+            post:"/world/OnUpdateAwardGoldPool"
+        };
+    };
+    rpc OnGetJackpotRecord (GetJackpotRecordReq) returns (GetJackpotRecordRsp){
+        option (google.api.http) = {
+            post:"/world/OnGetJackpotRecord"
+        };
+    };
+    rpc OnInsertJackpotRecord (InsertJackpotRecordReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnInsertJackpotRecord"
+        };
+    };
+    rpc OnGetJackpotPool (GetJackpotPoolReq) returns (GetJackpotPoolRsp){
+        option (google.api.http) = {
+            post:"/world/OnGetJackpotPool"
+        };
+    };
+    rpc OnUpdateJackpotPool (UpdateJackpotPoolReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnUpdateJackpotPool"
+        };
+    };
+    rpc OnGetVipInfos (GetVipInfosReq) returns (GetVipInfosRsp){
+        option (google.api.http) = {
+            post:"/world/OnGetVipInfos"
+        };
+    };
+    rpc OnUpdateMoney (UpdateMoneyReq) returns (UpdateMoneyRsp){
+        option (google.api.http) = {
+            post:"/world/OnUpdateMoney"
+        };
+    };
+    rpc OnAwardGoldPoolUserLog (AwardGoldPoolUserLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnAwardGoldPoolUserLog"
+        };
+    };
+    rpc OnUpdatEextendCoin (UpdatEextendCoinReq) returns (UpdatEextendCoinRsp){
+        option (google.api.http) = {
+            post:"/world/OnUpdatEextendCoin"
+        };
+    };
+    rpc OnShutDwon (ShutDwonReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnShutDwon"
+        };
+    };
+    rpc OnCreateCustomRoom (CreateCustomRoomReq) returns (CreateCustomRoomRsp){
+        option (google.api.http) = {
+            post:"/world/OnCreateCustomRoom"
+        };
+    };
+    rpc OnTableRecordUpdate (TableRecordUpdateReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnTableRecordUpdate"
+        };
+    };
+    rpc OnCommonUserLogAdd (CommonUserLogAddReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnCommonUserLogAdd"
+        };
+    };
+    rpc OnPublishMail (PublishMailReq) returns (PublishMailRsp){
+        option (google.api.http) = {
+            post:"/world/OnPublishMail"
+        };
+    };
+    rpc OnTurntableRecord (TurntableRecordReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnTurntableRecord"
+        };
+    };
+    rpc OnTurntableRecordLog (TurntableRecordLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnTurntableRecordLog"
+        };
+    };
+    rpc OnTurntableRecordInster (TurntableRecordInsterReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnTurntableRecordInster"
+        };
+    };
+    rpc OnNotifyLoginSucess (NotifyLoginSucessReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnNotifyLoginSucess"
+        };
+    };
+    rpc OnGameLogReturnRatesAdd (GameLogReturnRatesAddReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnGameLogReturnRatesAdd"
+        };
+    };
+    rpc OnGiftTicketUserTicketUpdate (GiftTicketUserTicketUpdateReq) returns (GiftTicketUserTicketUpdateRsp){
+        option (google.api.http) = {
+            post:"/world/OnGiftTicketUserTicketUpdate"
+        };
+    };
+    rpc OnAwardUserTelephoneBill (AwardUserTelephoneBillReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnAwardUserTelephoneBill"
+        };
+    };
+	rpc OnEveryGameLog (EveryGameLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnEveryGameLog"
+        };
+    };
+    rpc OnRemoveUserLastMoney (RemoveUserLastMoneyReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnRemoveUserLastMoney"
+        };
+    };
+    rpc OnSaveVipPoint (SaveVipPointReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnSaveVipPoint"
+        };
+    };
+    rpc OnGetVipInfo (GetVipInfoReq) returns (GetVipInfoRsp){
+        option (google.api.http) = {
+            post:"/world/OnGetVipInfo"
+        };
+    };
+    rpc OnUserInfoVipGet (UserInfoVipGetReq) returns (UserInfoVipGetRsp){
+        option (google.api.http) = {
+            post:"/world/OnUserInfoVipGet"
+        };
+    };
+    rpc OnStartPrevent (StartPreventReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/world/OnStartPrevent"
+        };
+    };
+}
+message StartPreventReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;    
+}
+
+// 获取玩家基础信息
+message BaseUserInfoReq {
+	string PlayerId = 1;	
+}
+
+message BaseUserInfoRsp {
+    int32 code = 1;
+    string message = 2;    
+    string baseuserinfoget = 3;
+}
+
+// 进房
+message EnterRoomReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+}
+
+message EnterRoomRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64  amount = 3;
+    int32  dbserverid = 4;
+}
+
+// 退房
+message LeaveRoomReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+    string IP = 5;
+    string LoginMoney = 6;
+    string WantedMoney = 7;
+    string Ticket = 8;
+    string Tax = 9;
+    string TiSysType = 10;
+}
+
+// 退房日志
+message LeaveRoomLogReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+    string IP = 5;
+    string WinCount = 6;
+    string LoseCount = 7;
+    string DrawCount = 8;
+    string FleeCount = 9;
+    string Score = 10;
+    string LoginTime = 11;
+    string GameTime = 12;
+}
+
+// 更新防刷池
+message UpdatePreventCheatReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string goldNUM = 4;
+}
+
+message UpdatePreventCheatRsp {
+	int32  code   = 1;
+    string message = 2;    
+    int64  goldNum = 3;
+}
+
+// 更新金币
+message RefreshUserMoneyReq {
+    string GameID = 1;
+    string PlayerID = 2;
+    string TiSysType = 3;
+}
+
+message RefreshUserMoneyRsp {
+    int32  code   = 1;
+    string message = 2;    
+    int64  playerID = 3;
+    int64  amount = 4;
+    int32 ticket = 5;
+    string extCoin = 6;
+}
+
+// 在线人数
+message CountPlayerReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string Num = 4;
+}
+
+// 个人奖池
+message UpdateAwardGoldPoolReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string GoldType = 4;
+    string GoldNum1 = 5;
+    string GoldNum2 = 6;
+    string GoldNum3 = 7;
+    string GoldNum4 = 8;
+    string GoldNum5 = 9;
+}
+
+message UpdateAwardGoldPoolRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64 goldNum1 = 3;
+    int64 goldNum2 = 4;
+    int64 goldNum3 = 5;
+    int64 goldNum4 = 6;
+    int64 goldNum5 = 7;
+    int64 goldSumNum1 = 8;
+    int64 goldSumNum2 = 9;
+    int64 goldSumNum3 = 10;
+    int64 goldSumNum4 = 11;
+    int64 goldSumNum5 = 12;    
+}
+
+message GetJackpotRecordReq {
+    string GameID = 1;
+    string Jtype = 2;
+}
+
+message Record {
+    int64 id = 1;
+    string name = 2;
+    int32 type = 3;
+    int32 arenaid = 4;
+    int64 value = 5;
+    int32 robot = 6;
+    int32 time = 7;
+}
+
+message GetJackpotRecordRsp {
+    int32  code   = 1;
+    string message = 2;
+    repeated Record records = 3;
+}
+
+message InsertJackpotRecordReq {
+    string GameID = 1;
+    string Jtype = 2;
+    string ArenaID = 3;
+    string PlayerID = 4;
+    string Name = 5;
+    string value = 6;
+}
+
+message GetJackpotPoolReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string Jtype = 3;
+}
+
+message GetJackpotPoolRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64 Num = 3;
+}
+
+message UpdateJackpotPoolReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string Jtype = 3;
+    string Detal = 4;
+    string Add = 5;
+}
+
+message GetVipInfosReq {
+    string PlayerID = 1;    
+}
+
+message GetVipInfosRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 isvip = 3;
+    int32 ispermanentvip = 4;
+    string endTime = 5;
+}
+
+// 更新金币
+message UpdateMoneyReq {
+    string UserID = 1;
+    string UpdateAmount = 2;
+    string SourceType = 3;
+    string IP = 4;
+    string Remark = 5;
+    string TaxAmount = 6;
+    string IsCheckInRoom = 7;
+    string SysType = 8;
+    string GameID = 9;
+}
+
+message UpdateMoneyRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64 amount = 3;
+    int64 delta = 4;
+    string playerID = 5;
+}
+
+message AwardGoldPoolUserLogReq {
+    string GameID = 1;
+    string UserID = 2;
+    string PoolID = 3;
+    string GoldNum = 4;
+    string PlayerName = 5;
+    string GoldType = 6;
+}
+
+// 更新外部货币
+message UpdatEextendCoinReq {
+    string GameID = 1;
+    string PlayerID = 2;
+    string CoinType = 3;
+    string UpdateAmount = 4;
+    string SrcType = 5;
+    string IP = 6;
+}
+
+message UpdatEextendCoinRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64 amount = 3;    
+}
+
+// 停服
+message ShutDwonReq {
+    string GameID = 1;
+    string ArenaID = 2;
+}
+
+// 创建亲友房
+message CreateCustomRoomReq {
+    string UserId = 1;
+    string RoomPassword = 2;    
+}
+
+message CreateCustomRoomRsp {
+    int32  code   = 1;
+    string message = 2;
+    int64 roomnum = 3;
+}
+
+// 每局更新记录
+message TableRecordUpdateReq {
+    string UserId = 1;
+    string ArenaId = 2;
+    string RoomNum = 3;
+    string Password = 4;
+    string AddNew = 5;    
+}
+
+// 登录日志
+message CommonUserLogAddReq {
+    int32 GameID = 1;
+    int32 ArenaID = 2;
+    int32 LogType = 3;
+    string Data = 4;
+}
+
+// 邮件
+message PublishMailReq {
+    string Title = 1;
+    string Content = 2;
+    string Sender = 3;
+    int32 GameID = 4;
+    string StartTime = 5;
+    string EndTime = 6;
+    int32 SendType = 7;
+    string UserIDS = 8;
+    string RewordInfo = 9;
+}
+
+message PublishMailRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 msgID = 3;
+}
+
+// TurntableRecord
+message TurntableRecordReq {
+    int32 PlayerID = 1;
+    int32 GameID = 2;
+    string GameUrl = 3;
+}
+
+message TurntableRecordLogReq {
+    int32 PlayerID = 1;
+    int32 Money = 2;
+    int32 Kind = 3;
+    int32 GameID = 4;
+    int32 ID = 5;
+}
+
+message TurntableRecordInsterReq {
+    int32 PlayerID = 1;    
+    int32 Kind = 2;
+    int32 GameID = 3;
+    int32 ID = 4;
+}
+
+// WMC_NotifyLoginSucess
+message NotifyLoginSucessReq {
+    int32 PlayerID = 1;
+    int32 GameID = 2;
+    int32 ArenaID = 3;
+    string IP = 4;
+    string ClientVersion = 5;
+}
+
+message GameLogReturnRatesAddReq {
+    int32 GameID = 1;
+    string PlayType = 2;
+    double TheoryReRates = 3;
+    int64 Consume = 4;
+    int32 SavgGain = 5;
+}
+
+message GiftTicketUserTicketUpdateReq {
+    int32 UserID = 1;
+    int32 Amount = 2;
+    string IP = 3;
+    string Memo = 4;
+    int32 SourceType = 5;
+    int32 GameID = 6;
+}
+
+message GiftTicketUserTicketUpdateRsp {
+	int32  code   = 1;
+    string message = 2;
+    int32 UserID = 3;
+    int32 CurrentTicket = 4;
+    string DBMsg = 5;
+}
+
+message AwardUserTelephoneBillReq {
+    int32 UserID = 1;
+    string Phone = 2;
+    int32 Par = 3;
+    int32 Type = 4;
+    int32 Sign = 5;
+}
+
+// 每局日志
+message EveryGameLogReq {
+    string GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='validate:"required"'];
+    string ArenaID = 2 [(gogoproto.jsontag) = "ArenaID", (gogoproto.moretags)='validate:"required"'];
+    string ServerID = 3 [(gogoproto.jsontag) = "ServerID", (gogoproto.moretags)='validate:"required"'];
+    string PlayerID = 4 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='validate:"required"'];
+    string TableID = 5 [(gogoproto.jsontag) = "TableID", (gogoproto.moretags)='validate:"required"'];
+    string Money = 6 [(gogoproto.jsontag) = "Money", (gogoproto.moretags)='validate:"required"'];
+    string Gameno = 7 [(gogoproto.jsontag) = "Gameno", (gogoproto.moretags)='validate:"required"'];
+    string Chairno = 8 [(gogoproto.jsontag) = "Chairno", (gogoproto.moretags)='validate:"required"'];
+    string Tax = 9 [(gogoproto.jsontag) = "Tax", (gogoproto.moretags)='validate:"required"'];
+    string Balance = 10 [(gogoproto.jsontag) = "Balance", (gogoproto.moretags)='validate:"required"'];
+    string Iscoingame = 11 [(gogoproto.jsontag) = "Iscoingame", (gogoproto.moretags)='validate:"required"'];
+    string BIsTrusteeship = 12 [(gogoproto.jsontag) = "BIsTrusteeship", (gogoproto.moretags)='validate:"required"'];
+}
+
+// 删除最后金币记录
+message RemoveUserLastMoneyReq {
+    string PlayerID = 1;
+}
+
+// vip点
+message SaveVipPointReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+    string Score = 5;
+    string IP = 6;
+}
+
+// vip
+message GetVipInfoReq {
+    string PlayerID = 1;
+}
+
+message GetVipInfoRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 grade = 3;
+    double score = 4;
+    double frequenterScore = 5;
+    int32 advDays = 6;
+}
+
+message UserInfoVipGetReq {
+    string GameID = 1;
+    string UserID = 2;
+}
+
+message UserInfoVipGetRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 supuserID = 3;
+    int32 supsuserID = 4;
+}
+
+//玩家游戏中消耗金币或者扩展货币数量变化
+message PlayerConsumeReq {
+    string userID = 1;
+    string gameID = 2;
+    string coinType = 3; //扩展货币类型
+    string coinValue = 4; //扩展货币数量
+    string ip = 5;
+    string roomSN = 6;  //亲友房ID
+    string coinCnt = 7; //金币数量
+    string round = 8;   //第几局
+}
+
+//玩家输赢信息
+message PlayerGameInfoReq {
+	string userIDs = 1;	//玩家列表
+	string gameID = 2;
+}
+
+message tagPlayerGameInfo {
+	int32 userID = 1;
+	int32 winCount = 2;
+	int32 loseCount = 3;
+	int32 drawCount = 4;
+	int32 fleeCount = 5;
+	int32 score = 6;
+	int32 rightID = 7;
+}
+
+message PlayerGameInfoRsp {
+    int32  code   = 1;
+    string message = 2;
+	repeated tagPlayerGameInfo infos = 3;
+}
+
+message FrequentArgumentReq{
+    int32 snGameId = 1;
+}
+
+message FrequentArgumentRsp{
+	int32  n1stFreqArgu = 1;      //福利点计算系数1
+	int32  n2ndFreqArgu = 2;      //福利点计算指数
+}
+

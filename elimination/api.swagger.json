@@ -1,0 +1,1948 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/Elimination/Cancel/Sign": {
+            "post": {
+                "summary": "九.取消报名",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.CancelSignRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.SignCommonReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Check/Sign": {
+            "post": {
+                "summary": "七.查询报名费用以及是否满足报名条件",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.SignCheckRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.SignCheckReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Get/Reward": {
+            "post": {
+                "summary": "十二.领取奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.GetRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.GetRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Get/TargetTable": {
+            "post": {
+                "summary": "十三.获取特定牌桌的信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.TargetTableRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.TargetTableReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/BlindBetList": {
+            "post": {
+                "summary": "十五.获取盲注列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.BlindBetResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.BlindBetReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/Detail": {
+            "post": {
+                "summary": "二.获取比赛详情",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.DetailRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.DetailReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/List": {
+            "post": {
+                "summary": "一.查询比赛列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.ListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.ListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/Reward": {
+            "post": {
+                "summary": "十一.查询奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.QueryRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.QueryRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/RewardInfo": {
+            "post": {
+                "summary": "三.获取比赛奖励信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.RewardInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.RewardInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/RoomAllTable": {
+            "post": {
+                "summary": "十六.获取Room下的所有场次的所有桌子",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.RoomAllTableResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.RoomAllTableReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/TableInfo": {
+            "post": {
+                "summary": "五.获取牌桌信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.TableInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.TableInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/UserEnterInfo": {
+            "post": {
+                "summary": "十四.获取用户进场信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.UserEnterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.UserEnterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/UserInfo": {
+            "post": {
+                "summary": "四.获取比赛玩家信息(包含实时战绩)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.UserInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.UserInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/UserRecord": {
+            "post": {
+                "summary": "六.获取个人参赛记录",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.UserRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.UserRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Query/UserSelfRank": {
+            "post": {
+                "summary": "十七.获取实时个人排名相关数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.UserSelfRankResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.UserSelfRankReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Retry/DistributeTable": {
+            "post": {
+                "summary": "十七.获取实时个人排名相关数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.ReDistributeResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.ReDistributeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/SignEnsure": {
+            "post": {
+                "summary": "八.确认报名(包含分房与配桌)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.SignEnsureRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.SignCommonReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/Elimination/Upload/Score": {
+            "post": {
+                "summary": "十.积分上报(包含淘汰发奖)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.elimination.service.v1.UploadRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.elimination.service.v1.UploadReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        },
+        "/elimination.service.v1.Elimination/Ping": {
+            "get": {
+                "summary": "/elimination.service.v1.Elimination/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "elimination.service.v1.Elimination"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".elimination.service.v1.BetDetail": {
+            "type": "object",
+            "properties": {
+                "BetLevel": {
+                    "type": "integer"
+                },
+                "MaxBet": {
+                    "type": "integer"
+                },
+                "MinBet": {
+                    "type": "integer"
+                },
+                "FrontBet": {
+                    "type": "integer"
+                },
+                "BlindTimeInterval": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.BlindBetDetail": {
+            "type": "object",
+            "properties": {
+                "NowBet": {
+                    "$ref": "#/definitions/.elimination.service.v1.BetDetail"
+                },
+                "NextBet": {
+                    "$ref": "#/definitions/.elimination.service.v1.BetDetail"
+                },
+                "RiseBetTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.BlindBetReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId"
+            ]
+        },
+        ".elimination.service.v1.BlindBetResp": {
+            "type": "object",
+            "properties": {
+                "BlindBetList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.BetDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.BoardDetail": {
+            "type": "object",
+            "properties": {
+                "MaxScore": {
+                    "type": "integer"
+                },
+                "MinScore": {
+                    "type": "integer"
+                },
+                "AverageScore": {
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        ".elimination.service.v1.CancelSignRsp": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "IsCancel": {
+                    "type": "boolean"
+                },
+                "CancelPay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                },
+                "Round": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.DateDetail": {
+            "type": "object",
+            "properties": {
+                "Property": {
+                    "type": "string"
+                },
+                "Week": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.Detail": {
+            "type": "object",
+            "properties": {
+                "MatchId": {
+                    "type": "integer"
+                },
+                "RoundList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.RoundDetail"
+                    }
+                }
+            },
+            "required": [
+                "MatchId"
+            ]
+        },
+        ".elimination.service.v1.DetailReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "TimeArenaId": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.DetailRsp": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "BuyLimit": {
+                    "type": "integer"
+                },
+                "SignLimit": {
+                    "type": "integer"
+                },
+                "EnterDeadline": {
+                    "type": "string"
+                },
+                "MatchTime": {
+                    "$ref": "#/definitions/.elimination.service.v1.TimeDetail"
+                },
+                "ShowSingPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.ShowPayDetail"
+                },
+                "SignCondition": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                },
+                "SigNum": {
+                    "$ref": "#/definitions/.elimination.service.v1.SignDetail"
+                },
+                "BlindBet": {
+                    "$ref": "#/definitions/.elimination.service.v1.BlindBetDetail"
+                },
+                "Scoreboard": {
+                    "$ref": "#/definitions/.elimination.service.v1.BoardDetail"
+                },
+                "InitScoreboard": {
+                    "type": "integer"
+                },
+                "NowRound": {
+                    "type": "integer"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "MatchDuration": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.EndMatchInfo": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "Reward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                },
+                "ShowSingPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.ShowPayDetail"
+                }
+            }
+        },
+        ".elimination.service.v1.GetRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "RewardID": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.GetRewardRsp": {
+            "type": "object",
+            "properties": {
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.ListReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.ListRsp": {
+            "type": "object",
+            "properties": {
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.MatchDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.MatchDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "TypeID": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "LimitTimes": {
+                    "type": "integer"
+                },
+                "Order": {
+                    "type": "integer"
+                },
+                "ShowSingPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.ShowPayDetail"
+                },
+                "SignCondition": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                },
+                "SigNum": {
+                    "$ref": "#/definitions/.elimination.service.v1.SignDetail"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "Date": {
+                    "$ref": "#/definitions/.elimination.service.v1.DateDetail"
+                },
+                "NowRound": {
+                    "type": "integer"
+                },
+                "Time": {
+                    "$ref": "#/definitions/.elimination.service.v1.TimeDetail"
+                },
+                "BonusPoolNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.MatchInfo": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "TypeID": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "ShowSingPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.ShowPayDetail"
+                },
+                "SigNum": {
+                    "$ref": "#/definitions/.elimination.service.v1.SignDetail"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "Time": {
+                    "$ref": "#/definitions/.elimination.service.v1.TimeDetail"
+                },
+                "BonusPoolNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.OutDetail": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RewardID": {
+                    "type": "string"
+                },
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.QueryRewardDetail": {
+            "type": "object",
+            "properties": {
+                "RewardID": {
+                    "type": "string"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "ThinsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                }
+            },
+            "required": [
+                "MatchId"
+            ]
+        },
+        ".elimination.service.v1.QueryRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.QueryRewardRsp": {
+            "type": "object",
+            "properties": {
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.QueryRewardDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.ReDistributeReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "RoomList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.RoomTableDetail"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "Round"
+            ]
+        },
+        ".elimination.service.v1.ReDistributeResp": {
+            "type": "object",
+            "properties": {
+                "UserTableInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.UserTableDetail"
+                    }
+                }
+            },
+            "required": [
+                "UserTableInfo"
+            ]
+        },
+        ".elimination.service.v1.RewardInfoDetail": {
+            "type": "object",
+            "properties": {
+                "Rank": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.RewardThingsDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.RewardInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.RewardInfoRsp": {
+            "type": "object",
+            "properties": {
+                "RewardPool": {
+                    "type": "integer"
+                },
+                "PersonNum": {
+                    "type": "integer"
+                },
+                "TotalRewardNum": {
+                    "type": "integer"
+                },
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.RewardInfoDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.RewardThingsDetail": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "type": "integer"
+                },
+                "Num": {
+                    "type": "integer"
+                },
+                "Rate": {
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        ".elimination.service.v1.RoomAllTableReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "ArenaId",
+                "RoomID"
+            ]
+        },
+        ".elimination.service.v1.RoomAllTableResp": {
+            "type": "object",
+            "properties": {
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.Detail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.RoomTableDetail": {
+            "type": "object",
+            "properties": {
+                "Room": {
+                    "type": "string"
+                },
+                "TableList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.RoundDetail": {
+            "type": "object",
+            "properties": {
+                "Round": {
+                    "type": "integer"
+                },
+                "TableList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.ShowPayDetail": {
+            "type": "object",
+            "properties": {
+                "MatchTimes": {
+                    "type": "integer"
+                },
+                "Pay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ShowThingsDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.ShowThingsDetail": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "TypeID": {
+                    "type": "integer"
+                },
+                "Num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.SignCheckReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "TimeArenaId": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "SelfThinsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.SignCheckRsp": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "IsFullConditon": {
+                    "type": "boolean"
+                },
+                "IsFullPay": {
+                    "type": "boolean"
+                },
+                "SignPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.SignPayDetail"
+                },
+                "ShowSingPay": {
+                    "$ref": "#/definitions/.elimination.service.v1.ShowPayDetail"
+                }
+            },
+            "required": [
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.SignCommonReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.SignDetail": {
+            "type": "object",
+            "properties": {
+                "Total": {
+                    "type": "integer"
+                },
+                "SignNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.SignEnsureRsp": {
+            "type": "object",
+            "properties": {
+                "IsFull": {
+                    "type": "boolean"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "IsSign": {
+                    "type": "boolean"
+                },
+                "UserInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.UserTableDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.SignPayDetail": {
+            "type": "object",
+            "properties": {
+                "MatchTimes": {
+                    "type": "integer"
+                },
+                "Pay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.TableDetail": {
+            "type": "object",
+            "properties": {
+                "TableNumber": {
+                    "type": "integer"
+                },
+                "PersonNum": {
+                    "type": "integer"
+                },
+                "MaxScore": {
+                    "type": "integer"
+                },
+                "MinScore": {
+                    "type": "integer"
+                },
+                "AverageScore": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.TableInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "TimeArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.TableInfoRsp": {
+            "type": "object",
+            "properties": {
+                "MatchNum": {
+                    "type": "integer"
+                },
+                "StandardTableNum": {
+                    "type": "integer"
+                },
+                "TableDetail": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.TableDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.TableUserDetail": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Hunt": {
+                    "type": "integer"
+                },
+                "Bounty": {
+                    "type": "integer"
+                },
+                "Score": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.TargetTableReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "Table": {
+                    "type": "integer"
+                },
+                "Room": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "Round",
+                "Table",
+                "Room"
+            ]
+        },
+        ".elimination.service.v1.TargetTableRsp": {
+            "type": "object",
+            "properties": {
+                "BlindBet": {
+                    "$ref": "#/definitions/.elimination.service.v1.BlindBetDetail"
+                },
+                "UserScoreList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.TableUserDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.ThingsDetail": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "type": "integer"
+                },
+                "Num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.TimeDetail": {
+            "type": "object",
+            "properties": {
+                "BeginTime": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "string"
+                }
+            }
+        },
+        ".elimination.service.v1.UploadReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "TimeArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "Table": {
+                    "type": "integer"
+                },
+                "Room": {
+                    "type": "string"
+                },
+                "UserList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.UserInfo"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "Round",
+                "Table",
+                "Room",
+                "UserList"
+            ]
+        },
+        ".elimination.service.v1.UploadRsp": {
+            "type": "object",
+            "properties": {
+                "IsEnd": {
+                    "type": "boolean"
+                },
+                "IsSeparateTable": {
+                    "type": "boolean"
+                },
+                "UploadRetry": {
+                    "type": "boolean"
+                },
+                "UserTableInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.UserTableDetail"
+                    }
+                },
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.OutDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.UserDetail": {
+            "type": "object",
+            "properties": {
+                "Table": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "Hunt": {
+                    "type": "integer"
+                },
+                "Bounty": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "Score": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.UserEnterReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.UserEnterRsp": {
+            "type": "object",
+            "properties": {
+                "RoomID": {
+                    "type": "string"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "Table": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.UserInfo": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Score": {
+                    "type": "integer"
+                },
+                "OutTimeStamp": {
+                    "type": "integer"
+                },
+                "OutNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.UserInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "TimeArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "BeginPoint": {
+                    "type": "integer"
+                },
+                "EndPoint": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "Round",
+                "UserID",
+                "BeginPoint",
+                "EndPoint"
+            ]
+        },
+        ".elimination.service.v1.UserInfoRsp": {
+            "type": "object",
+            "properties": {
+                "MatchName": {
+                    "type": "string"
+                },
+                "MatchDuration": {
+                    "type": "integer"
+                },
+                "TotalScore": {
+                    "type": "integer"
+                },
+                "AverageScore": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "MaxScore": {
+                    "type": "integer"
+                },
+                "MinScore": {
+                    "type": "integer"
+                },
+                "BonusNum": {
+                    "type": "integer"
+                },
+                "TotalNum": {
+                    "type": "integer"
+                },
+                "PersonNum": {
+                    "type": "integer"
+                },
+                "SelfInfo": {
+                    "$ref": "#/definitions/.elimination.service.v1.UserDetail"
+                },
+                "UserScoreList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.UserDetail"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.UserRecordReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.UserRecordRsp": {
+            "type": "object",
+            "properties": {
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.MatchInfo"
+                    }
+                },
+                "EndMatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.elimination.service.v1.EndMatchInfo"
+                    }
+                }
+            }
+        },
+        ".elimination.service.v1.UserSelfRankReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchId": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchId",
+                "ArenaId",
+                "Round",
+                "UserID"
+            ]
+        },
+        ".elimination.service.v1.UserSelfRankResp": {
+            "type": "object",
+            "properties": {
+                "TotalNum": {
+                    "type": "integer"
+                },
+                "SelfRank": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".elimination.service.v1.UserTableDetail": {
+            "type": "object",
+            "properties": {
+                "UserList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Room": {
+                    "type": "string"
+                },
+                "Round": {
+                    "type": "integer"
+                },
+                "Table": {
+                    "type": "integer"
+                },
+                "ArenaId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+    }
+}

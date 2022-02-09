@@ -1,0 +1,433 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/PersonPool/Edit/PoolInfo": {
+            "post": {
+                "summary": "7、更新将池状态和分数(重构版本使用)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.demo.service.v1.UploadPoolResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.demo.service.v1.UploadPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        },
+        "/PersonPool/Get/Reward": {
+            "post": {
+                "summary": "5、玩家抽奖奖励获取",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.demo.service.v1.GetRewardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.demo.service.v1.GetRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        },
+        "/PersonPool/Query/ConfigInfo": {
+            "post": {
+                "summary": "3、奖金怪物查询",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.demo.service.v1.ConfigInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.demo.service.v1.CommonReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        },
+        "/PersonPool/Query/PoolInfo": {
+            "post": {
+                "summary": "7、查询数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.demo.service.v1.PoolInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.demo.service.v1.PoolInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        },
+        "/PersonPool/Upload/PoolInfo": {
+            "post": {
+                "summary": "6、更新将池状态和分数",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.demo.service.v1.UploadPoolResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.demo.service.v1.UploadPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        },
+        "/demo.service.v1.PersonPool/Ping": {
+            "get": {
+                "summary": "/demo.service.v1.PersonPool/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "demo.service.v1.PersonPool"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".demo.service.v1.CommonReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PoolID",
+                "UserID"
+            ]
+        },
+        ".demo.service.v1.ConfigInfoResp": {
+            "type": "object",
+            "properties": {
+                "PersonPollMaxNum": {
+                    "type": "integer"
+                },
+                "PersonPollKillRate": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "MonsterList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "ClosePoolButton": {
+                    "type": "boolean"
+                },
+                "LotteryList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.demo.service.v1.LotteryDetail"
+                    }
+                }
+            }
+        },
+        ".demo.service.v1.GetRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "LotteryType": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PoolID",
+                "UserID"
+            ]
+        },
+        ".demo.service.v1.GetRewardResp": {
+            "type": "object",
+            "properties": {
+                "LotteryReward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.demo.service.v1.ThingDetail"
+                    }
+                },
+                "NowPoolScore": {
+                    "type": "integer"
+                },
+                "GoodList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.demo.service.v1.ThingDetail"
+                    }
+                },
+                "RewardID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".demo.service.v1.LotteryDetail": {
+            "type": "object",
+            "properties": {
+                "LotteryName": {
+                    "type": "string"
+                },
+                "LotteryID": {
+                    "type": "integer"
+                },
+                "TargetNum": {
+                    "type": "integer"
+                },
+                "LotteryReward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.demo.service.v1.ThingDetail"
+                    }
+                }
+            }
+        },
+        ".demo.service.v1.PoolInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PoolID",
+                "UserID"
+            ]
+        },
+        ".demo.service.v1.PoolInfoResp": {
+            "type": "object",
+            "properties": {
+                "NowPoolNum": {
+                    "type": "integer"
+                },
+                "PoolButton": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".demo.service.v1.ThingDetail": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "TypeID": {
+                    "type": "integer"
+                },
+                "ImagePath": {
+                    "type": "string"
+                },
+                "Num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".demo.service.v1.UploadPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "PoolButton": {
+                    "type": "boolean"
+                },
+                "PoolScore": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "PoolID",
+                "UserID"
+            ]
+        },
+        ".demo.service.v1.UploadPoolResp": {
+            "type": "object",
+            "properties": {
+                "IsUpload": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+    }
+}

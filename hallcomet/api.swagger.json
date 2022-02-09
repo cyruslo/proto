@@ -1,0 +1,135 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hallcomet/Broadcast": {
+            "post": {
+                "summary": "广播到所有人",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallcomet.service.v1.BroadcastRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallcomet.service.v1.BroadcastReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallcomet.service.v1.hallcomet"
+                ]
+            }
+        },
+        "/hallcomet/PushMsg": {
+            "post": {
+                "summary": "推送消息到单人或多人",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hallcomet.service.v1.PushMsgRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.hallcomet.service.v1.PushMsgReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "hallcomet.service.v1.hallcomet"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".hallcomet.service.v1.BroadcastReq": {
+            "type": "object",
+            "properties": {
+                "speed": {
+                    "type": "integer"
+                },
+                "cmd": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallcomet.service.v1.BroadcastRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".hallcomet.service.v1.PushMsgReq": {
+            "type": "object",
+            "properties": {
+                "keys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cmd": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hallcomet.service.v1.PushMsgRsp": {
+            "type": "object",
+            "properties": {}
+        }
+    }
+}

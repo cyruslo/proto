@@ -1,0 +1,50 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package hallcomet.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service hallcomet {
+	//推送消息到单人或多人
+	rpc PushMsg (PushMsgReq) returns (PushMsgRsp){
+		option (google.api.http) = {
+            post:"/hallcomet/PushMsg"
+        };
+	};
+	//广播到所有人
+	rpc Broadcast (BroadcastReq) returns (BroadcastRsp){
+		option (google.api.http) = {
+            post:"/hallcomet/Broadcast"
+        };
+	};
+}
+
+message PushMsgReq
+{
+	repeated string keys = 1;
+	int32 cmd = 2;
+	bytes data = 3;
+}
+
+message PushMsgRsp {}
+
+message BroadcastReq{
+	int32 speed = 1; //发送速率
+	int32 cmd = 2;
+	bytes data = 3;
+}
+
+message BroadcastRsp{}
+
+
+
+
+

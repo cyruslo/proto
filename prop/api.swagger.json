@@ -1,0 +1,379 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/prop/AddProp": {
+            "post": {
+                "summary": "/prop/AddProp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.prop.service.v1.AddPropRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.prop.service.v1.AddPropReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "prop.service.v1.prop"
+                ]
+            }
+        },
+        "/prop/AppearExpendPropInfo": {
+            "post": {
+                "summary": "/prop/AppearExpendPropInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.prop.service.v1.AppearExpendPropInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.prop.service.v1.AppearExpendPropInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "prop.service.v1.prop"
+                ]
+            }
+        },
+        "/prop/ExpendProp": {
+            "post": {
+                "summary": "/prop/ExpendProp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.prop.service.v1.ExpendPropRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.prop.service.v1.ExpendPropReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "prop.service.v1.prop"
+                ]
+            }
+        },
+        "/prop/GetExpendPropInfo": {
+            "post": {
+                "summary": "/prop/GetExpendPropInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.prop.service.v1.GetExpendPropInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.prop.service.v1.GetExpendPropInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "prop.service.v1.prop"
+                ]
+            }
+        },
+        "/prop/QueryProp": {
+            "post": {
+                "summary": "/prop/QueryProp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.prop.service.v1.QueryPropRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.prop.service.v1.QueryPropReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "prop.service.v1.prop"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".prop.service.v1.AddPropReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropCount": {
+                    "type": "integer"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.AddPropRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.AppearExpendPropInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "Info": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.AppearExpendPropInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.ExpendPropReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropCount": {
+                    "type": "integer"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.ExpendPropRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.GetExpendPropInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".prop.service.v1.GetExpendPropInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Info": {
+                    "type": "string"
+                }
+            }
+        },
+        ".prop.service.v1.QueryPropReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".prop.service.v1.QueryPropRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "tablelist": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.prop.service.v1.Table"
+                    }
+                }
+            }
+        },
+        ".prop.service.v1.Table": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropCount": {
+                    "type": "integer"
+                },
+                "PropType": {
+                    "type": "string"
+                },
+                "Validitstart": {
+                    "type": "string"
+                },
+                "Validitend": {
+                    "type": "string"
+                },
+                "UserLimit": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1566 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/Matchv1/Check/UserEnter": {
+            "post": {
+                "summary": "13.检查用户是否有进入比赛的资格",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.UserEnterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.UserEnterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Get/TargetMatchAllReward": {
+            "post": {
+                "summary": "15 一次性领取本场比赛所有玩家奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.TargetMatchAllRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.TargetMatchAllRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Get/UserReward": {
+            "post": {
+                "summary": "8,领取玩家奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.GetUserRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.GetUserRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/BonusPoolNum": {
+            "post": {
+                "summary": "6,获取浮动奖金池",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.FloatPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.FloatPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/ImmediateRank": {
+            "post": {
+                "summary": "4,获取实时排行",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.ImmediateRankRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.ImmediateRankReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/LastRank": {
+            "post": {
+                "summary": "5,获取往期排行",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.LastRankRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.LastRankReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/MatchList": {
+            "post": {
+                "summary": "1,获取比赛列表，此处的ArenatimeID不会单独列出来作为一个比赛",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.MatchListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.MatchListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/MatchListTime": {
+            "post": {
+                "summary": "16,获取比赛列表开赛时间",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.MatchListTimeRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.MatchListTimeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/RewardConfig": {
+            "post": {
+                "summary": "2,拉去特定场次的奖励的列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.GetRewardConfigRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.GetRewardConfigReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/TargetMatchStatus": {
+            "post": {
+                "summary": "11，查询特定场次的比赛的状态",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.TargetMatchStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.TargetMatchStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/UserEnterList": {
+            "post": {
+                "summary": "14获取对应的比赛状态以及进入决赛的人的名单",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.UserEnterListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.UserEnterListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/UserMatchInfo": {
+            "post": {
+                "summary": "12，查询特定场次比赛的用户信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.UserMatchInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.UserMatchInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/UserMatchRecord": {
+            "post": {
+                "summary": "10，查询个人战绩",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.UserMatchRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.UserMatchRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Query/UserReward": {
+            "post": {
+                "summary": "7,查询玩家奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.QueryUserRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.QueryUserRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/Upload/Score": {
+            "post": {
+                "summary": "3,每局结算",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.ScoreUploadReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/Matchv1/UserSign": {
+            "post": {
+                "summary": "9，比赛报名",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchv1.service.v1.MatchSignRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchv1.service.v1.MatchSignReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        },
+        "/matchv1.service.v1.matchv1/Ping": {
+            "get": {
+                "summary": "/matchv1.service.v1.matchv1/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "matchv1.service.v1.matchv1"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".matchv1.service.v1.AwardDetail": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.BeginDetail": {
+            "type": "object",
+            "properties": {
+                "BeginType": {
+                    "type": "string"
+                },
+                "FullNums": {
+                    "type": "integer"
+                },
+                "StartTime": {
+                    "type": "string"
+                }
+            }
+        },
+        ".matchv1.service.v1.CommonRsp": {
+            "type": "object",
+            "properties": {
+                "Success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".matchv1.service.v1.DateDetail": {
+            "type": "object",
+            "properties": {
+                "Week": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Month": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Day": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "MonthEndDay": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.EndDetail": {
+            "type": "object",
+            "properties": {
+                "BeginType": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "string"
+                },
+                "EndTotal": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.FloatPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.FloatPoolRsp": {
+            "type": "object",
+            "properties": {
+                "BonusPoolNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.GetRewardConfigReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.GetRewardConfigRsp": {
+            "type": "object",
+            "properties": {
+                "RewardConfigList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RewardConfig"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.GetUserRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "RewardID": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID",
+                "RewardID"
+            ]
+        },
+        ".matchv1.service.v1.GetUserRewardRsp": {
+            "type": "object",
+            "properties": {
+                "RewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.ImmediateRankReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "StartPoint": {
+                    "type": "integer"
+                },
+                "EndPoint": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.ImmediateRankRsp": {
+            "type": "object",
+            "properties": {
+                "DayRankList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RankDetail"
+                    }
+                },
+                "SelfMatchRank": {
+                    "$ref": "#/definitions/.matchv1.service.v1.RankDetail"
+                },
+                "BeginTime": {
+                    "type": "integer"
+                },
+                "EndTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.LastRankReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "LastRankNum": {
+                    "type": "integer"
+                },
+                "StartPoint": {
+                    "type": "integer"
+                },
+                "EndPoint": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID",
+                "LastRankNum"
+            ]
+        },
+        ".matchv1.service.v1.LastRankRsp": {
+            "type": "object",
+            "properties": {
+                "SelfRankInfo": {
+                    "$ref": "#/definitions/.matchv1.service.v1.RankDetail"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "DayRankList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RankDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.MatchListReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.MatchListRsp": {
+            "type": "object",
+            "properties": {
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.TargetMatchDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.MatchListTimeReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".matchv1.service.v1.MatchListTimeRsp": {
+            "type": "object",
+            "properties": {
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.MatchTimeDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.MatchRecordDetail": {
+            "type": "object",
+            "properties": {
+                "MatchID": {
+                    "type": "integer"
+                },
+                "MatchName": {
+                    "type": "string"
+                },
+                "DateProperty": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankScore": {
+                    "type": "integer"
+                },
+                "RewardTime": {
+                    "type": "integer"
+                },
+                "ThingsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.MatchSignReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "SignThinsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                },
+                "SaveScore": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID",
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.MatchSignRsp": {
+            "type": "object",
+            "properties": {
+                "CostList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                },
+                "Join": {
+                    "type": "boolean"
+                },
+                "MatchSignCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.MatchTimeDetail": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "BeginTime": {
+                    "type": "integer"
+                },
+                "EndTime": {
+                    "type": "integer"
+                },
+                "DateProperty": {
+                    "type": "string"
+                },
+                "MatchStatus": {
+                    "type": "integer"
+                },
+                "ShowRewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RewardThinsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.PayDetail": {
+            "type": "object",
+            "properties": {
+                "MatchTimes": {
+                    "type": "integer"
+                },
+                "ThingsDetail": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.QueryUserRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.QueryUserRewardRsp": {
+            "type": "object",
+            "properties": {
+                "UserRewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.UserRewardDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.RankDetail": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "RankScore": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankRewardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                },
+                "AddScore": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.RewardConfig": {
+            "type": "object",
+            "properties": {
+                "Rank": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "DayRankList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RewardThinsDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.RewardThinsDetail": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "type": "integer"
+                },
+                "IsRate": {
+                    "type": "boolean"
+                },
+                "Num": {
+                    "type": "integer"
+                },
+                "Rate": {
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        ".matchv1.service.v1.ScoreUploadReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "UserList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.UserDetails"
+                    }
+                },
+                "BetAmount": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID",
+                "UserList",
+                "BetAmount"
+            ]
+        },
+        ".matchv1.service.v1.TargetMatchAllRewardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.TargetMatchAllRewardRsp": {
+            "type": "object",
+            "properties": {
+                "UserReward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.AwardDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.TargetMatchDetail": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "LimitTimes": {
+                    "type": "integer"
+                },
+                "Order": {
+                    "type": "integer"
+                },
+                "EnterDeadline": {
+                    "type": "string"
+                },
+                "BeginType": {
+                    "$ref": "#/definitions/.matchv1.service.v1.BeginDetail"
+                },
+                "EndType": {
+                    "$ref": "#/definitions/.matchv1.service.v1.EndDetail"
+                },
+                "MatchDate": {
+                    "$ref": "#/definitions/.matchv1.service.v1.DateDetail"
+                },
+                "SignCondition": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                },
+                "SignPay": {
+                    "$ref": "#/definitions/.matchv1.service.v1.PayDetail"
+                },
+                "MatchStatus": {
+                    "type": "integer"
+                },
+                "DateProperty": {
+                    "type": "string"
+                },
+                "EnterUserNum": {
+                    "type": "integer"
+                },
+                "UserStatus": {
+                    "type": "integer"
+                },
+                "ShowRankReward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.RewardConfig"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.TargetMatchStatusReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.TargetMatchStatusRsp": {
+            "type": "object",
+            "properties": {
+                "MatchStatus": {
+                    "type": "integer"
+                },
+                "EnterUserNum": {
+                    "type": "integer"
+                },
+                "MatchStartPoint": {
+                    "type": "integer"
+                },
+                "MatchEndPoint": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.ThingsDetail": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "type": "integer"
+                },
+                "Num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.UserDetails": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Score": {
+                    "type": "integer"
+                },
+                "VirtualBet": {
+                    "type": "integer"
+                },
+                "AddScore": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.UserEnterDetail": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Score": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.UserEnterListReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.UserEnterListRsp": {
+            "type": "object",
+            "properties": {
+                "UserEnterList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.UserEnterDetail"
+                    }
+                },
+                "MatchStatus": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.UserEnterReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID",
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.UserEnterRsp": {
+            "type": "object",
+            "properties": {
+                "UserEnter": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".matchv1.service.v1.UserMatchInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "MatchID"
+            ]
+        },
+        ".matchv1.service.v1.UserMatchInfoRsp": {
+            "type": "object",
+            "properties": {
+                "VirtualBet": {
+                    "type": "integer"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankScore": {
+                    "type": "integer"
+                },
+                "UserStatus": {
+                    "type": "integer"
+                },
+                "EnterUserNum": {
+                    "type": "integer"
+                },
+                "LastDifScore": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchv1.service.v1.UserMatchRecordReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".matchv1.service.v1.UserMatchRecordRsp": {
+            "type": "object",
+            "properties": {
+                "UserMatchRecordList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.MatchRecordDetail"
+                    }
+                }
+            }
+        },
+        ".matchv1.service.v1.UserRewardDetail": {
+            "type": "object",
+            "properties": {
+                "MatchID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "ArenaTimeID": {
+                    "type": "integer"
+                },
+                "RewardID": {
+                    "type": "string"
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "RankScore": {
+                    "type": "integer"
+                },
+                "RewardTime": {
+                    "type": "integer"
+                },
+                "ThingsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchv1.service.v1.ThingsDetail"
+                    }
+                },
+                "MatchName": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

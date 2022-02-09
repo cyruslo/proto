@@ -1,0 +1,256 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package given.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Given {
+
+	rpc GetSystemConf(GetSystemConfReq) returns (GetSystemConfResp) {
+        option (google.api.http) = {
+            post:"/given/GetSystemConf"
+        };
+    };
+	
+	rpc QueryUserInfo(QueryUserInfoReq) returns (QueryUserInfoResp) {
+        option (google.api.http) = {
+            post:"/given/QueryUserInfo"
+        };
+    };
+	
+	rpc UpdateUserInfo(UpdateUserInfoReq) returns (UpdateUserInfoResp) {
+        option (google.api.http) = {
+            post:"/given/UpdateUserInfo"
+        };
+    };
+	
+	//查询刮刮卡信息
+	rpc QueryCard(QueryCardReq) returns (QueryCardResp) {
+        option (google.api.http) = {
+            post:"/given/QueryCard"
+        };
+    };
+	
+	rpc DropCardTrigger(DropCardTriggerReq) returns (DropCardTriggerResp) {
+        option (google.api.http) = {
+            post:"/given/DropCardTrigger"
+        };
+    };
+	
+	//成功掉落刮刮卡(会重置C值)
+	rpc DropCard(DropCardReq) returns (QueryLossInfoResp) {
+        option (google.api.http) = {
+            post:"/given/DropCard"
+        };
+    };
+	
+	//刮卡请求
+	rpc ScratchCard(ScratchCardReq) returns (ScratchCardResp) {
+        option (google.api.http) = {
+            post:"/given/ScratchCard"
+        };
+    };
+	
+	//兑换刮刮卡
+	rpc ExchangeCard(ExchangeCardReq) returns (ExchangeCardResp) {
+        option (google.api.http) = {
+            post:"/given/ExchangeCard"
+        };
+    };
+	
+	//更新C值信息
+	rpc UpdateLossInfo(UpdateLossInfoReq) returns (QueryLossInfoResp) {
+        option (google.api.http) = {
+            post:"/given/UpdateLossInfo"
+        };
+    };
+	
+	//查询C值信息（当前C值, 触发值，掉落区间，掉落概率，掉落卡ID，价值）
+	rpc QueryLossInfo(QueryLossInfoReq) returns (QueryLossInfoResp) {
+        option (google.api.http) = {
+            post:"/given/QueryLossInfo"
+        };
+    };
+}
+
+enum GivenSystemId {
+	SystemNull = 0;
+    SystemNewcomer = 1;
+    SystemRecharge = 2;
+	SystemUnuseValue = 3;
+}
+
+enum LoginMethod {
+    AccountLogin = 0;
+    WechatLogin = 1;
+	CellphoneLogin = 2;
+}
+
+message SystemConf {
+	int32 SystemID = 1;                      	//系统ID
+	bool Enable = 2;                      		//开关
+    int32 Frequency = 3;                   		//赠送频繁(10发送1发)
+	int32 ConvertRatio = 4;						//充值赠送比例分子 
+	int32 ConvertBase = 5;						//充值赠送比例分母
+}
+
+message GetSystemConfReq {
+	int32 GameID = 1;		 	      			//游戏ID
+}
+
+message GetSystemConfResp {
+	int32 Code = 1;								//
+    string Message = 2;
+	repeated SystemConf ConfList = 3;
+}
+
+message QueryUserInfoReq {
+	int32 GameID = 1;		 	      			//游戏ID
+    int64 PlayerID = 2;               			//玩家ID
+    int32 VipLevel = 3;               			//vip等级
+    int32 LoginMethod = 4;            			//登录方式(0:账号,1:微信,2:手机登录)
+}
+
+message SystemInfo {
+	int32 SystemID = 1;                      	//系统ID
+	string Name = 2;							//系统名称
+	int32 Remain = 3;                       	//剩余金额
+    int32 Given = 4;                     		//已赠送金额
+	bool Open = 5;                      		//开启
+	string OpenDate = 6;                      	//开启日期
+}
+
+message QueryUserInfoResp {
+    int32 Code = 1;
+    string Message = 2;
+	repeated SystemInfo SystemList = 3;
+}
+
+message UpdateUserInfoReq {
+	int32 GameID = 1;		 	      			//游戏ID
+    int64 PlayerID = 2;               			//玩家ID
+	int32 SystemID = 3;							//更新的系统ID
+	int32 GivenGain = 4;						//本次获得赠送金额
+	int32 GivenExpend = 5;						//本次消耗金额
+}
+
+message UpdateUserInfoResp {
+	int32 Code = 1;
+    string Message = 2;
+	SystemInfo Data = 3;
+}
+
+//刮刮卡(如果开关关了，可以累计C值，但不能掉落卡和使用卡)
+message QueryCardReq {
+	int32 GameID = 1;		 	      			
+    int64 PlayerID = 2;
+}
+
+message CardInfo {
+	int32 Id = 1;								//卡类型id
+	int32 Count = 2;							//数量
+	int32 Price = 3;							//预期价值转成金币的价值
+	int32 ExpectPrice = 4;						//预期价值
+}
+
+message CardAward {
+	int32 CardId = 1;							//卡类型id
+	int32 AwardBase = 2;						//卡奖金基数
+	int32 AwardMulti = 3;						//卡奖金倍数
+	int32 Price = 4;							//预期价值转成金币的价值
+}
+
+message QueryCardResp {
+	int32 Code   = 1;
+    string Message = 2;
+	repeated CardInfo Cards = 3;				//剩余卡数量
+}
+
+message DropCardTriggerReq {
+	int32 GameID = 1;	
+	int32 ArenaID = 2;	
+    int64 PlayerID = 3;   
+}
+
+message DropCardTriggerResp {
+	int32 Code   = 1;
+    string Message = 2;
+}
+
+message DropCardReq {
+	int32 GameID = 1;
+	int32 ArenaID = 2;		
+    int64 PlayerID = 3;    
+	int32 CardId   = 4;
+	int32 VipLevel = 5;
+}
+
+message ScratchCardReq {
+	int32 GameID = 1;		 	      			
+    int64 PlayerID = 2;    
+}
+
+message ScratchCardResp {
+	int32 Code   = 1;
+    string Message = 2;
+	CardAward Award = 3;						//奖励信息	 
+}
+
+message ExchangeCardReq {
+	int32 GameID = 1;
+	int32 ArenaID = 2;
+    int64 PlayerID = 3;
+	string Nickname = 4;
+	bool IsBatch = 5;
+	int32 VipLevel = 6;
+}
+
+message ExchangeCardResp {
+	int32 Code   = 1;
+    string Message = 2;
+	bool IsBatch = 3; 
+	repeated CardAward Awards = 4;				//奖励信息	
+	repeated CardInfo Cards = 5;				//剩余卡数量	
+}
+
+message UpdateLossInfoReq {
+	int32 GameID = 1;		 	      			
+    int64 PlayerID = 2;
+	int32 Delta = 3;							//本次盈亏值
+	int32 VipLevel = 4;
+}
+
+message QueryLossInfoReq {
+	int32 GameID = 1;		 	      			
+    int64 PlayerID = 2;
+    int32 VipLevel = 3;							//vip等级
+}
+
+message QueryLossInfoResp {
+	int32 Code   = 1;
+    string Message = 2;
+	bool Enable = 3;							//刮刮卡开关
+	int64 Balance = 4;							//当前C值
+	int32 TriggerMin = 5;						//最小掉落触发值
+	int32 TriggerMax = 6;						//最大掉落触发值(如果超过,则需更新C值获得新的掉落区间)
+	int32 CurLevel = 7;							//当前区间层级
+	int32 MinLevel = 8;							//最低区间层级0
+	int32 MaxLevel = 9;							
+	int32 DropRatio = 10;						//掉落概率分子
+	int32 DropBase = 11;						//掉落概率分母
+	int32 CardId = 12;							//可掉落卡类型id
+	int32 Price = 13;							//预期价值转成金币的价值
+	int32 ExpectPrice = 14;						//预期价值
+}
+
+

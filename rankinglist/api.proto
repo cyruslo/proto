@@ -1,0 +1,117 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package rankinglist.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service RankingList {
+    rpc UpdateRankingList(UpdateRankingListReq) returns (UpdateRankingListRsp) {
+        option (google.api.http) = {
+            post:"/RankingList/UpdateRankingList"
+        };
+    };
+
+    rpc GetRankingList(GetRankingListReq) returns (GetRankingListRsp) {
+        option (google.api.http) = {
+            post:"/RankingList/GetRankingList"
+        };
+    };
+
+    rpc GetHallRankingList(GetHallRankingListReq) returns (GetHallRankingListRsp) {
+        option (google.api.http) = {
+            post:"/RankingList/GetHallRankingList"
+        };
+    };
+}
+
+message UpdateRankingListReq {
+    int32 GameId = 1 [(gogoproto.jsontag) = "GameId", (gogoproto.moretags)='form:"GameId" validate:"required"'];  // 游戏ID
+    RankType RankType = 2 [(gogoproto.jsontag) = "RankType", (gogoproto.moretags)='form:"RankType" validate:"required"'];  // 排行榜类型
+    int64 UserId = 3 [(gogoproto.jsontag) = "UserId", (gogoproto.moretags)='form:"UserId"'];  // 玩家ID
+    int64 Rank = 4 [(gogoproto.jsontag) = "Rank", (gogoproto.moretags)='form:"Rank" validate:"required"'];  // 排行分数, 排名根据此值来排
+    int64 RankKey = 5 [(gogoproto.jsontag) = "RankKey", (gogoproto.moretags)='form:"RankKey"'];  // 排行榜中的这一类型数据，将该值作为键值(避免同一玩家两次上榜？)
+    string UserName = 6 [(gogoproto.jsontag) = "UserName", (gogoproto.moretags)='form:"UserName" validate:"required"'];  // 玩家名字
+    string UpdateTime = 7 [(gogoproto.jsontag) = "UpdateTime", (gogoproto.moretags)='form:"UpdateTime"'];  // 时间，跑马灯用
+    string Content = 8 [(gogoproto.jsontag) = "Content", (gogoproto.moretags)='form:"Content"'];  // 内容，跑马灯用
+}
+
+message UpdateRankingListRsp {
+    int32 code = 1 [(gogoproto.jsontag) = 'code'];
+    string message = 2 [(gogoproto.jsontag) = 'message'];
+}
+
+message GetRankingListReq {
+    int32 GameId = 1 [(gogoproto.jsontag) = "GameId", (gogoproto.moretags)='form:"GameId" validate:"required"'];  //游戏ID
+    RankType RankType = 2 [(gogoproto.jsontag) = "RankType", (gogoproto.moretags)='form:"RankType" validate:"required"'];  //排行榜类型
+  //  int32 Start = 3 [(gogoproto.jsontag) = "Start", (gogoproto.moretags)='form:"Start" validate:"required"'];  //排行榜开始范围
+  //  int32 End = 4 [(gogoproto.jsontag) = "End", (gogoproto.moretags)='form:"End" validate:"required"'];  //排行榜结束范围
+}
+
+message GetRankingListRsp {
+    int32 code = 1 [(gogoproto.jsontag) = 'code'];
+    string message = 2 [(gogoproto.jsontag) = 'message'];
+    int32 RankInfoSize = 3 [(gogoproto.jsontag) = 'RankInfoSize'];
+    repeated RankInfo RankInfoList = 4 [(gogoproto.jsontag) = 'RankInfoList'];
+}
+
+message RankInfo {
+    string UserName = 1 [(gogoproto.jsontag) = 'UserName']; //玩家名字
+    int64 UserId = 2 [(gogoproto.jsontag) = 'UserId'];  //玩家ID
+    string UpdateTime = 3 [(gogoproto.jsontag) = 'UpdateTime']; //时间
+    string Content = 4 [(gogoproto.jsontag) = 'Content'];  //内容
+    int64 Rank = 5 [(gogoproto.jsontag) = 'Rank'];  // 排行分数
+    int64 RankKey = 6 [(gogoproto.jsontag) = 'RankKey'];
+}
+
+message GetHallRankingListReq {
+    int32 GameId = 1 [(gogoproto.jsontag) = "GameId", (gogoproto.moretags)='form:"GameId" validate:"required"'];  //游戏ID
+    int32 StatTypeId = 2 [(gogoproto.jsontag) = "StatTypeId", (gogoproto.moretags)='form:"StatTypeId" validate:"required"'];  //排行榜类型
+}
+
+message GetHallRankingListRsp {
+    int32 code = 1 [(gogoproto.jsontag) = 'code'];
+    string message = 2 [(gogoproto.jsontag) = 'message'];
+    repeated TopStatData TopStatData = 3 [(gogoproto.jsontag) = 'TopStatData'];
+    string LastStatTime = 4 [(gogoproto.jsontag) = 'LastStatTime'];
+    bool  IsDisplay = 5 [(gogoproto.jsontag) = 'IsDisplay'];  //  排行榜开关
+    bool  IsDisplayAvatar = 6 [(gogoproto.jsontag) = 'IsDisplayAvatar'];   // 是否展示个人头像
+}
+
+message TopStatData {
+    int32 UserId = 1 [(gogoproto.jsontag) = 'UserId'];  //玩家ID
+    string NickName = 2 [(gogoproto.jsontag) = 'NickName'];  //名字
+    int32 StatTypeId = 3 [(gogoproto.jsontag) = 'StatTypeId'];  // 类型
+    int64 StatValue = 4 [(gogoproto.jsontag) = 'StatValue'];  // 值
+    int32 Rank = 5 [(gogoproto.jsontag) = 'Rank'];  // 排名
+    bool  IsPublic = 6 [(gogoproto.jsontag) = 'IsPublic'];  // 是否公开个人信息
+}
+
+//排行榜类型
+enum RankType {
+    Undefined = 0; // 无意义
+    EarnRank = 1;  //赢分榜
+    KillLoongRank = 2; //屠龙榜
+    StageRank = 3; //闯关榜
+    MonthlyRank = 4; //月排行榜
+    Maquee = 5; //跑马灯
+}
+
+enum RLErrCode {
+    UndefinedCode                   = 0; // 因protobuf协议限制必须存在！！！无意义的0，工具生成代码时会忽略该参数
+    ConfigsNotFound                 = 100300;
+    SetRankingListFailed            = 100301;
+    GetRankingListFailed            = 100302;
+    GetTopStatDataFromDBFailed      = 100303;
+    UpdateCacheFailed               = 100304;
+    GetPublicUserFromDBFailed       = 100305;
+}

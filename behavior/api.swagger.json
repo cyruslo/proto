@@ -1,0 +1,304 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/behavior/CanCreateTable": {
+            "post": {
+                "summary": "/behavior/CanCreateTable",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.behavior.service.v1.CanCreateTableRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.behavior.service.v1.CanCreateTableReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "behavior.service.v1.Behavior"
+                ]
+            }
+        },
+        "/behavior/CreateTable": {
+            "post": {
+                "summary": "/behavior/CreateTable",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.behavior.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.behavior.service.v1.CreateTableReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "behavior.service.v1.Behavior"
+                ]
+            }
+        },
+        "/behavior/break_hang_up": {
+            "post": {
+                "summary": "rpc BreakHangUp (HangUpReq) returns (HangUpResp);",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.behavior.service.v1.HangUpResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.behavior.service.v1.HangUpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "behavior.service.v1.Behavior"
+                ]
+            }
+        },
+        "/behavior/get_limit_time": {
+            "post": {
+                "summary": "\trpc GetLimitTime (LimitTimeReq) returns (LimitTimeResp);",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.behavior.service.v1.LimitTimeResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.behavior.service.v1.LimitTimeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "behavior.service.v1.Behavior"
+                ]
+            }
+        },
+        "/behavior/hang_up": {
+            "post": {
+                "summary": "rpc HangUp (HangUpReq) returns (HangUpResp);",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.behavior.service.v1.HangUpResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.behavior.service.v1.HangUpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "behavior.service.v1.Behavior"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".behavior.service.v1.CanCreateTableReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".behavior.service.v1.CanCreateTableRsp": {
+            "type": "object",
+            "properties": {
+                "canCreate": {
+                    "type": "boolean"
+                },
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".behavior.service.v1.CommonRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".behavior.service.v1.CreateTableReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "is_create": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".behavior.service.v1.HangUpReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "user_id",
+                "game_id",
+                "nickname",
+                "ip"
+            ]
+        },
+        ".behavior.service.v1.HangUpResp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".behavior.service.v1.LimitTimeReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "user_id",
+                "game_id"
+            ]
+        },
+        ".behavior.service.v1.LimitTimeResp": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

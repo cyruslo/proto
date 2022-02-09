@@ -1,0 +1,158 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package hallemail.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service hallemail {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+
+    // 服务器更新并发送邮件
+    rpc OnPublishMail (PublishMailReq) returns (PublishMailRsp){
+        option (google.api.http) = {
+            post:"/hallemail/PublishMail"
+        };
+    };
+
+    // 添加基础邮件
+    rpc OnAddMailInfo (AddMailInfoReq) returns (AddMailInfoRsp){
+        option (google.api.http) = {
+            post:"/hallemail/AddMailInfo"
+        };
+    };
+
+    // 发送邮件(发送添加的基础邮件给到指定的用户-web通知)
+    rpc OnSendMailInfo (SendMailInfoReq) returns (SendMailInfoRsp){
+        option (google.api.http) = {
+            get:"/hallemail/SendMailInfo"
+        };
+    };
+ 
+    // 获取邮件信息(客户端请求)
+    rpc GetMailInfo (GetMailInfoReq) returns (GetMailInfoResp){
+        option (google.api.http) = {
+            post:"hallemail/GetMailInfo"
+        };
+    };
+    
+    // 用户邮件操作(0.read 1.getreward 2.remove 3.deleteRedPoint)
+    rpc UserMailOperation (MailOpReq) returns (MailOpRsp){
+        option (google.api.http) = {
+            post:"hallemail/UserMailOperation"
+       };
+    };
+
+}
+
+message MailOpReq
+{
+	enum MailOp
+	{
+		EMailOpRead = 0;
+		EMailOpGetReward = 1;
+		EMailOpRemove = 2;
+		EMailOpDeleteRedPoint = 3;		
+	}
+
+	 int32 UserDBID = 1[(gogoproto.jsontag) = "user_dbid", (gogoproto.moretags)='form:"user_dbid" validate:"required"'];
+	 int32 GameID = 2[(gogoproto.jsontag) = "game_id", (gogoproto.moretags)='form:"game_id" validate:"required"'];
+	 int32 OpID = 3[(gogoproto.jsontag) = "op_id", (gogoproto.moretags)='form:"op_id"'];		
+	 repeated int32 MailIDs = 4[(gogoproto.jsontag) = "mail_id", (gogoproto.moretags)='form:"mail_id" validate:"required"'];
+	 string PhyID = 5[(gogoproto.jsontag) = "phy_id", (gogoproto.moretags)='form:"phy_id" validate:"required"'];
+     int32 PlatFormID = 6[(gogoproto.jsontag) = "PlatFormID", (gogoproto.moretags)='form:"PlatFormID" validate:"required"']; // 游戏大厅 1.打旋大厅 2.捕鱼大厅
+}
+
+message MailOpRsp
+{
+	 int32 UserDBID = 1[(gogoproto.jsontag) = "user_dbid", (gogoproto.moretags)='form:"user_dbid" validate:"required"'];
+	 int32 OpID = 2[(gogoproto.jsontag) = "op_id", (gogoproto.moretags)='form:"op_id" validate:"required"'];		
+	 int32 Success = 3[(gogoproto.jsontag) = "success", (gogoproto.moretags)='form:"success" validate:"required"'];
+	 string Message = 4[(gogoproto.jsontag) = "message", (gogoproto.moretags)='form:"message" validate:"required"'];
+	 repeated int32 MailIDs = 5[(gogoproto.jsontag) = "mail_id", (gogoproto.moretags)='form:"mail_id" validate:"required"'];
+}
+
+// 邮件道具
+message MailRewardInfo{
+    int32 Type = 1[(gogoproto.jsontag) = "nType", (gogoproto.moretags)='form:"nType" validate:"required"'];
+    int32 Amount = 2[(gogoproto.jsontag) = "nAmount", (gogoproto.moretags)='form:"nAmount" validate:"required"'];
+}
+
+// 邮件结构体
+message MailInfo {
+    int32 MailID = 1 [(gogoproto.jsontag) = "nMailID", (gogoproto.moretags)='form:"nMailID" validate:"required"'];
+    string MailTitle = 2 [(gogoproto.jsontag) = "strMailTitle", (gogoproto.moretags)='form:"strMailTitle" validate:"required"'];
+    int64 WriteTime = 3 [(gogoproto.jsontag) = "tWriteTime", (gogoproto.moretags)='form:"tWriteTime" validate:"required"'];
+    int64 ExpireTime = 4 [(gogoproto.jsontag) = "tExpireTime", (gogoproto.moretags)='form:"tExpireTime" validate:"required"'];
+    bool IsRead = 5 [(gogoproto.jsontag) = "bIsRead", (gogoproto.moretags)='form:"bIsRead" validate:"required"'];
+    bool IsReward = 6 [(gogoproto.jsontag) = "bIsReward", (gogoproto.moretags)='form:"bIsReward" validate:"required"'];
+    string Content = 7 [(gogoproto.jsontag) = "strContent", (gogoproto.moretags)='form:"strContent" validate:"required"'];
+    int32 GameID = 8 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int32 Rid = 9 [(gogoproto.jsontag) = "nRid", (gogoproto.moretags)='form:"nRid" validate:"required"'];
+    bool IsRedPoint = 10 [(gogoproto.jsontag) = "bIsRedPoint", (gogoproto.moretags)='form:"bIsRedPoint" validate:"required"'];
+    repeated MailRewardInfo MailRewardList = 11 [(gogoproto.jsontag) = "vecMailRewardInfos", (gogoproto.moretags)='form:"vecMailRewardInfos" validate:"required"'];
+}
+
+
+// 邮件
+message PublishMailReq {
+    string Title = 1;
+    string Content = 2;
+    string Sender = 3;
+    int32 GameID = 4;
+    string StartTime = 5;
+    string EndTime = 6;
+    int32 SendType = 7;
+    string UserIDS = 8;
+    string RewordInfo = 9;
+    int32 GamePlatFormID = 10;
+}
+
+message PublishMailRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 msgID = 3;
+}
+
+// 添加邮件
+message AddMailInfoReq{
+	string Title =1 ;
+	string Content = 2;
+	string Users = 3;
+	string Reward = 4;
+}
+
+message AddMailInfoRsp{
+    int32 MailID = 1;
+    string Users = 2;
+}
+
+// 发送邮件
+message SendMailInfoReq{
+}
+message SendMailInfoRsp{
+}
+
+
+// 获取邮件信息
+message GetMailInfoReq {
+    int64 UserID = 1;
+    int32 PlatFormID = 2; // 游戏大厅 1.打旋大厅 2.捕鱼大厅
+}
+
+message GetMailInfoResp {
+    repeated MailInfo mailInfo = 1;
+}
+

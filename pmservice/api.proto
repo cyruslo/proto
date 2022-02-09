@@ -1,0 +1,450 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package pmservice.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Pmservice {
+    rpc OnThreeWayLoginWithDeviceInfoRequest (ThreeWayLoginWithDeviceReq) returns (ThreeWayLoginWithDeviceRsp){
+        option (google.api.http) = {
+            post:"/pmservice/OnThreeWayLoginWithDeviceInfoRequest"
+        };
+    };
+    rpc OnPartentLoginRequest (PartnerUserLoginReq) returns (LoginResponse){
+        option (google.api.http) = {
+            post:"/pmservice/OnPartentLoginRequest"
+        };
+    };
+
+    rpc OnPhoneCheckRequest (PhoneCheckReq) returns (PhoneCheckRsp){
+        option (google.api.http) = {
+            post:"/pmservice/OnPhoneCheckRequest"
+        };
+    };
+	rpc OnPhoneSMSCodeLoginRequest (PhoneSMSCodeLoginReq) returns (LoginResponse){
+	option (google.api.http) = {
+		post:"/pmservice/OnPhoneSMSCodeLoginRequest"
+		};
+    };
+	rpc OnGetUserTicketRequest (GetUserTicketReq) returns (GetUserTicketRsp){
+        option (google.api.http) = {
+            post:"/pmservice/OnGetUserTicketRequest"
+        };
+    };
+	rpc OnUserRegisterRequest (UserRegisterReq) returns (UserRegisterRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnUserRegisterRequest"
+		};
+    };
+	rpc OnGetSexRequest (GetUserSexReq) returns (GetUserSexRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnGetSexRequest"
+		};
+	 };
+	rpc OnRereshUserMoneyRequest (RefreshUserMoneyReq) returns (RefreshUserMoneyRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnRereshUserMoneyRequest"
+		};
+	 };
+	rpc OnWeXinBindQPRequest (WeXinBindQPReq) returns (PartnerBindRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnWeXinBindQPRequest"
+		};
+	 };
+	rpc OnGetMCIDByRoomSNRequest (ClientGetMCIDByRoomSNReq) returns (ClientGetMCIDByRoomSNRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnGetMCIDByRoomSNRequest"
+		};
+	 };
+	rpc OnGetLoginNameByPartnerUserIDRequest (GetLoginNameByPartnerUserIDReq) returns (GetLoginNameByPartnerUserIDRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnGetLoginNameByPartnerUserIDRequest"
+		};
+	 };
+	rpc OnUserLogoutRequest (UserLogoutReq) returns (UserLogoutRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnUserLogoutRequest"
+		};
+	 };
+	rpc OnUserOfflineRequest (UserOfflineReq) returns (UserOfflineRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnUserOfflineRequest"
+		};
+	 };
+	rpc OnGetQPUserInfoByParnerUserIDRequest (GetQPUserInfoByParnerUserIDReq) returns (GetQPUserInfoByParnerUserIDRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnGetQPUserInfoByParnerUserIDRequest"
+		};
+	 };
+
+	rpc OnMarketInfoRequest (MarketInfoReq) returns (CommonResp){
+		option (google.api.http) = {
+			post:"/pmservice/OnMarketInfoRequest"
+		};
+	 };
+	rpc OnAuthCodeConfirm (AuthCodeConfirm) returns (AuthCodeConfirmRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnAuthCodeConfirm"
+		};
+	 };
+
+	rpc OnFastRegisterRequest (FastRegisterReq) returns (FastRegisterRsp){
+		option (google.api.http) = {
+			post:"/pmservice/OnFastRegisterRequest"
+		};
+	};
+
+    rpc OnPartnerBindRequest (PartnerBindReq) returns (PartnerBindRsp){
+        option (google.api.http) = {
+            post:"/pmservice/OnPartnerBindRequest"
+        };
+    };
+    rpc OnPartnerChangeBindRequest (PartnerChangeBindReq) returns (PartnerChangeBindRsp){
+        option (google.api.http) = {
+            post:"/pmservice/OnPartnerChangeBindRequest"
+        };
+    };
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;
+}
+
+//账号注册
+message UserRegisterReq{
+	 string user_name = 1;
+	 string password = 2;
+	 string nick_name = 3;
+	 int32 game_id = 4;
+	 uint32 remote_ip = 5;
+	 int32 souce = 6;
+	 string phy_id = 7;
+}
+message UserRegisterRsp{
+	int32 code = 1;
+	string message = 2;
+	int32 result = 3;
+	int64 user_dbid = 4;
+}
+
+//获取性别
+message GetUserSexReq{
+	 int32 user_dbid = 1;
+}
+message GetUserSexRsp{
+	int32 code = 1;
+	string message = 2;
+	int32 result = 3;
+	int32 sex = 4 [(gogoproto.jsontag) = "sex", (gogoproto.moretags)='validate:"required"']; //性别 0未设置 1 男 2女
+}
+
+message RefreshUserMoneyReq{
+	 int32 user_dbid = 1;
+}
+// 虚拟货币
+message ExtendCoin{
+     int32 id = 1[(gogoproto.jsontag) = "id", (gogoproto.moretags)='validate:"required"'];     // 对应 transStruct.h中的ExtendCoinType
+     uint64 amount = 2[(gogoproto.jsontag) = "amount", (gogoproto.moretags)='validate:"required"'];
+}
+
+message UserLogoutReq
+{
+	 int32 user_dbid = 1;
+	 string certification = 2;
+}
+message UserLogoutRsp
+{
+	int32 code = 1;
+	string message = 2;
+}
+
+
+message WeXinBindQPReq
+{
+	 string unionid = 1;
+	 string account = 2;		// 帐号名
+	 string password_md5 = 3;	// 密码的MD5结果
+}
+//绑定第三方账号回应
+message PartnerBindRsp
+{
+	int32 code = 1;
+	string message = 2;
+	int32 result = 3;		// 登录结果标识（将映射到结果字符串表）
+	string error_message = 4;	//错误信息
+}
+
+message RefreshUserMoneyRsp{
+	int32 code = 1;
+	string message = 2;
+	int32 result = 3;
+	int32 user_dbid = 4;
+	uint64 money = 5 [(gogoproto.jsontag) = "money", (gogoproto.moretags)='validate:"required"'];
+	uint64 ticket = 6[(gogoproto.jsontag) = "ticket", (gogoproto.moretags)='validate:"required"'];
+	repeated ExtendCoin extendCoin = 7;
+}
+
+// 账号登录
+message ThreeWayLoginWithDeviceReq {
+	int32 game_id = 1;
+	string account = 2;			// 帐号名
+	string password_md5 = 3;	// 密码的MD5结果
+	string mac_address = 4;		// 客户端MAC
+	string phy_id = 5;       	//唯一标识（网卡驱动ID）
+	string authcode = 6;		//亲朋登陆凭证
+	string deviceInfo = 7;		//客户端设备信息
+	int32 platform = 8;
+	string location = 9;
+	int32 marketid = 10;		// 媒体ID，市场ID，渠道ID，MarketID 都是这货
+	string version = 11;		// 版本号 大版本.小版本
+}
+
+
+message GameScore
+{
+	int64 score = 1;
+	int64 money = 2;
+	int32 tax = 3;
+	repeated int32 result = 4;
+	uint64 ticket = 5;
+	repeated ExtendCoin extendCoin = 6;
+}
+
+message UserInfo
+{
+	uint32 user_dbid = 1;		//用户DBID
+	uint64 money = 2;
+	string certification = 3;	//用户标识,用于从比赛大厅切换到青鹏大厅登陆使用，32位，不包含结束符
+	string nickname = 4;		//用户昵称长度,不包含结束符
+	GameScore Score = 5;
+	uint32 confra_id = 6;		//社团ID；
+	uint32 user_level = 7;		//用户等级
+	sint32 sex = 8;
+	uint32 avata_id = 9;		//用户头像ID（该ID对应的是系统头像ID）
+	uint64 bank_money = 10;
+	string authcode = 11;
+	int32 ext_error_code = 12;
+	string ext_message = 13;
+	uint64 ticket = 14;
+	uint64 exp = 15;
+	string phone_no = 16;
+	string email = 17;
+	string wx_unionid = 18;
+	string loginName = 19;
+	int32 MainGameID = 20;		// 主游戏ID
+}
+
+
+message ThreeWayLoginWithDeviceRsp {
+	int32 code = 1;
+    string message = 2;
+	string token =3;
+	UserInfo info = 4;
+}
+
+message GetUserTicketReq {
+	int64 userid = 1;
+}
+
+message GetUserTicketRsp {
+	int32 code = 1;
+    string message = 2;
+	int64 userid = 3;
+	uint64 money = 4;
+}
+
+// 微信登录
+message PartnerUserLoginReq
+{
+	int32 game_id = 1;
+	int32 partner_id = 2;		// 合作商 1：微信
+	string access_token = 3;
+	string openid = 4;
+	string unionid = 5;
+	string mac_address = 6;		// 客户端MAC
+	string phy_id = 7;       	//唯一标识（网卡驱动ID）
+	uint32 local_ip = 8;		//客户端本地IP，可能是个内网IP
+ 	uint32 remote_ip = 9;		//客户端的公网IP，客户端不填写，由ServerGate来填写
+	string authcode = 10;		//亲朋登陆凭证
+	string deviceInfo = 11;		//客户端设备信息
+	int32 platform = 12;
+	string location = 13;
+	int32 marketid = 14;		// 媒体ID，市场ID，渠道ID，MarketID 都是这货
+	string version = 15;		// 版本号 大版本.小版本
+}
+
+// 根据房间SN查找所在的场ID请求
+message ClientGetMCIDByRoomSNReq
+{
+	 int32 iUserID = 1;		//	用户ID
+	 int32 iRoomSN = 2;		//	房间SN
+	 string phy_id = 3;
+}
+
+// 根据房间SN查找所在的场ID应答
+message ClientGetMCIDByRoomSNRsp
+{
+	int32 code = 1;
+	string message = 2;
+	int32 iMCID	=	3;		// MCID
+	bool has_password = 4;
+
+}
+message GetLoginNameByPartnerUserIDReq
+{
+     int32 partner_id = 1;
+     string unionid = 2;
+}
+
+message GetLoginNameByPartnerUserIDRsp
+{
+	int32 code = 1;
+	string message = 2;
+    string loginName = 3 [(gogoproto.jsontag) = "loginName", (gogoproto.moretags)='validate:"required"'];
+}
+
+message LoginResponse
+{
+	int32 code = 1;
+    string message = 2;
+	string token =3;
+	UserInfo info = 4;
+}
+
+
+message PhoneCheckReq {
+	 string Phone = 1;
+	 string Password = 2;
+	 string AuthCode = 3;
+}
+
+message PhoneCheckInfo {
+	 int64 UserID = 1;
+	 string LoginName = 2;
+	 string NickName = 3;
+	 bool IsOnline = 4;
+}
+
+message PhoneCheckRsp {
+	int32 code = 1;
+	string message = 2;
+	repeated PhoneCheckInfo Infos = 3;
+	bool RegisterAccount = 4;	 //为true表示有注册
+	string InterErr = 5;
+}
+
+message PhoneSMSCodeLoginReq {
+	 string Phone = 1;
+	 int32 PartnerID = 2;
+	 int32 UserID = 3;
+	 int32 MarketID = 4;
+	 string Version = 5;
+	 int32 HallID = 6;
+	 string ClientName = 7;
+	 uint32 local_ip = 8;		//客户端本地IP，可能是个内网IP
+	 string phy_id = 9;
+	 string mac_address = 10;
+	 string location = 11;
+	 string AuthCode = 12;
+	 string Password = 13;
+}
+
+//用户下线
+message UserOfflineReq{
+	 int32 UserID = 3;
+}
+message UserOfflineRsp{
+	int32 code = 1;
+	string message = 2;
+}
+
+message GetQPUserInfoByParnerUserIDReq{
+     int32 partner_id = 1;
+     string unionid = 2;
+}
+
+message GetQPUserInfoByParnerUserIDRsp{
+	 int32 code = 1;
+     int32 user_id = 2 [(gogoproto.jsontag) = "user_id", (gogoproto.moretags)='validate:"required"'];         // 0: 表示没有绑定亲朋账号; >0:表示绑定的亲朋账号ID
+     int32 bind_state = 3 [(gogoproto.jsontag) = "bind_state", (gogoproto.moretags)='validate:"required"'];   // 1：可以绑定; 0：不能绑定
+     string message = 4;        // 不为空字符串：需要在客户端显示
+}
+
+message MarketInfoReq{
+	int32 market_id = 1;
+	int32 user_dbid = 2;
+	uint32 remote_ip = 3;
+	uint32 game_id = 4;
+	string phy_id = 5;
+}
+
+
+message AuthCodeConfirm{
+	 int32 userID = 1;
+	 string authcode = 2;
+}
+
+message AuthCodeConfirmRsp{
+	 int32 code = 1;
+	 int32 success = 2 [(gogoproto.jsontag) = "success", (gogoproto.moretags)='validate:"required"'];
+	 int32 userid = 3 [(gogoproto.jsontag) = "userid", (gogoproto.moretags)='validate:"required"'];
+	 string message = 4;
+}
+
+message FastRegisterReq{
+	 int32 reg_type = 1 [(gogoproto.jsontag) = "reg_type", (gogoproto.moretags)='validate:"required"'];
+	 uint32 remote_ip = 2;
+	 string phy_id = 3;
+}
+
+message FastRegisterRsp{
+	 int32 code = 1;
+	 string message = 2;
+	 int32 result = 3 [(gogoproto.jsontag) = "result", (gogoproto.moretags)='validate:"required"'];
+	 int32 user_id = 4;
+	 string name = 5;
+	 string password = 6;
+	 string nickname = 7;
+}
+
+//绑定第三方账号请求
+message PartnerBindReq
+{
+	int32  partner_id = 1;// 合作商 1：微信
+	string access_token = 2;
+	string openid = 3;
+	string unionid = 4;
+	int32  user_id = 5;//客户端不用填
+}
+
+//更换第三方账号绑定到新亲朋账号请求
+message PartnerChangeBindReq
+{
+	int32  partner_id = 1;// 合作商 1：微信
+	string access_token = 2;
+	string openid = 3;
+	string unionid = 4;
+	int32  user_id = 5;//需要绑定的账号ID
+    string name = 6;
+	string password = 7;
+    string authcode = 8;
+}
+
+//更换第三方账号绑定到新亲朋账号回应
+message PartnerChangeBindRsp
+{
+	int32  error_code = 1;	// 登录结果标识（将映射到结果字符串表 1表示成功）
+	string message = 2;	//错误信息
+    string authcode = 3;
+}

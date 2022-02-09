@@ -1,0 +1,122 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package boxActivity.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = true;
+
+service boxActivity {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+	rpc SayHello (HelloReq) returns (.google.protobuf.Empty);
+	rpc SayHelloURL(HelloReq) returns (HelloResp) {
+        option (google.api.http) = {
+            post:"/kratos-boxActivity/say_hello"
+        };
+    };
+
+    //获得宝箱（打旋亲友房触发）
+    rpc OnTriggerBox (TriggerInfoReq) returns (TriggerInfoRsp) {
+        option (google.api.http) = {
+            post:"/boxActivity/OnTriggerBox"
+        };
+    };
+
+    /*
+    客户端请求 查询宝箱接口
+    QueryHBBoxNumMoneyReq = 10711, --宝箱查询请求
+    QueryHBBoxNumMoneyRsp = 10712, --宝箱查询返回
+    */
+    rpc OnQueryBox (QueryHBBoxNumMoneyReq) returns (QueryHBBoxNumMoneyRsp) {
+        option (google.api.http) = {
+            post:"/boxActivity/OnQueryBox"
+        };
+    };
+
+    /*
+    客户端请求 打开宝箱接口
+    QueryHBUserOpenBoxAddReq = 10713, --开宝箱请求
+    QueryHBUserOpenBoxAddRsp = 10714, --开宝箱返回
+    */
+
+    rpc OnOpenBox (QueryHBUserOpenBoxAddReq) returns (QueryHBUserOpenBoxAddRsp) {
+        option (google.api.http) = {
+                post:"/boxActivity/OnOpenBox"
+        };
+    };
+}
+
+message HelloReq {
+	string name = 1 [(gogoproto.moretags)='form:"name" validate:"required"'];
+}
+
+message HelloResp {
+    string Content = 1 [(gogoproto.jsontag) = 'content'];
+}
+
+message CommonRsp {
+    int32 code      =1;
+    string message  =2;
+}
+
+message TriggerInfoReq
+{
+    int32 game_id = 1;			// 主游戏ID
+    int32 activity_id = 2;		// 主游戏ID
+    repeated int32 userIDS = 3; //参与玩家ID
+}
+
+message UserBoxInfo
+{
+    int32 userID = 1;   //玩家ID
+    int32 box = 2;      //获得的宝箱数
+}
+
+message TriggerInfoRsp
+{
+    int32 code      =1;
+    string message  =2;
+    repeated UserBoxInfo userBox = 3;   //宝箱详情
+}
+
+// 宝箱查询请求
+message QueryHBBoxNumMoneyReq{
+    int32 game_id = 1;				// 主游戏ID
+    int32 activity_id = 2;				// 主游戏ID
+	int32 user_id = 3;				// 用户ID
+}
+
+// 宝箱查询返回
+message QueryHBBoxNumMoneyRsp{
+    int32 code      =1;
+    string message  =2;
+	int32 display = 3;				// 宝箱活动是否已生效
+	int32 box_num = 4;				// 宝箱总数
+	int32 money_num = 5;			// 可提现金额(分)
+	int32 money_total = 6;		    // 累计提现金额(分)
+}
+
+// 开宝箱请求
+message QueryHBUserOpenBoxAddReq{
+    int32 game_id = 1;				// 主游戏ID
+    int32 activity_id = 2;			// 活动ID
+	int32 user_id = 3;				// 用户ID
+}
+
+// 开宝箱返回
+message QueryHBUserOpenBoxAddRsp{
+    int32 code      =1;
+    string message  =2;
+	int32 goods_type = 3;		// 物品类型(1=现金、2=实物)
+	int32 goods_id = 4;			// 物品ID
+	int32 goods_amount = 5;	// 物品数量
+}

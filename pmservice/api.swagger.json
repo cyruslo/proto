@@ -1,0 +1,1538 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/pmservice/OnAuthCodeConfirm": {
+            "post": {
+                "summary": "/pmservice/OnAuthCodeConfirm",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.AuthCodeConfirmRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.AuthCodeConfirm"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnFastRegisterRequest": {
+            "post": {
+                "summary": "/pmservice/OnFastRegisterRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.FastRegisterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.FastRegisterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnGetLoginNameByPartnerUserIDRequest": {
+            "post": {
+                "summary": "/pmservice/OnGetLoginNameByPartnerUserIDRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.GetLoginNameByPartnerUserIDRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.GetLoginNameByPartnerUserIDReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnGetMCIDByRoomSNRequest": {
+            "post": {
+                "summary": "/pmservice/OnGetMCIDByRoomSNRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.ClientGetMCIDByRoomSNRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.ClientGetMCIDByRoomSNReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnGetQPUserInfoByParnerUserIDRequest": {
+            "post": {
+                "summary": "/pmservice/OnGetQPUserInfoByParnerUserIDRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.GetQPUserInfoByParnerUserIDRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.GetQPUserInfoByParnerUserIDReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnGetSexRequest": {
+            "post": {
+                "summary": "/pmservice/OnGetSexRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.GetUserSexRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.GetUserSexReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnGetUserTicketRequest": {
+            "post": {
+                "summary": "/pmservice/OnGetUserTicketRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.GetUserTicketRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.GetUserTicketReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnMarketInfoRequest": {
+            "post": {
+                "summary": "/pmservice/OnMarketInfoRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.MarketInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnPartentLoginRequest": {
+            "post": {
+                "summary": "/pmservice/OnPartentLoginRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.LoginResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.PartnerUserLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnPartnerBindRequest": {
+            "post": {
+                "summary": "/pmservice/OnPartnerBindRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.PartnerBindRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.PartnerBindReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnPartnerChangeBindRequest": {
+            "post": {
+                "summary": "/pmservice/OnPartnerChangeBindRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.PartnerChangeBindRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.PartnerChangeBindReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnPhoneCheckRequest": {
+            "post": {
+                "summary": "/pmservice/OnPhoneCheckRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.PhoneCheckRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.PhoneCheckReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnPhoneSMSCodeLoginRequest": {
+            "post": {
+                "summary": "/pmservice/OnPhoneSMSCodeLoginRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.LoginResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.PhoneSMSCodeLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnRereshUserMoneyRequest": {
+            "post": {
+                "summary": "/pmservice/OnRereshUserMoneyRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.RefreshUserMoneyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.RefreshUserMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnThreeWayLoginWithDeviceInfoRequest": {
+            "post": {
+                "summary": "/pmservice/OnThreeWayLoginWithDeviceInfoRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.ThreeWayLoginWithDeviceRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.ThreeWayLoginWithDeviceReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnUserLogoutRequest": {
+            "post": {
+                "summary": "/pmservice/OnUserLogoutRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.UserLogoutRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.UserLogoutReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnUserOfflineRequest": {
+            "post": {
+                "summary": "/pmservice/OnUserOfflineRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.UserOfflineRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.UserOfflineReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnUserRegisterRequest": {
+            "post": {
+                "summary": "/pmservice/OnUserRegisterRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.UserRegisterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.UserRegisterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        },
+        "/pmservice/OnWeXinBindQPRequest": {
+            "post": {
+                "summary": "/pmservice/OnWeXinBindQPRequest",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.pmservice.service.v1.PartnerBindRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.pmservice.service.v1.WeXinBindQPReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "pmservice.service.v1.Pmservice"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".pmservice.service.v1.AuthCodeConfirm": {
+            "type": "object",
+            "properties": {
+                "userID": {
+                    "type": "integer"
+                },
+                "authcode": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.AuthCodeConfirmRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "success": {
+                    "type": "integer"
+                },
+                "userid": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "success",
+                "userid"
+            ]
+        },
+        ".pmservice.service.v1.ClientGetMCIDByRoomSNReq": {
+            "type": "object",
+            "properties": {
+                "iUserID": {
+                    "type": "integer"
+                },
+                "iRoomSN": {
+                    "type": "integer"
+                },
+                "phy_id": {
+                    "type": "string"
+                }
+            },
+            "description": "根据房间SN查找所在的场ID请求"
+        },
+        ".pmservice.service.v1.ClientGetMCIDByRoomSNRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "iMCID": {
+                    "type": "integer"
+                },
+                "has_password": {
+                    "type": "boolean"
+                }
+            },
+            "description": "根据房间SN查找所在的场ID应答"
+        },
+        ".pmservice.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.ExtendCoin": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "amount": {
+                    "type": "integer"
+                }
+            },
+            "description": "虚拟货币",
+            "required": [
+                "id",
+                "amount"
+            ]
+        },
+        ".pmservice.service.v1.FastRegisterReq": {
+            "type": "object",
+            "properties": {
+                "reg_type": {
+                    "type": "integer"
+                },
+                "remote_ip": {
+                    "type": "integer"
+                },
+                "phy_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "reg_type"
+            ]
+        },
+        ".pmservice.service.v1.FastRegisterRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "result"
+            ]
+        },
+        ".pmservice.service.v1.GameScore": {
+            "type": "object",
+            "properties": {
+                "score": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "integer"
+                },
+                "tax": {
+                    "type": "integer"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "ticket": {
+                    "type": "integer"
+                },
+                "extendCoin": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.pmservice.service.v1.ExtendCoin"
+                    }
+                }
+            }
+        },
+        ".pmservice.service.v1.GetLoginNameByPartnerUserIDReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "unionid": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.GetLoginNameByPartnerUserIDRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "loginName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "loginName"
+            ]
+        },
+        ".pmservice.service.v1.GetQPUserInfoByParnerUserIDReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "unionid": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.GetQPUserInfoByParnerUserIDRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "bind_state": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "user_id",
+                "bind_state"
+            ]
+        },
+        ".pmservice.service.v1.GetUserSexReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                }
+            },
+            "description": "获取性别"
+        },
+        ".pmservice.service.v1.GetUserSexRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "sex": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "sex"
+            ]
+        },
+        ".pmservice.service.v1.GetUserTicketReq": {
+            "type": "object",
+            "properties": {
+                "userid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".pmservice.service.v1.GetUserTicketRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "userid": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".pmservice.service.v1.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "info": {
+                    "$ref": "#/definitions/.pmservice.service.v1.UserInfo"
+                }
+            }
+        },
+        ".pmservice.service.v1.MarketInfoReq": {
+            "type": "object",
+            "properties": {
+                "market_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "remote_ip": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "phy_id": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.PartnerBindReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "access_token": {
+                    "type": "string"
+                },
+                "openid": {
+                    "type": "string"
+                },
+                "unionid": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            },
+            "description": "绑定第三方账号请求"
+        },
+        ".pmservice.service.v1.PartnerBindRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "error_message": {
+                    "type": "string"
+                }
+            },
+            "description": "绑定第三方账号回应"
+        },
+        ".pmservice.service.v1.PartnerChangeBindReq": {
+            "type": "object",
+            "properties": {
+                "partner_id": {
+                    "type": "integer"
+                },
+                "access_token": {
+                    "type": "string"
+                },
+                "openid": {
+                    "type": "string"
+                },
+                "unionid": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "authcode": {
+                    "type": "string"
+                }
+            },
+            "description": "更换第三方账号绑定到新亲朋账号请求"
+        },
+        ".pmservice.service.v1.PartnerChangeBindRsp": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "authcode": {
+                    "type": "string"
+                }
+            },
+            "description": "更换第三方账号绑定到新亲朋账号回应"
+        },
+        ".pmservice.service.v1.PartnerUserLoginReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "partner_id": {
+                    "type": "integer"
+                },
+                "access_token": {
+                    "type": "string"
+                },
+                "openid": {
+                    "type": "string"
+                },
+                "unionid": {
+                    "type": "string"
+                },
+                "mac_address": {
+                    "type": "string"
+                },
+                "phy_id": {
+                    "type": "string"
+                },
+                "local_ip": {
+                    "type": "integer"
+                },
+                "remote_ip": {
+                    "type": "integer"
+                },
+                "authcode": {
+                    "type": "string"
+                },
+                "deviceInfo": {
+                    "type": "string"
+                },
+                "platform": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "marketid": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "description": "微信登录"
+        },
+        ".pmservice.service.v1.PhoneCheckInfo": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "LoginName": {
+                    "type": "string"
+                },
+                "NickName": {
+                    "type": "string"
+                },
+                "IsOnline": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".pmservice.service.v1.PhoneCheckReq": {
+            "type": "object",
+            "properties": {
+                "Phone": {
+                    "type": "string"
+                },
+                "Password": {
+                    "type": "string"
+                },
+                "AuthCode": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.PhoneCheckRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Infos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.pmservice.service.v1.PhoneCheckInfo"
+                    }
+                },
+                "RegisterAccount": {
+                    "type": "boolean"
+                },
+                "InterErr": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.PhoneSMSCodeLoginReq": {
+            "type": "object",
+            "properties": {
+                "Phone": {
+                    "type": "string"
+                },
+                "PartnerID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "MarketID": {
+                    "type": "integer"
+                },
+                "Version": {
+                    "type": "string"
+                },
+                "HallID": {
+                    "type": "integer"
+                },
+                "ClientName": {
+                    "type": "string"
+                },
+                "local_ip": {
+                    "type": "integer"
+                },
+                "phy_id": {
+                    "type": "string"
+                },
+                "mac_address": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "AuthCode": {
+                    "type": "string"
+                },
+                "Password": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.RefreshUserMoneyReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".pmservice.service.v1.RefreshUserMoneyRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "integer"
+                },
+                "ticket": {
+                    "type": "integer"
+                },
+                "extendCoin": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.pmservice.service.v1.ExtendCoin"
+                    }
+                }
+            },
+            "required": [
+                "money",
+                "ticket"
+            ]
+        },
+        ".pmservice.service.v1.ThreeWayLoginWithDeviceReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "account": {
+                    "type": "string"
+                },
+                "password_md5": {
+                    "type": "string"
+                },
+                "mac_address": {
+                    "type": "string"
+                },
+                "phy_id": {
+                    "type": "string"
+                },
+                "authcode": {
+                    "type": "string"
+                },
+                "deviceInfo": {
+                    "type": "string"
+                },
+                "platform": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "marketid": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "description": "账号登录"
+        },
+        ".pmservice.service.v1.ThreeWayLoginWithDeviceRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "info": {
+                    "$ref": "#/definitions/.pmservice.service.v1.UserInfo"
+                }
+            }
+        },
+        ".pmservice.service.v1.UserInfo": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "integer"
+                },
+                "certification": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "Score": {
+                    "$ref": "#/definitions/.pmservice.service.v1.GameScore"
+                },
+                "confra_id": {
+                    "type": "integer"
+                },
+                "user_level": {
+                    "type": "integer"
+                },
+                "sex": {
+                    "type": "integer"
+                },
+                "avata_id": {
+                    "type": "integer"
+                },
+                "bank_money": {
+                    "type": "integer"
+                },
+                "authcode": {
+                    "type": "string"
+                },
+                "ext_error_code": {
+                    "type": "integer"
+                },
+                "ext_message": {
+                    "type": "string"
+                },
+                "ticket": {
+                    "type": "integer"
+                },
+                "exp": {
+                    "type": "integer"
+                },
+                "phone_no": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "wx_unionid": {
+                    "type": "string"
+                },
+                "loginName": {
+                    "type": "string"
+                },
+                "MainGameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".pmservice.service.v1.UserLogoutReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "certification": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.UserLogoutRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.UserOfflineReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "description": "用户下线"
+        },
+        ".pmservice.service.v1.UserOfflineRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".pmservice.service.v1.UserRegisterReq": {
+            "type": "object",
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "nick_name": {
+                    "type": "string"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "remote_ip": {
+                    "type": "integer"
+                },
+                "souce": {
+                    "type": "integer"
+                },
+                "phy_id": {
+                    "type": "string"
+                }
+            },
+            "description": "账号注册"
+        },
+        ".pmservice.service.v1.UserRegisterRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".pmservice.service.v1.WeXinBindQPReq": {
+            "type": "object",
+            "properties": {
+                "unionid": {
+                    "type": "string"
+                },
+                "account": {
+                    "type": "string"
+                },
+                "password_md5": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,420 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "hallactivity/JabBubble": {
+            "post": {
+                "summary": "戳泡泡",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.HallActivity.service.v1.HallBubbleResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.HallBubbleReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        },
+        "hallactivity/OnUserLogin": {
+            "post": {
+                "summary": "客户端登录后获取红包相关的数据",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.UserLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        },
+        "hallactivity/OpenRedEnvelope": {
+            "post": {
+                "summary": "开红包",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.HallActivity.service.v1.HallOpenRedEnvelopesRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.HallOpenRedEnvelopesReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        },
+        "hallactivity/QueryGameActivityInfo": {
+            "post": {
+                "summary": "查询体验场活动信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.HallActivity.service.v1.QueryGameActivityInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.QueryGameActivityInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        },
+        "hallactivity/ShareAddCount": {
+            "post": {
+                "summary": "分享增加可抢红包的次数",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.HallActivity.service.v1.ShareData"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.ShareAddCountReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        },
+        "hallactivity/UpdateGameActivityInfo": {
+            "post": {
+                "summary": "更新体验场活动次数信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.HallActivity.service.v1.UpdateGameActivityInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "HallActivity.service.v1.HallActivity"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".HallActivity.service.v1.HallBubbleReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "bubles_id": {
+                    "type": "integer"
+                }
+            },
+            "description": "////////////////戳泡泡"
+        },
+        ".HallActivity.service.v1.HallBubbleResp": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "can_get": {
+                    "type": "boolean"
+                },
+                "bubles_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".HallActivity.service.v1.HallOpenRedEnvelopesReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "avata": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                }
+            },
+            "description": "请求打开红包"
+        },
+        ".HallActivity.service.v1.HallOpenRedEnvelopesRsp": {
+            "type": "object",
+            "properties": {
+                "bonus_pool": {
+                    "type": "integer"
+                },
+                "red_envelopes_count": {
+                    "type": "integer"
+                },
+                "user_coin": {
+                    "type": "integer"
+                },
+                "red_envelopes_info": {
+                    "$ref": "#/definitions/.HallActivity.service.v1.RedEnvelopesInfo"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            },
+            "description": "玩家打开红包返回"
+        },
+        ".HallActivity.service.v1.QueryGameActivityInfoReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                }
+            },
+            "description": "//////////////////// 查询活动信息"
+        },
+        ".HallActivity.service.v1.QueryGameActivityInfoRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        ".HallActivity.service.v1.RedEnvelopesInfo": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "avata": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "tick": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "coin": {
+                    "type": "integer"
+                },
+                "luck_coin": {
+                    "type": "integer"
+                },
+                "luck_type": {
+                    "type": "integer"
+                },
+                "grand_prize": {
+                    "type": "boolean"
+                }
+            },
+            "description": "红包信息"
+        },
+        ".HallActivity.service.v1.ShareAddCountReq": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".HallActivity.service.v1.ShareData": {
+            "type": "object",
+            "properties": {
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "share": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".HallActivity.service.v1.UpdateGameActivityInfoReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "user_dbid": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".HallActivity.service.v1.UserLoginReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+    }
+}

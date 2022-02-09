@@ -1,0 +1,756 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/halldraw/GetActBoxHistory": {
+            "post": {
+                "summary": "/halldraw/GetActBoxHistory",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxHistoryRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxHistoryReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/GetActBoxReward": {
+            "post": {
+                "summary": "/halldraw/GetActBoxReward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/GetActBoxRewardStatus": {
+            "post": {
+                "summary": "/halldraw/GetActBoxRewardStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxRewardStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_GetActBoxRewardStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/compose": {
+            "post": {
+                "summary": "/halldraw/compose",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_ComposeRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_ComposeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/draw": {
+            "post": {
+                "summary": "/halldraw/draw",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_DrawRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_DrawReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/exchange": {
+            "post": {
+                "summary": "/halldraw/exchange",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_ExchangeRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_ExchangeReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/list": {
+            "post": {
+                "summary": "/halldraw/list",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_DrawListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_DrawListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/record": {
+            "post": {
+                "summary": "/halldraw/record",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_RecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_RecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/refresh": {
+            "post": {
+                "summary": "/halldraw/refresh",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_RefreshRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_RefreshReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        },
+        "/halldraw/share": {
+            "post": {
+                "summary": "/halldraw/share",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.halldraw.service.v1.Player_ShareRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.halldraw.service.v1.Player_ShareReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "halldraw.service.v1.halldraw"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".halldraw.service.v1.Player_ComposeReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_ComposeRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "item": {
+                    "$ref": "#/definitions/.halldraw.service.v1.props"
+                },
+                "ret_coin": {
+                    "type": "integer"
+                },
+                "fragment": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "fragment"
+            ]
+        },
+        ".halldraw.service.v1.Player_DrawListReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_DrawListRsp": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.halldraw.service.v1.props"
+                    }
+                },
+                "time_start": {
+                    "type": "integer"
+                },
+                "time_end": {
+                    "type": "integer"
+                },
+                "fragment": {
+                    "type": "integer"
+                },
+                "refresh_times": {
+                    "type": "integer"
+                },
+                "consume_type": {
+                    "type": "integer"
+                },
+                "consume_num": {
+                    "type": "integer"
+                },
+                "need_fragment": {
+                    "type": "integer"
+                },
+                "have_Dragon": {
+                    "type": "boolean"
+                },
+                "result": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "refresh_times",
+                "have_Dragon"
+            ]
+        },
+        ".halldraw.service.v1.Player_DrawReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "times": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "nick_name": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_DrawRsp": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.halldraw.service.v1.props"
+                    }
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "ret_coin": {
+                    "type": "integer"
+                },
+                "coin_num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_ExchangeReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_ExchangeRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "fragment": {
+                    "type": "integer"
+                },
+                "ret_coin": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "fragment"
+            ]
+        },
+        ".halldraw.service.v1.Player_GetActBoxHistoryReq": {
+            "type": "object",
+            "properties": {
+                "top_num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_GetActBoxHistoryRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "history_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.halldraw.service.v1.history"
+                    }
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_GetActBoxRewardReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_GetActBoxRewardRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "box_reward": {
+                    "$ref": "#/definitions/.halldraw.service.v1.box"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_GetActBoxRewardStatusReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_GetActBoxRewardStatusRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "box_id": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "status",
+                "box_id"
+            ]
+        },
+        ".halldraw.service.v1.Player_RecordReq": {
+            "type": "object",
+            "properties": {}
+        },
+        ".halldraw.service.v1.Player_RecordRsp": {
+            "type": "object",
+            "properties": {
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.halldraw.service.v1.record"
+                    }
+                },
+                "result": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_RefreshReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_RefreshRsp": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.halldraw.service.v1.props"
+                    }
+                },
+                "refresh_times": {
+                    "type": "integer"
+                },
+                "result": {
+                    "type": "integer"
+                },
+                "consume_type": {
+                    "type": "integer"
+                },
+                "consume_num": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "refresh_times"
+            ]
+        },
+        ".halldraw.service.v1.Player_ShareReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".halldraw.service.v1.Player_ShareRsp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "refresh_times": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "refresh_times"
+            ]
+        },
+        ".halldraw.service.v1.box": {
+            "type": "object",
+            "properties": {
+                "box_id": {
+                    "type": "integer"
+                },
+                "box_name": {
+                    "type": "string"
+                },
+                "reward_type": {
+                    "type": "integer"
+                },
+                "reward_num": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "box_id"
+            ]
+        },
+        ".halldraw.service.v1.history": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "box_reward": {
+                    "$ref": "#/definitions/.halldraw.service.v1.box"
+                }
+            }
+        },
+        ".halldraw.service.v1.props": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "num": {
+                    "type": "integer"
+                },
+                "level": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".halldraw.service.v1.record": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "nick_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

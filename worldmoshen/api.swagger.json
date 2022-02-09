@@ -1,0 +1,2302 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/world/OnAwardGoldPoolUserLog": {
+            "post": {
+                "summary": "/world/OnAwardGoldPoolUserLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.AwardGoldPoolUserLogReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnAwardUserTelephoneBill": {
+            "post": {
+                "summary": "/world/OnAwardUserTelephoneBill",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.AwardUserTelephoneBillReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnBaseUserInfoGet": {
+            "post": {
+                "summary": "/world/OnBaseUserInfoGet",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.BaseUserInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.BaseUserInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnCommonUserLogAdd": {
+            "post": {
+                "summary": "/world/OnCommonUserLogAdd",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.CommonUserLogAddReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnCountPlayer": {
+            "post": {
+                "summary": "/world/OnCountPlayer",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.CountPlayerReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnCreateCustomRoom": {
+            "post": {
+                "summary": "/world/OnCreateCustomRoom",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CreateCustomRoomRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.CreateCustomRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnEnterRoom": {
+            "post": {
+                "summary": "/world/OnEnterRoom",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.EnterRoomRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.EnterRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnEveryGameLog": {
+            "post": {
+                "summary": "/world/OnEveryGameLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.EveryGameLogReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGameLogReturnRatesAdd": {
+            "post": {
+                "summary": "/world/OnGameLogReturnRatesAdd",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GameLogReturnRatesAddReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGetJackpotPool": {
+            "post": {
+                "summary": "/world/OnGetJackpotPool",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.GetJackpotPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GetJackpotPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGetJackpotRecord": {
+            "post": {
+                "summary": "/world/OnGetJackpotRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.GetJackpotRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GetJackpotRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGetVipInfo": {
+            "post": {
+                "summary": "/world/OnGetVipInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.GetVipInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GetVipInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGetVipInfos": {
+            "post": {
+                "summary": "/world/OnGetVipInfos",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.GetVipInfosRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GetVipInfosReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnGiftTicketUserTicketUpdate": {
+            "post": {
+                "summary": "/world/OnGiftTicketUserTicketUpdate",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.GiftTicketUserTicketUpdateRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.GiftTicketUserTicketUpdateReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnInsertJackpotRecord": {
+            "post": {
+                "summary": "/world/OnInsertJackpotRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.InsertJackpotRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnLeaveRoom": {
+            "post": {
+                "summary": "/world/OnLeaveRoom",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.LeaveRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnLeaveRoomLog": {
+            "post": {
+                "summary": "/world/OnLeaveRoomLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.LeaveRoomLogReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnNotifyLoginSucess": {
+            "post": {
+                "summary": "/world/OnNotifyLoginSucess",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.NotifyLoginSucessReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnPublishMail": {
+            "post": {
+                "summary": "/world/OnPublishMail",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.PublishMailRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.PublishMailReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnRefreshUserMoney": {
+            "post": {
+                "summary": "/world/OnRefreshUserMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.RefreshUserMoneyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.RefreshUserMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnRemoveUserLastMoney": {
+            "post": {
+                "summary": "/world/OnRemoveUserLastMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.RemoveUserLastMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnSaveVipPoint": {
+            "post": {
+                "summary": "/world/OnSaveVipPoint",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.SaveVipPointReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnShutDwon": {
+            "post": {
+                "summary": "/world/OnShutDwon",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.ShutDwonReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnStartPrevent": {
+            "post": {
+                "summary": "/world/OnStartPrevent",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.StartPreventReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnTableRecordUpdate": {
+            "post": {
+                "summary": "/world/OnTableRecordUpdate",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.TableRecordUpdateReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnTurntableRecord": {
+            "post": {
+                "summary": "/world/OnTurntableRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.TurntableRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnTurntableRecordInster": {
+            "post": {
+                "summary": "/world/OnTurntableRecordInster",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.TurntableRecordInsterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnTurntableRecordLog": {
+            "post": {
+                "summary": "/world/OnTurntableRecordLog",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.TurntableRecordLogReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUpdatEextendCoin": {
+            "post": {
+                "summary": "/world/OnUpdatEextendCoin",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.UpdatEextendCoinRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UpdatEextendCoinReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUpdateAwardGoldPool": {
+            "post": {
+                "summary": "/world/OnUpdateAwardGoldPool",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.UpdateAwardGoldPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UpdateAwardGoldPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUpdateJackpotPool": {
+            "post": {
+                "summary": "/world/OnUpdateJackpotPool",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UpdateJackpotPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUpdateMoney": {
+            "post": {
+                "summary": "/world/OnUpdateMoney",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.UpdateMoneyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UpdateMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUpdatePreventCheat": {
+            "post": {
+                "summary": "/world/OnUpdatePreventCheat",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.UpdatePreventCheatRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UpdatePreventCheatReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        },
+        "/world/OnUserInfoVipGet": {
+            "post": {
+                "summary": "/world/OnUserInfoVipGet",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.world.service.v1.UserInfoVipGetRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.world.service.v1.UserInfoVipGetReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "world.service.v1.World"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".world.service.v1.AwardGoldPoolUserLogReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "UserID": {
+                    "type": "string"
+                },
+                "PoolID": {
+                    "type": "string"
+                },
+                "GoldNum": {
+                    "type": "string"
+                },
+                "PlayerName": {
+                    "type": "string"
+                },
+                "GoldType": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.AwardUserTelephoneBillReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Phone": {
+                    "type": "string"
+                },
+                "Par": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Sign": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.BaseUserInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "string"
+                }
+            },
+            "description": "获取玩家基础信息"
+        },
+        ".world.service.v1.BaseUserInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "baseuserinfoget": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.CommonUserLogAddReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "LogType": {
+                    "type": "integer"
+                },
+                "Data": {
+                    "type": "string"
+                }
+            },
+            "description": "登录日志"
+        },
+        ".world.service.v1.CountPlayerReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "Num": {
+                    "type": "string"
+                }
+            },
+            "description": "在线人数"
+        },
+        ".world.service.v1.CreateCustomRoomReq": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "type": "string"
+                },
+                "RoomPassword": {
+                    "type": "string"
+                }
+            },
+            "description": "创建亲友房"
+        },
+        ".world.service.v1.CreateCustomRoomRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "roomnum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.EnterRoomReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                }
+            },
+            "description": "进房"
+        },
+        ".world.service.v1.EnterRoomRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "dbserverid": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.EveryGameLogReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "TableID": {
+                    "type": "string"
+                },
+                "Money": {
+                    "type": "string"
+                },
+                "Gameno": {
+                    "type": "string"
+                },
+                "Chairno": {
+                    "type": "string"
+                },
+                "Tax": {
+                    "type": "string"
+                },
+                "Balance": {
+                    "type": "string"
+                },
+                "Iscoingame": {
+                    "type": "string"
+                },
+                "BIsTrusteeship": {
+                    "type": "string"
+                }
+            },
+            "description": "每局日志",
+            "required": [
+                "GameID",
+                "ArenaID",
+                "ServerID",
+                "PlayerID",
+                "TableID",
+                "Money",
+                "Gameno",
+                "Chairno",
+                "Tax",
+                "Balance",
+                "Iscoingame",
+                "BIsTrusteeship"
+            ]
+        },
+        ".world.service.v1.GameLogReturnRatesAddReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayType": {
+                    "type": "string"
+                },
+                "TheoryReRates": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Consume": {
+                    "type": "integer"
+                },
+                "SavgGain": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.GetJackpotPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "Jtype": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.GetJackpotPoolRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Num": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.GetJackpotRecordReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "Jtype": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.GetJackpotRecordRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.world.service.v1.Record"
+                    }
+                }
+            }
+        },
+        ".world.service.v1.GetVipInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "string"
+                }
+            },
+            "description": "vip"
+        },
+        ".world.service.v1.GetVipInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "grade": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "frequenterScore": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "advDays": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.GetVipInfosReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.GetVipInfosRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "isvip": {
+                    "type": "integer"
+                },
+                "ispermanentvip": {
+                    "type": "integer"
+                },
+                "endTime": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.GiftTicketUserTicketUpdateReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "Amount": {
+                    "type": "integer"
+                },
+                "IP": {
+                    "type": "string"
+                },
+                "Memo": {
+                    "type": "string"
+                },
+                "SourceType": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.GiftTicketUserTicketUpdateRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "CurrentTicket": {
+                    "type": "integer"
+                },
+                "DBMsg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.InsertJackpotRecordReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "Jtype": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.LeaveRoomLogReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                },
+                "WinCount": {
+                    "type": "string"
+                },
+                "LoseCount": {
+                    "type": "string"
+                },
+                "DrawCount": {
+                    "type": "string"
+                },
+                "FleeCount": {
+                    "type": "string"
+                },
+                "Score": {
+                    "type": "string"
+                },
+                "LoginTime": {
+                    "type": "string"
+                },
+                "GameTime": {
+                    "type": "string"
+                }
+            },
+            "description": "退房日志"
+        },
+        ".world.service.v1.LeaveRoomReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                },
+                "LoginMoney": {
+                    "type": "string"
+                },
+                "WantedMoney": {
+                    "type": "string"
+                },
+                "Ticket": {
+                    "type": "string"
+                },
+                "Tax": {
+                    "type": "string"
+                },
+                "TiSysType": {
+                    "type": "string"
+                }
+            },
+            "description": "退房"
+        },
+        ".world.service.v1.NotifyLoginSucessReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "IP": {
+                    "type": "string"
+                },
+                "ClientVersion": {
+                    "type": "string"
+                }
+            },
+            "description": "WMC_NotifyLoginSucess"
+        },
+        ".world.service.v1.PublishMailReq": {
+            "type": "object",
+            "properties": {
+                "Title": {
+                    "type": "string"
+                },
+                "Content": {
+                    "type": "string"
+                },
+                "Sender": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "StartTime": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "string"
+                },
+                "SendType": {
+                    "type": "integer"
+                },
+                "UserIDS": {
+                    "type": "string"
+                },
+                "RewordInfo": {
+                    "type": "string"
+                }
+            },
+            "description": "邮件"
+        },
+        ".world.service.v1.PublishMailRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "msgID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.Record": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "arenaid": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "integer"
+                },
+                "robot": {
+                    "type": "integer"
+                },
+                "time": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.RefreshUserMoneyReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "TiSysType": {
+                    "type": "string"
+                }
+            },
+            "description": "更新金币"
+        },
+        ".world.service.v1.RefreshUserMoneyRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "playerID": {
+                    "type": "integer"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "ticket": {
+                    "type": "integer"
+                },
+                "extCoin": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.RemoveUserLastMoneyReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "string"
+                }
+            },
+            "description": "删除最后金币记录"
+        },
+        ".world.service.v1.SaveVipPointReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "Score": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                }
+            },
+            "description": "vip点"
+        },
+        ".world.service.v1.ShutDwonReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                }
+            },
+            "description": "停服"
+        },
+        ".world.service.v1.StartPreventReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.TableRecordUpdateReq": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "type": "string"
+                },
+                "ArenaId": {
+                    "type": "string"
+                },
+                "RoomNum": {
+                    "type": "string"
+                },
+                "Password": {
+                    "type": "string"
+                },
+                "AddNew": {
+                    "type": "string"
+                }
+            },
+            "description": "每局更新记录"
+        },
+        ".world.service.v1.TurntableRecordInsterReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Kind": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.TurntableRecordLogReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Kind": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.TurntableRecordReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "GameUrl": {
+                    "type": "string"
+                }
+            },
+            "description": "TurntableRecord"
+        },
+        ".world.service.v1.UpdatEextendCoinReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "PlayerID": {
+                    "type": "string"
+                },
+                "CoinType": {
+                    "type": "string"
+                },
+                "UpdateAmount": {
+                    "type": "string"
+                },
+                "SrcType": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                }
+            },
+            "description": "更新外部货币"
+        },
+        ".world.service.v1.UpdatEextendCoinRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.UpdateAwardGoldPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "GoldType": {
+                    "type": "string"
+                },
+                "GoldNum1": {
+                    "type": "string"
+                },
+                "GoldNum2": {
+                    "type": "string"
+                },
+                "GoldNum3": {
+                    "type": "string"
+                },
+                "GoldNum4": {
+                    "type": "string"
+                },
+                "GoldNum5": {
+                    "type": "string"
+                }
+            },
+            "description": "个人奖池"
+        },
+        ".world.service.v1.UpdateAwardGoldPoolRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "goldNum1": {
+                    "type": "integer"
+                },
+                "goldNum2": {
+                    "type": "integer"
+                },
+                "goldNum3": {
+                    "type": "integer"
+                },
+                "goldNum4": {
+                    "type": "integer"
+                },
+                "goldNum5": {
+                    "type": "integer"
+                },
+                "goldSumNum1": {
+                    "type": "integer"
+                },
+                "goldSumNum2": {
+                    "type": "integer"
+                },
+                "goldSumNum3": {
+                    "type": "integer"
+                },
+                "goldSumNum4": {
+                    "type": "integer"
+                },
+                "goldSumNum5": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.UpdateJackpotPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "Jtype": {
+                    "type": "string"
+                },
+                "Detal": {
+                    "type": "string"
+                },
+                "Add": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.UpdateMoneyReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "string"
+                },
+                "UpdateAmount": {
+                    "type": "string"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "IP": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                },
+                "TaxAmount": {
+                    "type": "string"
+                },
+                "IsCheckInRoom": {
+                    "type": "string"
+                },
+                "SysType": {
+                    "type": "string"
+                },
+                "GameID": {
+                    "type": "string"
+                }
+            },
+            "description": "更新金币"
+        },
+        ".world.service.v1.UpdateMoneyRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "delta": {
+                    "type": "integer"
+                },
+                "playerID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.UpdatePreventCheatReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "ArenaID": {
+                    "type": "string"
+                },
+                "ServerID": {
+                    "type": "string"
+                },
+                "goldNUM": {
+                    "type": "string"
+                }
+            },
+            "description": "更新防刷池"
+        },
+        ".world.service.v1.UpdatePreventCheatRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "goldNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".world.service.v1.UserInfoVipGetReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "string"
+                },
+                "UserID": {
+                    "type": "string"
+                }
+            }
+        },
+        ".world.service.v1.UserInfoVipGetRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "supuserID": {
+                    "type": "integer"
+                },
+                "supsuserID": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

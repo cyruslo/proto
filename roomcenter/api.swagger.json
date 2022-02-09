@@ -1,0 +1,925 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/roomcenter/AllocCustomRoom": {
+            "post": {
+                "summary": "根据桌子数分配游戏服",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.AllocRoomRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.AllocRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/AllocRoom": {
+            "post": {
+                "summary": "客户端获取进入的游戏房间服务器地址",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.AllocRoomRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.AllocRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/HeartBeat": {
+            "post": {
+                "summary": "游戏逻辑服上报心跳",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.HeartBeatReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/MultiPlayerAllocRoom": {
+            "post": {
+                "summary": "多人分配一个房间",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.AllocRoomRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.MultiPlayerAllocRoomReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/OnGetCustomRoomAddress": {
+            "post": {
+                "summary": "根据号码，获取游戏服务器地址",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.GetCustomRoomAddressResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.GetCustomRoomAddress"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/OnUpdateCustomRoomNum": {
+            "post": {
+                "summary": "上报号码",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.UpdateCustomRoomNum"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/PushOnlineStatus": {
+            "post": {
+                "summary": "游戏逻辑服上报房间上下线状态（游戏服，启动和关闭时调用）",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.OnlineStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/PushRoomStatus": {
+            "post": {
+                "summary": "游戏逻辑服上报更新房间人数",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.CommonRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.PushRoomStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/QueryArena": {
+            "post": {
+                "summary": "查询场列表",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.QueryArenaRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.QueryArenaReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/QueryArenaNewVersion": {
+            "post": {
+                "summary": "查询场待更新版本",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.QueryArenaNewVersionRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.QueryArenaNewVersionReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/QueryRoomList": {
+            "post": {
+                "summary": "查询房间信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.QueryRoomListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.QueryRoomListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        },
+        "/roomcenter/UpdateArenaNewVersion": {
+            "post": {
+                "summary": "更新场对外",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.roomcenter.service.v1.UpdateArenaNewVersionRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.roomcenter.service.v1.UpdateArenaNewVersionReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "roomcenter.service.v1.roomcenter"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".roomcenter.service.v1.AllocRoomReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                }
+            },
+            "description": "客户端请求分配房间",
+            "required": [
+                "GameID",
+                "GroupID"
+            ]
+        },
+        ".roomcenter.service.v1.AllocRoomRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "RoomID": {
+                    "type": "string"
+                },
+                "Address": {
+                    "type": "string"
+                },
+                "MaxTableNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".roomcenter.service.v1.ArenaInfo": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "MinMoney": {
+                    "type": "integer"
+                },
+                "MaxMoney": {
+                    "type": "integer"
+                },
+                "Expand": {
+                    "type": "string"
+                }
+            }
+        },
+        ".roomcenter.service.v1.ArenaVerInfo": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "Version": {
+                    "type": "integer"
+                },
+                "Switch": {
+                    "type": "integer"
+                },
+                "RoomIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "LastVersion": {
+                    "type": "integer"
+                },
+                "LastRoomIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".roomcenter.service.v1.CommonRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".roomcenter.service.v1.GetCustomRoomAddress": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomNum": {
+                    "type": "integer"
+                }
+            },
+            "description": "根据房号，获取游戏服务地址",
+            "required": [
+                "RoomNum"
+            ]
+        },
+        ".roomcenter.service.v1.GetCustomRoomAddressResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Address": {
+                    "type": "string"
+                },
+                "TableID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".roomcenter.service.v1.HeartBeatReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                }
+            },
+            "description": "心跳",
+            "required": [
+                "GameID",
+                "GroupID",
+                "RoomID"
+            ]
+        },
+        ".roomcenter.service.v1.MultiPlayerAllocRoomReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "UserList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "required": [
+                "GameID",
+                "GroupID",
+                "UserList"
+            ]
+        },
+        ".roomcenter.service.v1.OnlineStatusReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                },
+                "IsOnLine": {
+                    "type": "boolean"
+                },
+                "Total": {
+                    "type": "integer"
+                },
+                "Address": {
+                    "type": "string"
+                },
+                "Version": {
+                    "type": "integer"
+                },
+                "MaxTableNum": {
+                    "type": "integer"
+                }
+            },
+            "description": "游戏逻辑服上报房间状态",
+            "required": [
+                "GameID",
+                "GroupID",
+                "RoomID",
+                "Total",
+                "Address",
+                "Version"
+            ]
+        },
+        ".roomcenter.service.v1.PushRoomStatusReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                },
+                "Count": {
+                    "type": "integer"
+                },
+                "Total": {
+                    "type": "integer"
+                },
+                "TableNum": {
+                    "type": "integer"
+                },
+                "TableID": {
+                    "type": "integer"
+                },
+                "TableUserNum": {
+                    "type": "integer"
+                },
+                "TablePwd": {
+                    "type": "boolean"
+                },
+                "TableType": {
+                    "type": "string"
+                },
+                "RobotCount": {
+                    "type": "integer"
+                }
+            },
+            "description": "游戏逻辑服上报更新房间人数和桌子数",
+            "required": [
+                "GameID",
+                "GroupID",
+                "RoomID",
+                "Total"
+            ]
+        },
+        ".roomcenter.service.v1.QueryArenaNewVersionReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".roomcenter.service.v1.QueryArenaNewVersionRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "ArenaList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.roomcenter.service.v1.ArenaVerInfo"
+                    }
+                }
+            }
+        },
+        ".roomcenter.service.v1.QueryArenaReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".roomcenter.service.v1.QueryArenaRsp": {
+            "type": "object",
+            "properties": {
+                "ArenaList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.roomcenter.service.v1.ArenaInfo"
+                    }
+                }
+            }
+        },
+        ".roomcenter.service.v1.QueryRoomListReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "GroupID"
+            ]
+        },
+        ".roomcenter.service.v1.QueryRoomListRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "RoomList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.roomcenter.service.v1.RoomInfo"
+                    }
+                }
+            }
+        },
+        ".roomcenter.service.v1.RoomInfo": {
+            "type": "object",
+            "properties": {
+                "RoomID": {
+                    "type": "string"
+                },
+                "UserNum": {
+                    "type": "integer"
+                },
+                "UserTotal": {
+                    "type": "integer"
+                },
+                "Address": {
+                    "type": "string"
+                },
+                "TableList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.roomcenter.service.v1.TableInfo"
+                    }
+                }
+            }
+        },
+        ".roomcenter.service.v1.TableInfo": {
+            "type": "object",
+            "properties": {
+                "TableID": {
+                    "type": "integer"
+                },
+                "UserNum": {
+                    "type": "integer"
+                },
+                "TablePwd": {
+                    "type": "boolean"
+                },
+                "TableType": {
+                    "type": "string"
+                }
+            }
+        },
+        ".roomcenter.service.v1.UpdateArenaNewVersionReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "GroupID": {
+                    "type": "integer"
+                },
+                "Version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "GroupID",
+                "Version"
+            ]
+        },
+        ".roomcenter.service.v1.UpdateArenaNewVersionRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".roomcenter.service.v1.UpdateCustomRoomNum": {
+            "type": "object",
+            "properties": {
+                "GroupID": {
+                    "type": "integer"
+                },
+                "RoomID": {
+                    "type": "string"
+                },
+                "TableID": {
+                    "type": "integer"
+                },
+                "RoomNum": {
+                    "type": "integer"
+                },
+                "AddNew": {
+                    "type": "boolean"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "GameID": {
+                    "type": "integer"
+                }
+            },
+            "description": "创建房间，上报号码",
+            "required": [
+                "GroupID",
+                "RoomID",
+                "RoomNum",
+                "GameID"
+            ]
+        }
+    }
+}

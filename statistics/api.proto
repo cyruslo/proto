@@ -1,0 +1,105 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package statistic.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Statistic {
+     rpc System (StatisticsSystemReq) returns (SystemRsp){
+         option (google.api.http) = {
+             post:"/statistics/system"
+         };
+     };
+     rpc Monster (StatisticsMonsterReq) returns (MonsterRsp){
+         option (google.api.http) = {
+             post:"/statistics/monster"
+         };
+     };
+     rpc MutiSystem (StatisticsMutiSystemReq) returns (MutiSystemRsp){
+         option (google.api.http) = {
+             post:"/statistics/mutisystem"
+         };
+     };
+}
+
+message StatisticsSystemReq {
+    int32 gameID = 1 [(gogoproto.jsontag) = "game_id", (gogoproto.moretags) = 'form:"game_id" validate:"required"'];
+    int32 arenaID = 2 [(gogoproto.jsontag) = "arena_id", (gogoproto.moretags) = 'form:"arena_id" validate:"required"'];
+    int32 roomID = 3 [(gogoproto.jsontag) = "room_id", (gogoproto.moretags) = 'form:"room_id"'];
+
+    message SystemDetail {
+        int32 id = 1 [(gogoproto.jsontag) = "id", (gogoproto.moretags) = 'form:"id"  validate:"required"'];
+        string name = 2 [(gogoproto.jsontag) = "name", (gogoproto.moretags) = 'form:"name"  validate:"required"'];
+        int64 cost = 3 [(gogoproto.jsontag) = "cost", (gogoproto.moretags) = 'form:"cost" validate:"required"'];
+        int64 earn = 4 [(gogoproto.jsontag) = "earn", (gogoproto.moretags) = 'form:"earn" validate:"required"'];
+    }
+
+    repeated SystemDetail systems = 4 [(gogoproto.jsontag) = "systems", (gogoproto.moretags) = 'form:"systems"'];
+
+}
+
+
+message StatisticsMonsterReq {
+    int32 gameID = 1  [(gogoproto.jsontag) = "game_id", (gogoproto.moretags) = 'form:"game_id"  validate:"required"'];
+    int32 arenaID = 2 [(gogoproto.jsontag) = "arena_id", (gogoproto.moretags) = 'form:"arena_id"  validate:"required"'];
+    int32 roomID = 3 [(gogoproto.jsontag) = "room_id", (gogoproto.moretags) = 'form:"room_id"'];
+
+    message MonsterDetail {
+        int32 id = 1 [(gogoproto.jsontag) = "id", (gogoproto.moretags) = 'form:"id"  validate:"required"'];
+        string name = 2 [(gogoproto.jsontag) = "name", (gogoproto.moretags) = 'form:"name"  validate:"required"'];
+        int64 tax = 3 [(gogoproto.jsontag) = "tax", (gogoproto.moretags) = 'form:"tax"'];
+        int64 give = 4 [(gogoproto.jsontag) = "give", (gogoproto.moretags) = 'form:"give"'];
+        int64 capture = 5 [(gogoproto.jsontag) = "capture", (gogoproto.moretags) = 'form:"capture"'];
+        int64 cost = 6 [(gogoproto.jsontag) = "cost", (gogoproto.moretags) = 'form:"cost"'];
+        int64 earn = 7 [(gogoproto.jsontag) = "earn", (gogoproto.moretags) = 'form:"earn"'];
+        int64 hit = 8 [(gogoproto.jsontag) = "hit", (gogoproto.moretags) = 'form:"hit"'];
+    }
+
+    repeated MonsterDetail monsters = 4 [(gogoproto.jsontag) = "monsters", (gogoproto.moretags) = 'form:"monsters"'];
+}
+
+message StatisticsMutiSystemReq {
+    int32 gameID = 1 [(gogoproto.jsontag) = "game_id", (gogoproto.moretags) = 'form:"game_id" validate:"required"'];
+    int32 arenaID = 2 [(gogoproto.jsontag) = "arena_id", (gogoproto.moretags) = 'form:"arena_id" validate:"required"'];
+    string roomID = 3 [(gogoproto.jsontag) = "room_id", (gogoproto.moretags) = 'form:"room_id"'];
+
+    message SystemDetail {
+        int32 id = 1 [(gogoproto.jsontag) = "id", (gogoproto.moretags) = 'form:"id"  validate:"required"'];
+        string name = 2 [(gogoproto.jsontag) = "name", (gogoproto.moretags) = 'form:"name"  validate:"required"'];
+        int64 value = 3 [(gogoproto.jsontag) = "value", (gogoproto.moretags) = 'form:"value" validate:"required"'];
+        int32 type = 4 [(gogoproto.jsontag) = "type", (gogoproto.moretags) = 'form:"type" validate:"required"'];
+    }
+
+    repeated SystemDetail systems = 4 [(gogoproto.jsontag) = "systems", (gogoproto.moretags) = 'form:"systems"'];
+
+}
+
+
+
+
+message SystemRsp {
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+}
+
+message MonsterRsp {
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+}
+
+message MutiSystemRsp {
+	int32 Code = 1;		// 状态
+	string Message =2;   // 信息
+}
+
+
+
+

@@ -1,0 +1,91 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package behavior.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+
+service Behavior {
+//	rpc GetLimitTime (LimitTimeReq) returns (LimitTimeResp);
+	rpc GetLimitTime(LimitTimeReq) returns (LimitTimeResp) {
+        option (google.api.http) = {
+            post:"/behavior/get_limit_time"
+        };
+    };
+//    rpc HangUp (HangUpReq) returns (HangUpResp);
+    rpc HangUp (HangUpReq) returns (HangUpResp) {
+        option (google.api.http) = {
+           post:"/behavior/hang_up"
+        };
+    };
+//    rpc BreakHangUp (HangUpReq) returns (HangUpResp);
+    rpc BreakHangUp (HangUpReq) returns (HangUpResp) {
+        option (google.api.http) = {
+           post:"/behavior/break_hang_up"
+       };
+    };
+     rpc CreateTable (CreateTableReq) returns (CommonRsp) {
+         option (google.api.http) = {
+            post:"/behavior/CreateTable"
+        };
+     };
+
+     rpc CanCreateTable (CanCreateTableReq) returns (CanCreateTableRsp) {
+         option (google.api.http) = {
+            post:"/behavior/CanCreateTable"
+        };
+     };	
+}
+
+message CommonRsp {
+    int32 code = 1; //返回码
+    string message = 2; //消息内容
+}
+
+message HangUpResp{
+
+}
+
+message HangUpReq {
+    int64 user_id = 1 [(gogoproto.jsontag) = "user_id", (gogoproto.moretags)='form:"user_id" validate:"required"'];    //用户ID
+    int64 game_id = 2 [(gogoproto.jsontag) = "game_id", (gogoproto.moretags)='form:"game_id" validate:"required"'];     //游戏ID
+    string nickname = 3 [(gogoproto.jsontag) = "nickname", (gogoproto.moretags)='form:"nickname" validate:"required"'];   //用户昵称
+    string ip = 4   [(gogoproto.jsontag) = "ip", (gogoproto.moretags)='form:"ip" validate:"required"'];           //登录ip
+}
+
+message LimitTimeReq {
+    int64 user_id = 1 [(gogoproto.jsontag) = "user_id", (gogoproto.moretags)='form:"user_id" validate:"required"'];    //用户ID
+    int64 game_id = 2 [(gogoproto.jsontag) = "game_id", (gogoproto.moretags)='form:"game_id" validate:"required"'];     //游戏ID
+}
+
+message LimitTimeResp {
+    int64 time = 1; //限制时间，单位：分钟
+}
+
+
+message CreateTableReq {
+    int64 user_id = 1;
+    int64 game_id = 2;
+    bool is_create = 3; //true 创建； false 解算
+}
+
+message CanCreateTableReq {
+    int64 user_id = 1;
+    int64 game_id = 2;
+}
+
+message CanCreateTableRsp {
+    bool canCreate = 1; //能否创建
+    int32 count = 2;    //已创建个数
+}

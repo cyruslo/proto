@@ -1,0 +1,420 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/account/OnEditPlayerShowData": {
+            "post": {
+                "summary": "/account/OnEditPlayerShowData",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.EditPlayerShowDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        },
+        "/account/OnGetPlayerShowData": {
+            "post": {
+                "summary": "/account/OnGetPlayerShowData",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.GetPlayerShowDataRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.GetPlayerShowDataReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        },
+        "/account/OnModifyPassword": {
+            "post": {
+                "summary": "/account/OnModifyPassword",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.ModifyPasswordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        },
+        "/account/get_login_limit": {
+            "post": {
+                "summary": "/account/get_login_limit",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.GetLoginLimitResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.GetLoginLimitReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        },
+        "/account/is_old_user": {
+            "post": {
+                "summary": "/account/is_old_user",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.IsOldUserResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.IsOldUserReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        },
+        "/account/login_limit": {
+            "post": {
+                "summary": "rpc GetLoginLimitURL(LoginLimitReq) returns (LoginLimitResp) {",
+                "description": "option (google.api.http) = {\n         get:\"/account/get_login_limit\"\n     };\n };",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.service.v1.LoginLimitResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.service.v1.LoginLimitReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.service.v1.Account"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".account.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".account.service.v1.EditPlayerShowDataReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Sex": {
+                    "type": "integer"
+                },
+                "QQ": {
+                    "type": "integer"
+                },
+                "WeChat": {
+                    "type": "string"
+                },
+                "Addr": {
+                    "type": "string"
+                },
+                "Public": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".account.service.v1.GetLoginLimitReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "game_id": {
+                    "type": "integer"
+                },
+                "is_clear": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".account.service.v1.GetLoginLimitResp": {
+            "type": "object",
+            "properties": {
+                "is_limit": {
+                    "type": "boolean"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.service.v1.GetPlayerShowDataReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "ShowPlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.service.v1.GetPlayerShowDataRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Sex": {
+                    "type": "integer"
+                },
+                "QQ": {
+                    "type": "integer"
+                },
+                "WeChat": {
+                    "type": "string"
+                },
+                "Addr": {
+                    "type": "string"
+                },
+                "Public": {
+                    "type": "boolean"
+                },
+                "WeChatNikname": {
+                    "type": "string"
+                },
+                "QPNickName": {
+                    "type": "string"
+                },
+                "IconURL": {
+                    "type": "string"
+                },
+                "VipGrade": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.service.v1.IsOldUserReq": {
+            "type": "object",
+            "properties": {
+                "Userid": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "Userid"
+            ]
+        },
+        ".account.service.v1.IsOldUserResp": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "registertime": {
+                    "type": "string"
+                }
+            }
+        },
+        ".account.service.v1.LoginLimitReq": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "limit": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.service.v1.LoginLimitResp": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".account.service.v1.ModifyPasswordReq": {
+            "type": "object",
+            "properties": {
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "OldPasswordMd5": {
+                    "type": "string"
+                },
+                "NewPasswordMd5": {
+                    "type": "string"
+                },
+                "Memo": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

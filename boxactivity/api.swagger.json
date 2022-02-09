@@ -1,0 +1,377 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/boxActivity.service.v1.boxActivity/Ping": {
+            "get": {
+                "summary": "/boxActivity.service.v1.boxActivity/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        },
+        "/boxActivity.service.v1.boxActivity/SayHello": {
+            "get": {
+                "summary": "/boxActivity.service.v1.boxActivity/SayHello",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        },
+        "/boxActivity/OnOpenBox": {
+            "post": {
+                "summary": "/boxActivity/OnOpenBox",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.boxActivity.service.v1.QueryHBUserOpenBoxAddRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.boxActivity.service.v1.QueryHBUserOpenBoxAddReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        },
+        "/boxActivity/OnQueryBox": {
+            "post": {
+                "summary": "/boxActivity/OnQueryBox",
+                "description": "客户端请求 查询宝箱接口\nQueryHBBoxNumMoneyReq = 10711, --宝箱查询请求\nQueryHBBoxNumMoneyRsp = 10712, --宝箱查询返回",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.boxActivity.service.v1.QueryHBBoxNumMoneyRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.boxActivity.service.v1.QueryHBBoxNumMoneyReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        },
+        "/boxActivity/OnTriggerBox": {
+            "post": {
+                "summary": "获得宝箱（打旋亲友房触发）",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.boxActivity.service.v1.TriggerInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.boxActivity.service.v1.TriggerInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        },
+        "/kratos-boxActivity/say_hello": {
+            "post": {
+                "summary": "/kratos-boxActivity/say_hello",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.boxActivity.service.v1.HelloResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.boxActivity.service.v1.HelloReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "boxActivity.service.v1.boxActivity"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".boxActivity.service.v1.HelloReq": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        ".boxActivity.service.v1.HelloResp": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                }
+            }
+        },
+        ".boxActivity.service.v1.QueryHBBoxNumMoneyReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "activity_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            },
+            "description": "宝箱查询请求"
+        },
+        ".boxActivity.service.v1.QueryHBBoxNumMoneyRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "display": {
+                    "type": "integer"
+                },
+                "box_num": {
+                    "type": "integer"
+                },
+                "money_num": {
+                    "type": "integer"
+                },
+                "money_total": {
+                    "type": "integer"
+                }
+            },
+            "description": "宝箱查询返回"
+        },
+        ".boxActivity.service.v1.QueryHBUserOpenBoxAddReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "activity_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            },
+            "description": "开宝箱请求"
+        },
+        ".boxActivity.service.v1.QueryHBUserOpenBoxAddRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "goods_type": {
+                    "type": "integer"
+                },
+                "goods_id": {
+                    "type": "integer"
+                },
+                "goods_amount": {
+                    "type": "integer"
+                }
+            },
+            "description": "开宝箱返回"
+        },
+        ".boxActivity.service.v1.TriggerInfoReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "activity_id": {
+                    "type": "integer"
+                },
+                "userIDS": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        ".boxActivity.service.v1.TriggerInfoRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "userBox": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.boxActivity.service.v1.UserBoxInfo"
+                    }
+                }
+            }
+        },
+        ".boxActivity.service.v1.UserBoxInfo": {
+            "type": "object",
+            "properties": {
+                "userID": {
+                    "type": "integer"
+                },
+                "box": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+    }
+}

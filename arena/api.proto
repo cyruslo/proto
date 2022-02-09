@@ -1,0 +1,573 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package arena.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+
+service ArenaServer {
+    rpc onPMatchStatus (MatchStatusReq) returns (MatchStatusRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPMatchStatus"
+        };
+    };
+
+    rpc onPShareStatus (ShareStatusReq) returns (ShareStatusRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPShareStatus"
+        };
+    };
+
+    rpc onPAwardList (AwardListReq) returns (AwardListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPAwardList"
+        };
+    };
+
+    rpc onPAward (GetAwardReq) returns (GetAwardRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPAward"
+        };
+    };
+
+    rpc onPAwardCount (AwardCountReq) returns (AwardCountRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPAwardCount"
+        };
+    };
+	
+	rpc onPRankList (RankListReq) returns (RankListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPRankList"
+        };
+    };
+
+	rpc onPMatchList (PMatchListReq) returns (PMatchListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPMatchList"
+        };
+    };
+	
+	rpc onPSignUp (PSignUpReq) returns (PSignUpRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onPSignUp"
+        };
+    };
+
+	rpc onFMatchStatus (MatchStatusReq) returns (MatchStatusRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFMatchStatus"
+        };
+    };
+
+    rpc onFShareStatus (ShareStatusReq) returns (ShareStatusRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFShareStatus"
+        };
+    };
+
+    rpc onFAwardList (AwardListReq) returns (AwardListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFAwardList"
+        };
+    };
+
+    rpc onFAward (GetAwardReq) returns (GetAwardRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFAward"
+        };
+    };
+
+    rpc onFAwardCount (AwardCountReq) returns (AwardCountRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFAwardCount"
+        };
+    };
+	
+	rpc onFRankList (RankListReq) returns (RankListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFRankList"
+        };
+    };
+	
+	rpc onFMatchList (FMatchListReq) returns (FMatchListRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFMatchList"
+        };
+    };
+	
+	rpc onWaitMatch (FWaitMatchReq) returns (FWaitMatchRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onWaitMatch"
+        };
+    };
+
+	rpc onCancelMatch (FCancelMatchReq) returns (FCancelMatchRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onCancelMatch"
+        };
+    };
+	
+	rpc onFSignUp (FSignUpReq) returns (FSignUpRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onFSignUp"
+        };
+    };
+	
+	rpc onConfirm (FConfirmReq) returns (FConfirmRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onConfirm"
+        };
+    };
+	
+	rpc OnRobotLogin (FRobotLoginReq) returns (FRobotLoginRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onRobotLogin"
+        };
+    };
+	
+	rpc OnRobotHeart (FRobotHeartReq) returns (FRobotLoginRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onRobotHeart"
+        };
+    };
+
+	rpc OnGameUserInfo (GameUserInfoReq) returns (GameUserInfoRsp){
+        option (google.api.http) = {
+            post:"/arenaServer/onGameUserInfo"
+        };
+    };
+}
+
+enum ArenaMsgCode {
+	AMC_InvalId = 0;
+	
+	//客户端-全民赛
+	AMC_C_PMatchStatus = 30;      //比赛的提示
+	AMC_C_PShareStatus = 31;      //用户分享
+	AMC_C_PAwardList   = 32;      //奖励列表
+	AMC_C_PGetAward    = 33;      //领取奖励
+	AMC_C_PAwardCount  = 34;      //数量奖励
+	AMC_C_PRankList    = 35;      //排行板信息
+	AMC_C_PMatchList   = 36;      //比赛列表
+	AMC_C_PSignUp      = 37;      //客户端-报名/继续游戏
+	
+	//客户端-快速赛
+	AMC_C_FMatchStatus    = 50;      //比赛的提示
+	AMC_C_FShareStatus    = 51;      //用户分享
+	AMC_C_FAwardList      = 52;      //奖励列表
+	AMC_C_FGetAward       = 53;      //领取奖励
+	AMC_C_FAwardCount     = 54;      //数量奖励
+	AMC_C_FRankList       = 55;      //排行板信息
+	AMC_C_FMatchList      = 56;     //比赛列表
+	AMC_C_FWaitMatch      = 57;     //等待比赛开始
+	AMC_C_FCancelMatch    = 58;     //取消报名
+	AMC_C_FSignUp         = 59;     //客户端-报名/继续游戏
+	AMC_C_FConfirm        = 60;     //确认开始比赛
+	AMC_C_FRobotLogin     = 61;     //机器人的信息
+	AMC_C_FRobotJoinMatch = 62;     //请求机器人参加比赛
+	AMC_C_FRobotHeart     = 63;     //机器人的心跳检测
+	
+	//服务器部分-公共部分
+	AMC_S_GameCountDown    = 100;     //比赛倒计时
+	AMC_S_ReportStatus     = 101;     //上报用户状态
+
+	//服务器部分-全民赛
+	AMC_S_PReportMatch     = 131;     //上报场数据
+	AMC_S_PGameEnd         = 132;     //比赛结束
+
+	//服务器部分-快速比赛
+	AMC_S_FReportMatch      = 151;   //上报场数据
+	AMC_S_FGameEnd          = 153;   //比赛结束
+	AMC_C_FRobotNameSyn     = 154;   //机器人的名字同步
+}
+
+enum ArenaMsgErrorCode {
+	AMEC_InvalId           = 0;
+	AMEC_Sucess            = 1;  //成功
+	AMEC_Param             = 2;  //参数错误
+	AMEC_PlayerNotExist    = 3;  //玩家不存在
+	AMEC_PlayerNotGameing  = 4;  //用户不在游戏内
+	AMEC_UnserializeFailed = 5;  //反序列化失败
+	AMEC_DeserializeFailed = 6;  //序列化失败
+	AMEC_FreshUserMoney    = 7;  //刷新玩家金币失败
+	AMEC_SystemError       = 8;  //系统错误
+	AMEC_SqlConn           = 9;  //sql conn 为空
+	AMEC_Infos             = 10; //拉取报名数据
+	AMEC_VipLevel          = 11; //vip等级不足,报名失败
+	AMEC_Money             = 12; //金币不足,报名失败
+	AMEC_Share             = 13; //用户没分享
+	AMEC_JoinTime          = 14; //用户报名搭到上限
+	AMEC_MatchNotExist     = 15; //比赛不存在
+	AMEC_MatchNotOpen      = 16; //比赛未开启
+	AMEC_SignUpFailed      = 17; //报名失败
+	AMEC_SignUpSucess      = 18; //报名成功
+	AMEC_NoAward           = 19; //没中奖
+	AMEC_Collection        = 20; //已经领取
+	AMEC_AwardSucess       = 21; //领取成功
+	AMEC_NotWaiting        = 22; //没有在匹配状态
+	AMEC_NotTable          = 23; //没有该房间
+	AMEC_TableStarted      = 24; //比赛已经开始
+	AMEC_PhoneFailed       = 25; //电话号码格式错误
+
+}
+
+//------------------------- 客户端部分-公用部分 ------------------------------------
+message HttpCommonRsp{
+	 int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	 string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	 int32  En       = 3 [(gogoproto.jsontag) = "En"];	
+	 bytes  Data     = 4 [(gogoproto.jsontag) = "Data"];      
+}
+
+message MatchStatusReq
+{
+	int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message MatchTips
+{
+	int32  GameType    = 1 [(gogoproto.jsontag) = "GameType"];   //比赛类型
+	int32  Type        = 2 [(gogoproto.jsontag) = "Type"];   //子比赛类型
+	string TypeTips    = 3 [(gogoproto.jsontag) = "TypeTips"];   //比赛类型描述
+}
+
+message MatchStatusRsp
+{
+	int32    Code           = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message        = 2 [(gogoproto.jsontag) = "Message"];
+	repeated MatchTips Tips = 3;
+}
+
+message ShareStatusReq
+{
+	int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message ShareStatusRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Core     = 4 [(gogoproto.jsontag) = "Core"];   //0:成功
+}
+
+message Award{
+	int32 Id  = 1 [(gogoproto.jsontag) = "Id"];
+	int64 Num = 2 [(gogoproto.jsontag) = "Num"];
+	int32 Mux = 3 [(gogoproto.jsontag) = "Mux"];
+}
+
+message AwardInfo
+{
+	string  AwardId            = 1 [(gogoproto.jsontag) = "AwardId"];
+	int32   ModeId             = 2 [(gogoproto.jsontag) = "ModeId"];
+	string  TypeTips           = 3 [(gogoproto.jsontag) = "TypeTips"];
+	repeated Award   Awards    = 4;
+	string  Date               = 5 [(gogoproto.jsontag) = "Date"];
+}
+
+message AwardListReq
+{
+	int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message AwardListRsp
+{
+	int32    Code                = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message             = 2 [(gogoproto.jsontag) = "Message"];
+	repeated AwardInfo AwardList = 3;
+}
+
+message GetAwardData
+{
+	string AwardId = 1 [(gogoproto.jsontag) = "AwardId"];
+	string Phone   = 2 [(gogoproto.jsontag) = "Phone"]; 
+}
+
+message GetAwardReq
+{
+	int32        PlayerId  = 1 [(gogoproto.jsontag) = "PlayerId"];
+	repeated GetAwardData AwardList = 2;
+}
+
+message GetAwardRsp
+{
+	int32    Code      = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message   = 2 [(gogoproto.jsontag) = "Message"];
+	int32    PlayerId  = 3 [(gogoproto.jsontag) = "PlayerId"];
+	repeated string AwardIdList = 4 ;
+	repeated Award  AwardList   = 5;
+}
+
+message AwardCountReq
+{
+	int32 PlayerId  = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message AwardCountRsp
+{
+	int32  Code      = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message   = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId  = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Count     = 4 [(gogoproto.jsontag) = "Count"] ;
+}
+
+message RankListReq
+{
+	int32 PlayerId  = 1 [(gogoproto.jsontag) = "PlayerId"];
+	int32 type      = 2 [(gogoproto.jsontag) = "type"];
+	int32 ArenaType = 3 [(gogoproto.jsontag) = "ArenaType"]; //1:本场; 2:上局; 3:当天
+}
+
+message RankListInfo
+{
+	int32     StartRank = 1 [(gogoproto.jsontag) = "StartRank"];
+	int32     EndRank   = 2 [(gogoproto.jsontag) = "EndRank"]; 
+	int32     UserType  = 3 [(gogoproto.jsontag) = "UserType"]; //1:用户具体信息; 2:分数提示
+	string    Name      = 4 [(gogoproto.jsontag) = "Name"]; //Type=1:姓名；Type = 2:描述提示
+	string    Icon      = 5 [(gogoproto.jsontag) = "Icon"];
+	int32     Mark      = 6 [(gogoproto.jsontag) = "Mark"];
+	repeated Award     AwardList = 7;
+	bool      Stars     = 8 [(gogoproto.jsontag) = "Stars"];
+}
+
+
+message RankListRsp
+{
+	int32    Code      = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message   = 2 [(gogoproto.jsontag) = "Message"];
+	int32    Type      = 3 [(gogoproto.jsontag) = "Type"];
+	int32    ArenaType = 4 [(gogoproto.jsontag) = "ArenaType"];  //1:本局排行；2:上局排行; 3:当日排行
+	repeated RankListInfo  RankList  = 5;
+	int32    Rank      = 6 [(gogoproto.jsontag) = "Rank"];
+	int32    TotalRank = 7 [(gogoproto.jsontag) = "TotalRank"];
+	int32    Mark      = 8 [(gogoproto.jsontag) = "Mark"];
+}
+
+
+
+//-------------------------全民赛-----------------------------------
+message Condition
+{
+	int32 Type  = 1 [(gogoproto.jsontag) = "Type"];
+	int32 Value = 2 [(gogoproto.jsontag) = "Value"];
+}
+
+message PMatchInfo
+{
+	int32       Type          = 1  [(gogoproto.jsontag) = "Type"];          //比赛类型  
+	string      TypeTips      = 2  [(gogoproto.jsontag) = "TypeTips"];      //比赛类型描述
+	int32       Id            = 3  [(gogoproto.jsontag) = "Id"];            //场次Id
+	int32       JoinTimes     = 4  [(gogoproto.jsontag) = "JoinTimes"];     //已经参与次数
+	int32       TotalTimes    = 5  [(gogoproto.jsontag) = "TotalTimes"];    //共可参与次数
+	string      Date          = 6  [(gogoproto.jsontag) = "Date"];          //时间
+	int32       Status        = 7  [(gogoproto.jsontag) = "Status"];        //用户状态
+	repeated    Condition   ConditionList = 8; //报名条件
+	int32       Rank          = 9  [(gogoproto.jsontag) = "Rank"];          //排名
+	int32       TotalRank     = 10 [(gogoproto.jsontag) = "TotalRank"];     //总排名
+	repeated    Award       Awards        = 11;        //奖励
+	int32       AwardCount    = 12 [(gogoproto.jsontag) = "AwardCount"];    //前几名有奖励
+}
+
+message PMatchListReq
+{
+	int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message  PMatchListRsp
+{
+	int32    Code           = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message        = 2 [(gogoproto.jsontag) = "Message"];
+	repeated PMatchInfo MatchList = 3;
+}
+
+message PSignUpReq {
+	int32  PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+	string Name     = 2 [(gogoproto.jsontag) = "Name"];
+	string Head     = 3 [(gogoproto.jsontag) = "Head"];
+	int32  Type     = 4 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 5 [(gogoproto.jsontag) = "Id"];
+}
+
+message PSignUpRsp {
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Type     = 4 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 5 [(gogoproto.jsontag) = "Id"];
+	int64  Money    = 6 [(gogoproto.jsontag) = "Money"];
+	int32  Core     = 7 [(gogoproto.jsontag) = "Core"]; //0:成功
+	string Url      = 8 [(gogoproto.jsontag) = "Url"];
+}
+
+//-------------------------快速赛-----------------------------------
+message FMatchInfo
+{
+	int32    Type          = 1  [(gogoproto.jsontag) = "Type"];          //比赛类型
+	string   TypeTips      = 2  [(gogoproto.jsontag) = "TypeTips"];      //比赛类型描述
+	int32    Id            = 3  [(gogoproto.jsontag) = "Id"];            //场次Id
+	string   OpenTime      = 4  [(gogoproto.jsontag) = "OpenTime"];      //开放时间 
+	int32    PlayerTimes   = 5  [(gogoproto.jsontag) = "PlayerTimes"];   //开赛人数
+	int32    JoinTimes     = 6  [(gogoproto.jsontag) = "JoinTimes"];     //已经参与次数
+	int32    TotalTimes    = 7  [(gogoproto.jsontag) = "TotalTimes"];    //共可参与次数，该字段为0表示不限制次数
+	int32    MatchTime     = 8  [(gogoproto.jsontag) = "MatchTime"];     //参赛时间
+	repeated Condition    ConditionList   = 9; //报名条件
+	repeated RankListInfo RankInfoList    = 10;     //奖励信息
+	int32    Status        = 11 [(gogoproto.jsontag) = "Status"];        //用户状态
+}
+
+message FMatchListReq
+{
+	int32 PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message  FMatchListRsp
+{
+	int32    Code           = 1 [(gogoproto.jsontag) = "Code"]; 
+	string   Message        = 2 [(gogoproto.jsontag) = "Message"];
+	repeated FMatchInfo MatchList = 3;
+}
+
+message FWaitMatchReq
+{
+	int32  Type     = 1 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 2 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message FWaitMatchRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  Type     = 3 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 4 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 5 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Status   = 6 [(gogoproto.jsontag) = "Status"]; //0:没有参加报名; 1:比赛匹配中; 2:比赛确认; 3:开始比赛
+	int32  Join     = 7 [(gogoproto.jsontag) = "Join"];
+	int32  Total    = 8 [(gogoproto.jsontag) = "Total"];
+	string Url      = 9 [(gogoproto.jsontag) = "Url"];
+}
+
+message FCancelMatchReq
+{
+	int32  Type     = 1 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 2 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message FCancelMatchRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  Type     = 3 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 4 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 5 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Result   = 6 [(gogoproto.jsontag) = "Result"]; //0:成功退出; 1:失败
+}
+
+message PositionInfo
+{
+	double Latitude  = 1 [(gogoproto.jsontag) = "Latitude"];
+	double Longitude = 2 [(gogoproto.jsontag) = "Longitude"];
+}
+
+message FSignUpReq {
+	int32  PlayerId       = 1 [(gogoproto.jsontag) = "PlayerId"];
+	string Name           = 2 [(gogoproto.jsontag) = "Name"];
+	string Head           = 3 [(gogoproto.jsontag) = "Head"];
+	int32  Type           = 4 [(gogoproto.jsontag) = "Type"];
+	int32  Id             = 5 [(gogoproto.jsontag) = "Id"];
+	string Ip             = 6 [(gogoproto.jsontag) = "Ip"]; 
+	PositionInfo Position = 7 [(gogoproto.jsontag) = "Position"];
+}
+
+
+message FSignUpRsp {
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Type     = 4 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 5 [(gogoproto.jsontag) = "Id"];
+	int32  Core     = 6 [(gogoproto.jsontag) = "Core"]; //0:成功
+	string Url      = 7 [(gogoproto.jsontag) = "Url"];
+}
+
+message FConfirmReq
+{
+	int32  Type     = 1 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 2 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+}
+message FConfirmRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  Type     = 3 [(gogoproto.jsontag) = "Type"];
+	int32  Id       = 4 [(gogoproto.jsontag) = "Id"];
+	int32  PlayerId = 5 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Result   = 6 [(gogoproto.jsontag) = "Result"]; //0:成功; 1:失败
+}
+
+message FRobotLoginReq
+{
+	int32  PlayerId = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message FRobotLoginRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Core     = 4 [(gogoproto.jsontag) = "Core"]; //0:成功
+}
+
+message  FRobotJoinMatchRsp
+{
+	int32  Code      = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message   = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId  = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Type       = 4 [(gogoproto.jsontag) = "Type"];
+	int32  Id         = 5 [(gogoproto.jsontag) = "Id"];
+}
+
+message  FRobotHeartReq
+{
+	int32 PlayerId   = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message  FRobotHeartRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  PlayerId = 3 [(gogoproto.jsontag) = "PlayerId"];
+	int32  Core     = 4 [(gogoproto.jsontag) = "Core"]; //0:成功;
+}
+
+message  GameUserInfoReq
+{
+	int32 PlayerId   = 1 [(gogoproto.jsontag) = "PlayerId"];
+}
+
+message  GameUserInfoRsp
+{
+	int32  Code     = 1 [(gogoproto.jsontag) = "Code"]; 
+	string Message  = 2 [(gogoproto.jsontag) = "Message"];
+	int32  GameType = 3 [(gogoproto.jsontag) = "GameType"];
+	int32  playerId = 4 [(gogoproto.jsontag) = "playerId"];
+	int32  Count    = 5 [(gogoproto.jsontag) = "Count"];
+	int32  Status   = 6 [(gogoproto.jsontag) = "Status"];
+	string Tips     = 7 [(gogoproto.jsontag) = "Tips"];
+}
+
+

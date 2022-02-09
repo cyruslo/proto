@@ -1,0 +1,105 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package worldlog.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Worldlog {
+    rpc OnEveryGameLog (EveryGameLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            get:"/worldlog/OnEveryGameLog"
+        };
+    };
+    rpc OnRemoveUserLastMoney (RemoveUserLastMoneyReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/worldlog/OnRemoveUserLastMoney"
+        };
+    };
+    rpc OnSaveVipPoint (SaveVipPointReq) returns (CommonResp){
+        option (google.api.http) = {
+            get:"/worldlog/OnSaveVipPoint"
+        };
+    };
+    rpc OnGetVipInfo (GetVipInfoReq) returns (GetVipInfoRsp){
+        option (google.api.http) = {
+            get:"/worldlog/OnGetVipInfo"
+        };
+    };
+    rpc OnUserInfoVipGet (UserInfoVipGetReq) returns (UserInfoVipGetRsp){
+        option (google.api.http) = {
+            get:"/worldlog/OnUserInfoVipGet"
+        };
+    };
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;    
+}
+
+// 每局日志
+message EveryGameLogReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+    string TableID = 5;
+    string Money = 6;
+    string Gameno = 7;
+    string Chairno = 8;
+    string Tax = 9;
+    string Balance = 10;
+    string Iscoingame = 11;
+    string BIsTrusteeship = 12;
+}
+
+//
+message RemoveUserLastMoneyReq {
+    string PlayerID = 1;
+}
+
+// vip点
+message SaveVipPointReq {
+    string GameID = 1;
+    string ArenaID = 2;
+    string ServerID = 3;
+    string PlayerID = 4;
+    string Score = 5;
+    string IP = 6;
+}
+
+// vip
+message GetVipInfoReq {
+    string PlayerID = 1;
+}
+
+message GetVipInfoRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 grade = 3;
+    double score = 4;
+    double frequenterScore = 5;
+    int32 advDays = 6;
+}
+
+message UserInfoVipGetReq {
+    string GameID = 1;
+    string UserID = 2;
+}
+
+message UserInfoVipGetRsp {
+    int32  code   = 1;
+    string message = 2;
+    int32 supuserID = 3;
+    int32 supsuserID = 4;
+}

@@ -1,0 +1,407 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto2";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package matchmgr.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+//option (gogoproto.goproto_getters_all) = false;
+
+
+enum ErrCode{
+    Success=0;   			//成功
+    Failed=1;    			//失败
+    TimeOut=2;   			//超时
+    InvalidParameter=3;   	//无效参数
+	DeserializedFailed = 4;	//序列化错误
+    InvalidToken=5;       	//无效token
+    NotExistPlayer=6;     	//玩家不存在
+    NotMatchTime=7;       	//不是比赛时间
+	NoGameConf=8;
+}
+
+enum MsgCode {
+	// 从10000开始，防止与大厅冲突
+	MatchCodeMatchResult = 10000; //比赛推送消息
+}
+
+message Object3
+{
+	required int32 key = 1;
+	required int64 value = 2;
+}
+
+message CSHBonusPool
+{
+	required int32 mathcId = 1;
+	required int32 timeId  = 2;
+	required int64 playerId = 3;
+	optional int32 gameId = 4[default=10086];
+}
+message HBonusPool
+{
+	required int32  matchId = 1;
+	required string name = 2;
+	optional int64 value = 3;
+	optional int64 count = 4;
+}
+
+message SCHBonusPool
+{
+	repeated HBonusPool pool = 1;
+}
+
+message CSHRankBar
+{
+	required int32 mathcId = 1;
+	required int32 timeId  = 2;
+	required int64 playerId =3;
+	optional int32 gameId = 4[default=10086];
+}
+
+message	SCHRankBar
+{
+	required int64 idx = 1;     //用户排名
+	required int64 total = 2;   //总排名
+	required int64 reaward = 3; //有奖排名
+}
+
+message RealRank
+{
+	required int64   idx = 1;      //排名
+	required string  icon = 2;     //头像
+	required string  name = 3;     //姓名
+	optional int64   score = 4;    //分數
+	repeated Object3 goods = 5;    //物品(2:金币，实体按照大厅ID)
+	required string  bigGiftId = 6; //购买的最大的礼包id
+}
+
+message CSHRealRank
+{
+	required int64 playerId = 1;
+	required int32 mathcId = 2;
+	required int32 timeId  = 3;
+	optional int32 gameId = 4[default=10086];
+}
+
+message SCHRealRank
+{
+	repeated RealRank real_rank = 1;
+	optional RealRank onself_rank = 2;
+	optional int64 total_num = 3;
+	optional int32 score_addition = 4; //积分加成
+	optional int32 reward_addition = 5; //奖励加成
+	optional int64 card_addition = 6; //點卡加成
+	optional int32 vip_addition = 7; //vip加成
+	optional int32 split_award_id = 8; //可领取的瓜分奖励档次 （1-3，最高档是1）
+}
+
+message Reward
+{
+	required int64 idxl = 1;
+	required int64 idxr = 2;
+	repeated Object3 goods = 3;    //物品(2:金币，实体按照大厅ID)
+}
+message CSHReward
+{
+	required int32 mathcId = 1;
+	required int32 timeId  = 2;
+	optional int32 gameId = 3[default=10086];
+}
+
+message SCHReward
+{
+	repeated Reward rewards = 1;
+}
+
+message CSHMatchInfoTip
+{
+	optional int32 gameId = 1[default=10086];
+}
+
+message MatchInfoTip
+{
+	optional string name = 1;
+	optional int32 mathcId = 2;
+	required string time = 3;       //比赛开始的时间
+	repeated Object3 goods = 4;    //比賽物品(2:金币,实体按照大厅ID)
+}
+
+message SCHMatchInfoTip
+{
+	repeated MatchInfoTip matchTips = 1;
+}
+
+message CSHMatchInfo
+{
+	required int64 playerId =1;
+	optional int32 gameId = 2[default=10086];
+}
+
+message SCHMatchInfo
+{
+	optional string name = 1;
+	optional int32 mathcId = 2;
+	optional int32 timeId  = 3;
+	optional int64 status  = 4;     //比赛状态(1:比赛未开始，2:比赛开始，5:比赛结束)
+	optional int64 down = 5;        //倒计时
+	required string time = 6;       //比赛开始的时间
+	required bool match_open = 7;	//比赛是否开放
+}
+
+message HistoryRank
+{
+	required int64   idx = 1;      			//排名
+	optional string  icon = 2;     			//头像
+	optional string  name = 3;     			//姓名
+	optional int32  addition_source = 4;	//0:vip加成，1:禮包加成
+	optional int32   addition = 5; 			//加成
+	repeated Object3 match_goods = 6;    	//比賽物品(2:金币,实体按照大厅ID)
+	repeated Object3 pack_goods = 7;    	//礼包物品(2:金币,实体按照大厅ID)
+	repeated Object3 lucky_goods = 8;   	//幸运物品(2:金币,实体按照大厅ID)
+	required string  bigGiftId = 9; 		//购买的最大的礼包id
+}
+
+message CSHHistoryRank
+{
+	required int64 playerId = 1;
+	//比赛Id(1001:nvip日赛，1002:vip日赛，1003:nvip周赛，1004:vip周赛，1005:nvip月赛，1006:vip月赛)
+	//比赛Id(1011:積分賽底場日赛，1012:積分賽高場日赛，1013:積分賽底場周赛，1014:積分賽高場周赛，1015:積分賽底場月赛，1016:積分賽高場月赛)
+	required int32 matchId = 2;
+	optional int32 gameId = 3[default=10086];
+}
+
+message SCHHistoryRank
+{
+	required int32 matchId = 1;
+	repeated HistoryRank rank_list = 2;    //排行榜
+	required HistoryRank oneself_rank = 3; //自己的排行
+}
+
+message CSHLuckyInfo
+{
+	required int32 matchId = 1;
+	optional int32 gameId = 2[default=10086];
+}
+
+message LuckyInfo
+{
+	required int32 lRange = 1;
+	required int32 rRange = 2;
+}
+
+message SCHLuckyInfo
+{
+	optional int32 matchId = 1;
+	repeated LuckyInfo data = 2;
+	// 没有数据说明瓜分奖未开启； 如果LuckyInfo.rScore = 0，说明无上限限制，在lScore以上
+	repeated LuckyInfo split_data = 3;
+}
+
+message CSMatchCfg
+{
+
+}
+
+message SCMatchCfg
+{
+	// 比赛列表
+	repeated MatchCfg match_list = 1;
+}
+
+message MatchCfg
+{
+	// 游戏id
+	required int32 game_id = 1;
+	// 比赛id
+	required int32 match_id = 2;
+	// 比赛类型 0-流水赛（金牛赛）
+	required int32 match_type = 3;
+	// 比赛开始展示时间 2006-01-02 15:04:05
+	required string show_begin_time = 4;
+	// 比赛结束展示时间
+	required string show_end_time = 5;
+	// 比赛开始时间 08:20:00
+	required string match_begin_time = 6;
+	// 比赛结束时间 10:59:00
+	required string match_end_time = 7;
+}
+
+//-----------------服务内grpc接口
+message CSUpdateBonus
+{
+	required int32 gameId = 1[default=10086];
+	required string key = 2;
+	required string field = 3;
+	required string value = 4;
+}
+
+message SCUpdateBonus
+{
+	required int32 code = 1;
+	optional string msg = 2;
+}
+
+message MatchIdentify
+{
+	required int32 matchId = 1;         	//比赛Id
+	required string date = 2;         		//比赛日期
+	required int32 roundId = 3;         	//场次号
+}
+
+//请求自己未领取的奖励的结算界面信息
+message CSMatchResult
+{
+}
+
+message UserInfo
+{
+	required int32   idx = 2;      			//排名
+	required string  icon = 3;     			//头像
+	required string  name = 4;     			//姓名
+}
+
+//比赛结果推送
+message SCMatchResult
+{
+	required MatchIdentify match = 1;       //比赛Id
+	repeated int64 ranks = 2; 				//上榜玩家id
+	repeated UserInfo user3 = 3;			//前三名信息
+}
+
+message CSGetAwardRecord
+{
+	required int64 playerId = 1;
+	optional int32 gameId = 2[default=10086];
+}
+
+message AwardRecord
+{
+	required int64 rank = 1;
+	repeated Object3 match_goods = 2;    	//比賽獎勵物品(2:金币，实体按照大厅ID)
+	repeated Object3 lucky_goods = 3;    	//幸运獎勵物品(2:金币，实体按照大厅ID)
+	repeated Object3 split_award_goods = 4;    	//瓜分奖池奖 奖励物品(2:金币，实体按照大厅ID)
+	required MatchIdentify match  = 5;		//那一场比赛
+	repeated UserInfo user3 = 6;			//前三名信息
+}
+
+message SCGetAwardRecord
+{
+	repeated AwardRecord records = 1;		//
+}
+
+//领取奖励
+message CSGetAward
+{
+	required int64 playerId = 1;
+	required MatchIdentify match = 2;       //比赛Id
+	optional int32 gameId = 3[default=10086];
+}
+
+message SCGetAward
+{
+	repeated Object3 match_goods = 2;    	//比賽獎勵物品(100:金币,其他暂不支持)
+	repeated Object3 lucky_goods = 3;    	//幸运獎勵物品(100:金币,其他暂不支持)
+	repeated Object3 split_award_goods = 4; //瓜分奖池奖 奖励物品
+}
+
+message CSUpdateUserInfo
+{
+	required int64 playerId = 1;
+	required int32 gameId = 2[default=10086];
+	required int32 arenaId = 3;
+	required string icon = 4;
+	required string nick = 5;
+	required string bigGiftId = 6;
+}
+
+message SCUpdateUserInfo
+{
+
+}
+
+
+service MatchMgr {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+	rpc BonusPool(CSHBonusPool) returns (SCHBonusPool) {
+        option (google.api.http) = {
+            post:"/matchmgr/BonusPool"
+        };
+    };
+	rpc RankBar(CSHRankBar) returns (SCHRankBar) {
+        option (google.api.http) = {
+            post:"/matchmgr/RankBar"
+        };
+    };
+	rpc RealRank(CSHRealRank) returns (SCHRealRank) {
+        option (google.api.http) = {
+            post:"/matchmgr/RealRank"
+        };
+    };
+	rpc Reward(CSHReward) returns (SCHReward) {
+        option (google.api.http) = {
+            post:"/matchmgr/Reward"
+        };
+    };
+	rpc MatchInfoTip(CSHMatchInfoTip) returns (SCHMatchInfoTip) {
+        option (google.api.http) = {
+            post:"/matchmgr/MatchInfoTip"
+        };
+    };
+	rpc MatchInfo(CSHMatchInfo) returns (SCHMatchInfo) {
+        option (google.api.http) = {
+            post:"/matchmgr/MatchInfo"
+        };
+    };
+	rpc HistoryRank(CSHHistoryRank) returns (SCHHistoryRank) {
+        option (google.api.http) = {
+            post:"/matchmgr/HistoryRank"
+        };
+    };
+	rpc LuckyInfo(CSHLuckyInfo) returns (SCHLuckyInfo) {
+        option (google.api.http) = {
+            post:"/matchmgr/LuckyInfo"
+        };
+    };
+
+	rpc GetAllMatchCfg(CSMatchCfg) returns (SCMatchCfg) {
+		option (google.api.http) = {
+			post:"/matchmgr/GetAllMatchCfg"
+		};
+	};
+
+	// 以下接口内部使用
+	rpc UpdateBonus(CSUpdateBonus) returns (SCUpdateBonus) {
+        option (google.api.http) = {
+            //post:"/matchmgr/LuckyInfo"
+        };
+    };
+	rpc MatchResult(CSMatchResult) returns (SCMatchResult) {
+        option (google.api.http) = {
+            //post:"/matchmgr/MatchResult"
+        };
+    };
+	rpc GetAwardRecord(CSGetAwardRecord) returns (SCGetAwardRecord) {
+        option (google.api.http) = {
+            //post:"/matchmgr/GetAwardRecord"
+        };
+    };
+	rpc GetAward(CSGetAward) returns (SCGetAward) {
+        option (google.api.http) = {
+            //post:"/matchmgr/LuckyInfo"
+        };
+    };
+	rpc UpdateUserInfo(CSUpdateUserInfo) returns (SCUpdateUserInfo) {
+        option (google.api.http) = {
+            //post:"/matchmgr/UpdateUserInfo"
+        };
+    };
+}

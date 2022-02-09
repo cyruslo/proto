@@ -1,0 +1,788 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/given/DropCard": {
+            "post": {
+                "summary": "成功掉落刮刮卡(会重置C值)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.QueryLossInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.DropCardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/DropCardTrigger": {
+            "post": {
+                "summary": "/given/DropCardTrigger",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.DropCardTriggerResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.DropCardTriggerReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/ExchangeCard": {
+            "post": {
+                "summary": "兑换刮刮卡",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.ExchangeCardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.ExchangeCardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/GetSystemConf": {
+            "post": {
+                "summary": "/given/GetSystemConf",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.GetSystemConfResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.GetSystemConfReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/QueryCard": {
+            "post": {
+                "summary": "查询刮刮卡信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.QueryCardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.QueryCardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/QueryLossInfo": {
+            "post": {
+                "summary": "查询C值信息（当前C值, 触发值，掉落区间，掉落概率，掉落卡ID，价值）",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.QueryLossInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.QueryLossInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/QueryUserInfo": {
+            "post": {
+                "summary": "/given/QueryUserInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.QueryUserInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.QueryUserInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/ScratchCard": {
+            "post": {
+                "summary": "刮卡请求",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.ScratchCardResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.ScratchCardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/UpdateLossInfo": {
+            "post": {
+                "summary": "更新C值信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.QueryLossInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.UpdateLossInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        },
+        "/given/UpdateUserInfo": {
+            "post": {
+                "summary": "/given/UpdateUserInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.given.service.v1.UpdateUserInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.given.service.v1.UpdateUserInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "given.service.v1.Given"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".given.service.v1.CardAward": {
+            "type": "object",
+            "properties": {
+                "CardId": {
+                    "type": "integer"
+                },
+                "AwardBase": {
+                    "type": "integer"
+                },
+                "AwardMulti": {
+                    "type": "integer"
+                },
+                "Price": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.CardInfo": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer"
+                },
+                "Count": {
+                    "type": "integer"
+                },
+                "Price": {
+                    "type": "integer"
+                },
+                "ExpectPrice": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.DropCardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "CardId": {
+                    "type": "integer"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.DropCardTriggerReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.DropCardTriggerResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".given.service.v1.ExchangeCardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Nickname": {
+                    "type": "string"
+                },
+                "IsBatch": {
+                    "type": "boolean"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.ExchangeCardResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "IsBatch": {
+                    "type": "boolean"
+                },
+                "Awards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.given.service.v1.CardAward"
+                    }
+                },
+                "Cards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.given.service.v1.CardInfo"
+                    }
+                }
+            }
+        },
+        ".given.service.v1.GetSystemConfReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.GetSystemConfResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "ConfList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.given.service.v1.SystemConf"
+                    }
+                }
+            }
+        },
+        ".given.service.v1.QueryCardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            },
+            "description": "刮刮卡(如果开关关了，可以累计C值，但不能掉落卡和使用卡)"
+        },
+        ".given.service.v1.QueryCardResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Cards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.given.service.v1.CardInfo"
+                    }
+                }
+            }
+        },
+        ".given.service.v1.QueryLossInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.QueryLossInfoResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Enable": {
+                    "type": "boolean"
+                },
+                "Balance": {
+                    "type": "integer"
+                },
+                "TriggerMin": {
+                    "type": "integer"
+                },
+                "TriggerMax": {
+                    "type": "integer"
+                },
+                "CurLevel": {
+                    "type": "integer"
+                },
+                "MinLevel": {
+                    "type": "integer"
+                },
+                "MaxLevel": {
+                    "type": "integer"
+                },
+                "DropRatio": {
+                    "type": "integer"
+                },
+                "DropBase": {
+                    "type": "integer"
+                },
+                "CardId": {
+                    "type": "integer"
+                },
+                "Price": {
+                    "type": "integer"
+                },
+                "ExpectPrice": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.QueryUserInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                },
+                "LoginMethod": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.QueryUserInfoResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "SystemList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.given.service.v1.SystemInfo"
+                    }
+                }
+            }
+        },
+        ".given.service.v1.ScratchCardReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.ScratchCardResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Award": {
+                    "$ref": "#/definitions/.given.service.v1.CardAward"
+                }
+            }
+        },
+        ".given.service.v1.SystemConf": {
+            "type": "object",
+            "properties": {
+                "SystemID": {
+                    "type": "integer"
+                },
+                "Enable": {
+                    "type": "boolean"
+                },
+                "Frequency": {
+                    "type": "integer"
+                },
+                "ConvertRatio": {
+                    "type": "integer"
+                },
+                "ConvertBase": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.SystemInfo": {
+            "type": "object",
+            "properties": {
+                "SystemID": {
+                    "type": "integer"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Remain": {
+                    "type": "integer"
+                },
+                "Given": {
+                    "type": "integer"
+                },
+                "Open": {
+                    "type": "boolean"
+                },
+                "OpenDate": {
+                    "type": "string"
+                }
+            }
+        },
+        ".given.service.v1.UpdateLossInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "Delta": {
+                    "type": "integer"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.UpdateUserInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PlayerID": {
+                    "type": "integer"
+                },
+                "SystemID": {
+                    "type": "integer"
+                },
+                "GivenGain": {
+                    "type": "integer"
+                },
+                "GivenExpend": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".given.service.v1.UpdateUserInfoResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Data": {
+                    "$ref": "#/definitions/.given.service.v1.SystemInfo"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,421 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/RewardPool/AddRewardRecord": {
+            "post": {
+                "summary": "/RewardPool/AddRewardRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rewardpool.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rewardpool.service.v1.AddRewardRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        },
+        "/RewardPool/QueryGamePools": {
+            "post": {
+                "summary": "查询游戏的所有奖池值(对外)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rewardpool.service.v1.QueryGamePoolsRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rewardpool.service.v1.QueryGamePoolsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        },
+        "/RewardPool/QueryPool": {
+            "post": {
+                "summary": "奖池信息查询",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rewardpool.service.v1.QueryPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rewardpool.service.v1.QueryPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        },
+        "/RewardPool/QueryRewardRecord": {
+            "post": {
+                "summary": "查询指定游戏的中奖记录(对外)",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rewardpool.service.v1.QueryRewardRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rewardpool.service.v1.QueryRewardRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        },
+        "/RewardPool/UpdatePool": {
+            "post": {
+                "summary": "更新奖池金额",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.rewardpool.service.v1.CommonResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.rewardpool.service.v1.UpdatePoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        },
+        "/rewardpool.service.v1.RewardPool/Ping": {
+            "get": {
+                "summary": "/rewardpool.service.v1.RewardPool/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "rewardpool.service.v1.RewardPool"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".rewardpool.service.v1.AddRewardRecordReq": {
+            "type": "object",
+            "properties": {
+                "Record": {
+                    "$ref": "#/definitions/.rewardpool.service.v1.RecordDetail"
+                }
+            },
+            "required": [
+                "Record"
+            ]
+        },
+        ".rewardpool.service.v1.CommonResp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Msg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".rewardpool.service.v1.GamePoolMoney": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PoolTypeID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".rewardpool.service.v1.PoolMoney": {
+            "type": "object",
+            "properties": {
+                "PoolID": {
+                    "type": "integer"
+                },
+                "Delta": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".rewardpool.service.v1.QueryGamePoolsReq": {
+            "type": "object",
+            "properties": {}
+        },
+        ".rewardpool.service.v1.QueryGamePoolsRsp": {
+            "type": "object",
+            "properties": {
+                "Pools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rewardpool.service.v1.GamePoolMoney"
+                    }
+                }
+            }
+        },
+        ".rewardpool.service.v1.QueryPoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PoolTypeID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".rewardpool.service.v1.QueryPoolRsp": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PoolTypeID": {
+                    "type": "integer"
+                },
+                "Pools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rewardpool.service.v1.PoolMoney"
+                    }
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".rewardpool.service.v1.QueryRewardRecordReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        },
+        ".rewardpool.service.v1.QueryRewardRecordRsp": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rewardpool.service.v1.RecordDetail"
+                    }
+                }
+            }
+        },
+        ".rewardpool.service.v1.RecordDetail": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "PoolID": {
+                    "type": "integer"
+                },
+                "Award": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "Nickname": {
+                    "type": "string"
+                },
+                "Time": {
+                    "type": "string"
+                },
+                "PoolTypeID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".rewardpool.service.v1.UpdatePoolReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "ArenaID": {
+                    "type": "integer"
+                },
+                "PoolTypeID": {
+                    "type": "integer"
+                },
+                "Pools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.rewardpool.service.v1.PoolMoney"
+                    }
+                }
+            },
+            "required": [
+                "GameID"
+            ]
+        }
+    }
+}

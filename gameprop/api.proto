@@ -1,0 +1,142 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package gameprop_v1.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service GameProp_V1 {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+    
+    // 添加玩家道具信息
+	rpc AddPlayerPropInfo(AddPlayerPropReq) returns (AddPlayerPropResp) {
+        option (google.api.http) = {
+            post:"/GameProp/Add/PlayerProp"
+        };
+    };
+
+    // 查询玩家道具信息
+    rpc QueryPlayerPropInfo(QueryPlayerPropInfoReq) returns (QueryPlayerPropInfoResp) {
+        option (google.api.http) = {
+            post:"/GameProp/Query/PlayerPropInfo"
+        };
+    };
+
+    // 玩家消耗道具
+    rpc ConsumePlayerProp(ConsumePlayerPropReq) returns (ConsumePlayerPropResp) {
+        option (google.api.http) = {
+            post:"/GameProp/Consume/PlayerProp"
+        };
+    };
+
+    // 玩家充值道具赠送
+    rpc RechargeGiftItems(RechargeGiftItemsReq) returns (RechargeGiftItemsResp){
+        option (google.api.http) = {
+            post:"/GameProp/Handsel/RechargeGiftItems"
+        };
+    };
+
+    // 查询玩家通知信息
+    rpc QueryPlayerRechargeInfo(QueryPlayerRechargeInfoReq) returns (QueryPlayerRechargeInfoResp){
+        option (google.api.http) = {
+            post:"/GameProp/Query/QueryPlayerRechargeInfo"
+        };
+    };
+}
+
+message AddPlayerPropReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int64 UserID = 2 [(gogoproto.jsontag) = "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+    int64 PropID = 3 [(gogoproto.jsontag) = "PropID", (gogoproto.moretags)='form:"PropID" validate:"required"'];
+    int64 PropNum = 4 [(gogoproto.jsontag) = "PropNum", (gogoproto.moretags)='form:"PropNum" validate:"required"'];
+    int64 Proptype = 5 [(gogoproto.jsontag) = "Proptype", (gogoproto.moretags)='form:"Proptype" validate:"required"'];
+    string OnlyValue= 6 [(gogoproto.jsontag) = "OnlyValue", (gogoproto.moretags)='form:"OnlyValue" validate:"required"'];
+    string SourceType = 7 [(gogoproto.jsontag) = "SourceType", (gogoproto.moretags)='form:"SourceType"'];
+    string Remark = 8 [(gogoproto.jsontag) ="Remark", (gogoproto.moretags)='form:"Remark"'];
+}
+
+message AddPlayerPropResp {
+    int64 PropID = 1 [(gogoproto.jsontag) = "PropID", (gogoproto.moretags)='form:"PropID"'];
+    int64 PropBeforeNum = 2 [(gogoproto.jsontag) = "PropBeforeNum", (gogoproto.moretags)='form:"PropBeforeNum"'];  // 原始值
+    int64 PropAfterNum = 3 [(gogoproto.jsontag) = "PropAfterNum", (gogoproto.moretags)='form:"PropAfterNum"'];     // 处理后值
+    string SourceType = 4 [(gogoproto.jsontag) = "SourceType", (gogoproto.moretags)='form:"SourceType"'];
+    string Remark = 5 [(gogoproto.jsontag) = "Remark", (gogoproto.moretags)='form:"Remark"'];
+}
+
+message QueryPlayerPropInfoReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 UserID = 2 [(gogoproto.jsontag)= "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+}
+
+message PropInfo {
+    int64 PropID = 1 [(gogoproto.jsontag) = "PropID", (gogoproto.moretags)='form:"PropID"'];        // 道具ID
+    int64 PropNum = 2 [(gogoproto.jsontag) = "PropNum", (gogoproto.moretags)='form:"PropNum"'];     // 道具数量
+    int32 PropType = 3 [(gogoproto.jsontag) = "PropType", (gogoproto.moretags)='form:"PropType"'];  // 道具类型
+}
+
+message QueryPlayerPropInfoResp {
+    repeated PropInfo PropList = 1 [(gogoproto.jsontag) = "PropList", (gogoproto.moretags)='form:"PropList"'];  // 道具集合
+}
+
+message ConsumePlayerPropReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int64 UserID = 2 [(gogoproto.jsontag)= "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+    int64 PropID = 3 [(gogoproto.jsontag)= "PropID", (gogoproto.moretags)='form:"PropID" validate:"required"'];
+    int64 PropNum = 4 [(gogoproto.jsontag)= "PropNum", (gogoproto.moretags)='form:"PropNum" validate:"required"'];
+    string OnlyValue= 5 [(gogoproto.jsontag) = "OnlyValue", (gogoproto.moretags)='form:"OnlyValue" validate:"required"'];
+    string SourceType = 6 [(gogoproto.jsontag) = "SourceType", (gogoproto.moretags)='form:"SourceType"'];
+    string Remark = 7 [(gogoproto.jsontag) = "Remark", (gogoproto.moretags)='form:"Remark"'];
+}
+
+message ConsumePlayerPropResp {
+    int64 PropID = 1 [(gogoproto.jsontag)= "PropID", (gogoproto.moretags)='form:"PropID"'];
+    int64 PropBeforeNum = 2 [(gogoproto.jsontag)= "PropBeforeNum", (gogoproto.moretags)='form:"PropBeforeNum"'];  // 原始值
+    int64 PropAfterNum = 3 [(gogoproto.jsontag)= "PropAfterNum", (gogoproto.moretags)='form:"PropAfterNum"'];     // 处理后值
+}
+
+message RechargeGiftItemsReq{
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int64 UserID = 2 [(gogoproto.jsontag)= "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+    int32 RechargeAmount = 3 [(gogoproto.jsontag)= "RechargeAmount", (gogoproto.moretags)='form:"RechargeAmount" validate:"required"'];// 充值金额
+    string OnlyValue= 4 [(gogoproto.jsontag) = "OnlyValue", (gogoproto.moretags)='form:"OnlyValue" validate:"required"'];// 唯一值
+    string SourceType = 5 [(gogoproto.jsontag) = "SourceType", (gogoproto.moretags)='form:"SourceType"'];// 操作类型   
+    string Remark = 6 [(gogoproto.jsontag) ="Remark", (gogoproto.moretags)='form:"Remark"'];// 备注
+}
+
+message Prop{
+    int64 PropID = 1 [(gogoproto.jsontag)= "PropID", (gogoproto.moretags)='form:"PropID"']; // 道具ID
+    int64 PropNum = 2 [(gogoproto.jsontag)= "PropNum", (gogoproto.moretags)='form:"PropNum"'];// 道具数量
+}
+
+message RechargeGiftItemsResp{
+   int32 RechargeAmount = 1 [(gogoproto.jsontag)= "RechargeAmount", (gogoproto.moretags)='form:"RechargeAmount"'];// 充值金额
+   int64 HandselNum = 2 [(gogoproto.jsontag)= "HandselNum", (gogoproto.moretags)='form:"HandselNum"'];// 已经赠送次数
+   int64 TotalNum = 3 [(gogoproto.jsontag)= "TotalNum", (gogoproto.moretags)='form:"TotalNum"'];// 总次数
+   repeated  Prop PropList = 4[(gogoproto.jsontag)= "PropList", (gogoproto.moretags)='form:"PropList"'];//道具集合
+}
+
+
+message QueryPlayerRechargeInfoReq{
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+	int64 UserID = 2 [(gogoproto.jsontag)= "UserID", (gogoproto.moretags)='form:"UserID" validate:"required"'];
+}
+
+message RechargeInfo{
+   int32 RechargeAmount = 1 [(gogoproto.jsontag)= "RechargeAmount", (gogoproto.moretags)='form:"RechargeAmount"'];// 充值金额
+   int64 HandselNum = 2 [(gogoproto.jsontag)= "HandselNum", (gogoproto.moretags)='form:"HandselNum"'];// 已经赠送次数
+   int64 TotalNum = 3 [(gogoproto.jsontag)= "TotalNum", (gogoproto.moretags)='form:"TotalNum"'];// 总次数
+}
+
+message QueryPlayerRechargeInfoResp{
+    repeated RechargeInfo RechargeInfoList = 1;
+}

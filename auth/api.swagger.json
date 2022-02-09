@@ -1,0 +1,155 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/hys_auth.v1.Auth/GetToken": {
+            "get": {
+                "summary": "/hys_auth.v1.Auth/GetToken",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hys_auth.v1.Token"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "hys_auth.v1.Auth"
+                ]
+            }
+        },
+        "/hys_auth.v1.Auth/UpdateToken": {
+            "get": {
+                "summary": "/hys_auth.v1.Auth/UpdateToken",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hys_auth.v1.Token"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "hys_auth.v1.Auth"
+                ]
+            }
+        },
+        "/hys_auth.v1.Auth/VerifyToken": {
+            "get": {
+                "summary": "/hys_auth.v1.Auth/VerifyToken",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.hys_auth.v1.VerifyResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "hys_auth.v1.Auth"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".hys_auth.v1.Token": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "Token": {
+                    "type": "string"
+                }
+            }
+        },
+        ".hys_auth.v1.Userinfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        ".hys_auth.v1.VerifyResult": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "type": "integer"
+                },
+                "Verify": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

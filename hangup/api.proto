@@ -1,0 +1,212 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package hangup.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service hangup {
+    rpc Ping (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+
+    rpc OffOnline (OffOnlineReq) returns (OffOnlineRsp){
+        option (google.api.http) = {
+            post:"/hangup/OffOnline"
+        };
+    };
+
+    rpc QueryHangupData (QueryHangupDataReq) returns (QueryHangupDataRsp){
+        option (google.api.http) = {
+            post:"/hangup/QueryHangupData"
+        };
+    };
+
+    rpc EndOffOnline (EndOffOnlineReq) returns (EndOffOnlineRsp){
+        option (google.api.http) = {
+            post:"/hangup/EndOffOnline"
+        };
+    };
+
+    rpc GetAward (GetAwardReq) returns (GetAwardRsp){
+        option (google.api.http) = {
+            post:"/hangup/GetAward"
+        };
+    };
+
+    rpc FinishHangUp (FinishHangUpReq) returns (FinishHangUpRsp){
+        option (google.api.http) = {
+            post:"/hangup/FinishHangUp"
+        };
+    };
+
+    rpc QueryIslandStatus (QueryIslandStatusReq) returns (QueryIslandStatusRsp){
+        option (google.api.http) = {
+            post:"/hangup/QueryIslandStatus"
+        };
+    };
+
+    rpc GetHangupResult (GetHangupResultReq) returns (GetHangupResultRsp){
+        option (google.api.http) = {
+            post:"/hangup/GetHangupResult"
+        };
+    };
+}
+
+message PlayerLoginReq {
+    int64 PlayerID = 1 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];
+    int32 GameID = 2 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int32 GroupID = 3 [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+    int32 ServerID = 4 [(gogoproto.jsontag) = "ServerID", (gogoproto.moretags)='form:"ServerID" validate:"required"'];
+    string IP = 5 [(gogoproto.jsontag) = "IP", (gogoproto.moretags)='form:"IP" validate:"required"'];
+}
+
+message PlayerLoginRsp {}
+
+
+
+message OffOnlineReq {
+    int32 GameID =1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];                  //玩家ID
+    int32 Ratio = 3 [(gogoproto.jsontag) = "Ratio", (gogoproto.moretags)='form:"Ratio" validate:"required"'];                     //倍率
+    int64 LongTime = 4 [(gogoproto.jsontag) = "LongTime", (gogoproto.moretags)='form:"LongTime" validate:"required"'];                 //时长,单位可以设置为分钟
+    int64 Money = 5 [(gogoproto.jsontag) = "Money", (gogoproto.moretags)='form:"Money" validate:"required"'];                      //投入金币
+    int32 IslandID = 6 [(gogoproto.jsontag) = "IslandID", (gogoproto.moretags)='form:"IslandID" validate:"required"'];                      //岛ID
+    int64 WinLimit = 7 [(gogoproto.jsontag) = "WinLimit", (gogoproto.moretags)='form:"WinLimit"'];                      //赢取金币上限
+    int64 LoseLimit = 8 [(gogoproto.jsontag) = "LoseLimit", (gogoproto.moretags)='form:"LoseLimit"'];                      //输掉金币下限
+    repeated int32 MouseID = 9 [(gogoproto.jsontag) = "MouseID", (gogoproto.moretags)='form:"MouseID" validate:"required"'];          //老鼠id，不超过5个
+}
+
+message OffOnlineRsp {}
+
+message QueryHangupDataReq{
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];                   //玩家ID
+}
+
+message QueryHangupDataRsp {
+    repeated IslandData IslandDataList = 1 [(gogoproto.jsontag) = "IslandDataList", (gogoproto.moretags)='form:"IslandDataList" '];   // 场配置列表
+    repeated IslandStatus IslandStatusList = 2 [(gogoproto.jsontag) = "IslandStatusList", (gogoproto.moretags)='form:"IslandStatusList" '];   // 玩家在游戏中的挂机信息
+
+}
+
+message IslandData {
+    int32 IslandID = 1 [(gogoproto.jsontag) = "IslandID", (gogoproto.moretags)='form:"IslandID"'];
+    int64 LongTimeMin  = 2 [(gogoproto.jsontag) = "LongTimeMin", (gogoproto.moretags)='form:"LongTimeMin"'];
+    int64 LongTimeMax  = 3 [(gogoproto.jsontag) = "LongTimeMax", (gogoproto.moretags)='form:"LongTimeMax" '];
+    int64 GoldMin = 4 [(gogoproto.jsontag) = "GoldMin", (gogoproto.moretags)='form:"GoldMin" '];
+    int64 GoldMax = 5 [(gogoproto.jsontag) = "GoldMax", (gogoproto.moretags)='form:"GoldMax" '];
+    repeated int32 RatioList = 6 [(gogoproto.jsontag) = "RatioList", (gogoproto.moretags)='form:"RatioList" '];
+    repeated int32 MouseID = 7 [(gogoproto.jsontag) = "MouseID", (gogoproto.moretags)='form:"MouseID"'];
+}
+
+
+message EndOffOnlineReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int32 GroupID = 2 [(gogoproto.jsontag) = "GroupID", (gogoproto.moretags)='form:"GroupID" validate:"required"'];
+    int32 ServerID = 3 [(gogoproto.jsontag) = "ServerID", (gogoproto.moretags)='form:"ServerID" validate:"required"'];
+    int64 PlayerID = 4 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];                   //玩家ID
+    int32 Ratio = 5 [(gogoproto.jsontag) = "Ratio", (gogoproto.moretags)='form:"Ratio" validate:"required"'];                      //倍率
+    int64 OffTime = 6 [(gogoproto.jsontag) = "OffTime", (gogoproto.moretags)='form:"OffTime"'];                    //时长,单位秒
+    int64 Money = 7 [(gogoproto.jsontag) = "Money", (gogoproto.moretags)='form:"Money"'];                      //挂机结束获得金币
+    int64 Consume = 8 [(gogoproto.jsontag) = "Consume", (gogoproto.moretags)='form:"Consume"'];                    //总消耗
+    int64 Income = 9 [(gogoproto.jsontag) = "Income", (gogoproto.moretags)='form:"Income"'];                      //总收入
+    repeated DetailInfo MouserInfo = 10 [(gogoproto.jsontag) = "MouserInfo", (gogoproto.moretags)='form:"MouserInfo"'];         //每只老鼠挂机的详细信息
+}
+
+message EndOffOnlineRsp {}
+
+message DetailInfo {
+    int32 MonsterID = 1 [(gogoproto.jsontag) = "MonsterID", (gogoproto.moretags)='form:"MonsterID"'];                         //地鼠id
+    int64 IncomeMoney = 2 [(gogoproto.jsontag) = "IncomeMoney", (gogoproto.moretags)='form:"IncomeMoney"'];                        //收益
+
+}
+
+message GetAwardReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];
+    int32 IslandID = 3 [(gogoproto.jsontag) = "IslandID", (gogoproto.moretags)='form:"IslandID" validate:"required"'];                      //岛ID
+}
+
+message GetAwardRsp {
+    int64 PlayerID = 1 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID"'];                   //玩家ID
+    int32 Ratio = 2    [(gogoproto.jsontag) = "Ratio", (gogoproto.moretags)='form:"Ratio"'];                        //倍率
+    int64 OffTime = 3  [(gogoproto.jsontag) = "OffTime", (gogoproto.moretags)='form:"OffTime"'];                    //时长,单位秒
+    int64 Money = 4    [(gogoproto.jsontag) = "Money", (gogoproto.moretags)='form:"Money" '];                       //挂机结束获得金币
+    int64 Consume = 5  [(gogoproto.jsontag) = "Consume", (gogoproto.moretags)='form:"Consume" '];                     //总消耗
+    int64 Income = 6   [(gogoproto.jsontag) = "Income", (gogoproto.moretags)='form:"Income" '];                      //总收入
+    int64 BetAmount = 7   [(gogoproto.jsontag) = "BetAmount", (gogoproto.moretags)='form:"BetAmount" '];                      //总收入
+}
+
+message FinishHangUpReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];
+    int32 IslandID = 3 [(gogoproto.jsontag) = "IslandID", (gogoproto.moretags)='form:"IslandID" validate:"required"'];                      //岛ID
+}
+
+message FinishHangUpRsp {
+}
+
+message QueryIslandStatusReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];
+}
+
+message QueryIslandStatusRsp {
+    repeated IslandStatus IslandStatusList = 1 [(gogoproto.jsontag) = "IslandStatusList"];
+}
+
+message IslandStatus {
+    int32 IslandID = 1 [(gogoproto.jsontag) = "IslandID"];
+    HangUpStatusCode IslandStatus = 2 [(gogoproto.jsontag) = "IslandStatus"];
+    string HangupIP = 3 [(gogoproto.jsontag) = "HangupIP"];
+    int64 HangupTime = 4  [(gogoproto.jsontag) = "HangupTime"];
+}
+
+message GetHangupResultReq {
+    int32 GameID = 1 [(gogoproto.jsontag) = "GameID", (gogoproto.moretags)='form:"GameID" validate:"required"'];
+    int64 PlayerID = 2 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID" validate:"required"'];
+    int32 IslandID = 3 [(gogoproto.jsontag) = "IslandID", (gogoproto.moretags)='form:"IslandID" validate:"required"'];                      //岛ID
+}
+
+message GetHangupResultRsp {
+    int64 PlayerID = 1 [(gogoproto.jsontag) = "PlayerID", (gogoproto.moretags)='form:"PlayerID"'];                   //玩家ID
+    int32 Ratio = 2    [(gogoproto.jsontag) = "Ratio", (gogoproto.moretags)='form:"Ratio"'];                        //倍率
+    int64 OffTime = 3  [(gogoproto.jsontag) = "OffTime", (gogoproto.moretags)='form:"OffTime"'];                    //时长,单位秒
+    int64 Money = 4    [(gogoproto.jsontag) = "Money", (gogoproto.moretags)='form:"Money" '];                       //挂机结束获得金币
+    int64 Consume = 5  [(gogoproto.jsontag) = "Consume", (gogoproto.moretags)='form:"Consume" '];                     //总消耗
+    int64 Income = 6   [(gogoproto.jsontag) = "Income", (gogoproto.moretags)='form:"Income" '];                      //总收入
+}
+
+
+enum HangUpErrCode {
+    ThingNotModify = 0;
+    SetLoginInfoFail = 30001; // 写入登录信息时白
+    UserNotHangUp = 30002; // 玩家未挂机
+    PushOffOnline = 30003; // 推送挂机消息到挂机副失败
+    OffOnline =  30004; // 挂机失败
+    GetLockFail = 30005; // 获取琐失败
+    GetConfigFail = 30006;  // 获取配置失败
+    GetRewardFail = 30007; // 获取奖励失败
+    ClientGetHangupIPFail = 30008; // 取消报名失败
+    HangupWorkOrNotGetReward = 30009; // 玩家正在挂机或未领取的奖励
+    RewardHaveGet = 30010; // 玩家已经领取奖励
+    FinishHangUpFail = 30012; // 结束挂机失败
+
+}
+
+enum HangUpStatusCode{
+    HangUpStatusInitCode = 0;
+    HangUpNot      = 1;     //默认初始状态，未挂机 1
+    HangUpWork     = 2;     //挂机中，已扣钱，且已向挂机服提交成功 2
+    HangUpFinish   = 3;     //挂机完成，奖励未领取 3
+    HangUpEnd      = 4;     //挂机结束，奖励已领取 4
+}

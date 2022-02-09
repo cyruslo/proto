@@ -1,0 +1,483 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/GameProp/Add/PlayerProp": {
+            "post": {
+                "summary": "添加玩家道具信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gameprop_v1.service.v1.AddPlayerPropResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gameprop_v1.service.v1.AddPlayerPropReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        },
+        "/GameProp/Consume/PlayerProp": {
+            "post": {
+                "summary": "玩家消耗道具",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gameprop_v1.service.v1.ConsumePlayerPropResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gameprop_v1.service.v1.ConsumePlayerPropReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        },
+        "/GameProp/Handsel/RechargeGiftItems": {
+            "post": {
+                "summary": "玩家充值道具赠送",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gameprop_v1.service.v1.RechargeGiftItemsResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gameprop_v1.service.v1.RechargeGiftItemsReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        },
+        "/GameProp/Query/PlayerPropInfo": {
+            "post": {
+                "summary": "查询玩家道具信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gameprop_v1.service.v1.QueryPlayerPropInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gameprop_v1.service.v1.QueryPlayerPropInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        },
+        "/GameProp/Query/QueryPlayerRechargeInfo": {
+            "post": {
+                "summary": "查询玩家通知信息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.gameprop_v1.service.v1.QueryPlayerRechargeInfoResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.gameprop_v1.service.v1.QueryPlayerRechargeInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        },
+        "/gameprop_v1.service.v1.GameProp_V1/Ping": {
+            "get": {
+                "summary": "/gameprop_v1.service.v1.GameProp_V1/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "gameprop_v1.service.v1.GameProp_V1"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".gameprop_v1.service.v1.AddPlayerPropReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropNum": {
+                    "type": "integer"
+                },
+                "Proptype": {
+                    "type": "integer"
+                },
+                "OnlyValue": {
+                    "type": "string"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID",
+                "PropID",
+                "PropNum",
+                "Proptype",
+                "OnlyValue"
+            ]
+        },
+        ".gameprop_v1.service.v1.AddPlayerPropResp": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropBeforeNum": {
+                    "type": "integer"
+                },
+                "PropAfterNum": {
+                    "type": "integer"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.ConsumePlayerPropReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropNum": {
+                    "type": "integer"
+                },
+                "OnlyValue": {
+                    "type": "string"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID",
+                "PropID",
+                "PropNum",
+                "OnlyValue"
+            ]
+        },
+        ".gameprop_v1.service.v1.ConsumePlayerPropResp": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropBeforeNum": {
+                    "type": "integer"
+                },
+                "PropAfterNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.Prop": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.PropInfo": {
+            "type": "object",
+            "properties": {
+                "PropID": {
+                    "type": "integer"
+                },
+                "PropNum": {
+                    "type": "integer"
+                },
+                "PropType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.QueryPlayerPropInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".gameprop_v1.service.v1.QueryPlayerPropInfoResp": {
+            "type": "object",
+            "properties": {
+                "PropList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.gameprop_v1.service.v1.PropInfo"
+                    }
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.QueryPlayerRechargeInfoReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID"
+            ]
+        },
+        ".gameprop_v1.service.v1.QueryPlayerRechargeInfoResp": {
+            "type": "object",
+            "properties": {
+                "RechargeInfoList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.gameprop_v1.service.v1.RechargeInfo"
+                    }
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.RechargeGiftItemsReq": {
+            "type": "object",
+            "properties": {
+                "GameID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "RechargeAmount": {
+                    "type": "integer"
+                },
+                "OnlyValue": {
+                    "type": "string"
+                },
+                "SourceType": {
+                    "type": "string"
+                },
+                "Remark": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GameID",
+                "UserID",
+                "RechargeAmount",
+                "OnlyValue"
+            ]
+        },
+        ".gameprop_v1.service.v1.RechargeGiftItemsResp": {
+            "type": "object",
+            "properties": {
+                "RechargeAmount": {
+                    "type": "integer"
+                },
+                "HandselNum": {
+                    "type": "integer"
+                },
+                "TotalNum": {
+                    "type": "integer"
+                },
+                "PropList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.gameprop_v1.service.v1.Prop"
+                    }
+                }
+            }
+        },
+        ".gameprop_v1.service.v1.RechargeInfo": {
+            "type": "object",
+            "properties": {
+                "RechargeAmount": {
+                    "type": "integer"
+                },
+                "HandselNum": {
+                    "type": "integer"
+                },
+                "TotalNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+    }
+}

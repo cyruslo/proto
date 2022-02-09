@@ -1,0 +1,225 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "chatService/GetChatConsume": {
+            "post": {
+                "summary": "查询聊天消耗",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.chat.service.v1.GetChatConsumeResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.chat.service.v1.GetChatConsumeRep"
+                        }
+                    }
+                ],
+                "tags": [
+                    "chat.service.v1.chatService"
+                ]
+            }
+        },
+        "chatService/HallChatMsg": {
+            "post": {
+                "summary": "聊天",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.chat.service.v1.HallChatMsgResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.chat.service.v1.HallChatMsgReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "chat.service.v1.chatService"
+                ]
+            }
+        },
+        "chatService/SysMessages": {
+            "post": {
+                "summary": "系统消息",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.chat.service.v1.SysMessagesResp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.chat.service.v1.SysMessagesReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "chat.service.v1.chatService"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".chat.service.v1.GetChatConsumeRep": {
+            "type": "object",
+            "properties": {
+                "userID": {
+                    "type": "integer"
+                },
+                "consumeType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".chat.service.v1.GetChatConsumeResp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                },
+                "retMsg": {
+                    "type": "string"
+                },
+                "consumeType": {
+                    "type": "integer"
+                },
+                "consumeNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".chat.service.v1.HallChatMsgReq": {
+            "type": "object",
+            "properties": {
+                "userID": {
+                    "type": "integer"
+                },
+                "chatMsg": {
+                    "type": "string"
+                },
+                "msgType": {
+                    "type": "integer"
+                },
+                "ptypeID": {
+                    "type": "integer"
+                },
+                "gameID": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "description": "聊天"
+        },
+        ".chat.service.v1.HallChatMsgResp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".chat.service.v1.SysMessagesReq": {
+            "type": "object",
+            "properties": {
+                "words": {
+                    "type": "string"
+                },
+                "msgType": {
+                    "type": "integer"
+                },
+                "gameID": {
+                    "type": "integer"
+                },
+                "contentType": {
+                    "type": "integer"
+                },
+                "delaysec": {
+                    "type": "integer"
+                },
+                "ptypeID": {
+                    "type": "integer"
+                }
+            },
+            "description": "系统消息请求"
+        },
+        ".chat.service.v1.SysMessagesResp": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

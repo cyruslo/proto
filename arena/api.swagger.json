@@ -1,0 +1,1571 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/arenaServer/onCancelMatch": {
+            "post": {
+                "summary": "/arenaServer/onCancelMatch",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FCancelMatchRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FCancelMatchReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onConfirm": {
+            "post": {
+                "summary": "/arenaServer/onConfirm",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FConfirmRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FConfirmReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFAward": {
+            "post": {
+                "summary": "/arenaServer/onFAward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.GetAwardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.GetAwardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFAwardCount": {
+            "post": {
+                "summary": "/arenaServer/onFAwardCount",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.AwardCountRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.AwardCountReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFAwardList": {
+            "post": {
+                "summary": "/arenaServer/onFAwardList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.AwardListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.AwardListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFMatchList": {
+            "post": {
+                "summary": "/arenaServer/onFMatchList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FMatchListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FMatchListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFMatchStatus": {
+            "post": {
+                "summary": "/arenaServer/onFMatchStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.MatchStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.MatchStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFRankList": {
+            "post": {
+                "summary": "/arenaServer/onFRankList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.RankListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.RankListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFShareStatus": {
+            "post": {
+                "summary": "/arenaServer/onFShareStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.ShareStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.ShareStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onFSignUp": {
+            "post": {
+                "summary": "/arenaServer/onFSignUp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FSignUpRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FSignUpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onGameUserInfo": {
+            "post": {
+                "summary": "/arenaServer/onGameUserInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.GameUserInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.GameUserInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPAward": {
+            "post": {
+                "summary": "/arenaServer/onPAward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.GetAwardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.GetAwardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPAwardCount": {
+            "post": {
+                "summary": "/arenaServer/onPAwardCount",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.AwardCountRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.AwardCountReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPAwardList": {
+            "post": {
+                "summary": "/arenaServer/onPAwardList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.AwardListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.AwardListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPMatchList": {
+            "post": {
+                "summary": "/arenaServer/onPMatchList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.PMatchListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.PMatchListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPMatchStatus": {
+            "post": {
+                "summary": "/arenaServer/onPMatchStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.MatchStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.MatchStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPRankList": {
+            "post": {
+                "summary": "/arenaServer/onPRankList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.RankListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.RankListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPShareStatus": {
+            "post": {
+                "summary": "/arenaServer/onPShareStatus",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.ShareStatusRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.ShareStatusReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onPSignUp": {
+            "post": {
+                "summary": "/arenaServer/onPSignUp",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.PSignUpRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.PSignUpReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onRobotHeart": {
+            "post": {
+                "summary": "/arenaServer/onRobotHeart",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FRobotLoginRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FRobotHeartReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onRobotLogin": {
+            "post": {
+                "summary": "/arenaServer/onRobotLogin",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FRobotLoginRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FRobotLoginReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        },
+        "/arenaServer/onWaitMatch": {
+            "post": {
+                "summary": "/arenaServer/onWaitMatch",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.arena.service.v1.FWaitMatchRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.arena.service.v1.FWaitMatchReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "arena.service.v1.ArenaServer"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".arena.service.v1.Award": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer"
+                },
+                "Num": {
+                    "type": "integer"
+                },
+                "Mux": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.AwardCountReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.AwardCountRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Count": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.AwardInfo": {
+            "type": "object",
+            "properties": {
+                "AwardId": {
+                    "type": "string"
+                },
+                "ModeId": {
+                    "type": "integer"
+                },
+                "TypeTips": {
+                    "type": "string"
+                },
+                "Awards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Award"
+                    }
+                },
+                "Date": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.AwardListReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.AwardListRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "AwardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.AwardInfo"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.Condition": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "Value": {
+                    "type": "integer"
+                }
+            },
+            "description": "-------------------------全民赛-----------------------------------"
+        },
+        ".arena.service.v1.FCancelMatchReq": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FCancelMatchRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Result": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FConfirmReq": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FConfirmRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Result": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FMatchInfo": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "TypeTips": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "OpenTime": {
+                    "type": "string"
+                },
+                "PlayerTimes": {
+                    "type": "integer"
+                },
+                "JoinTimes": {
+                    "type": "integer"
+                },
+                "TotalTimes": {
+                    "type": "integer"
+                },
+                "MatchTime": {
+                    "type": "integer"
+                },
+                "ConditionList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Condition"
+                    }
+                },
+                "RankInfoList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.RankListInfo"
+                    }
+                },
+                "Status": {
+                    "type": "integer"
+                }
+            },
+            "description": "-------------------------快速赛-----------------------------------"
+        },
+        ".arena.service.v1.FMatchListReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FMatchListRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.FMatchInfo"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.FRobotHeartReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FRobotLoginReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FRobotLoginRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Core": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FSignUpReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Head": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "Ip": {
+                    "type": "string"
+                },
+                "Position": {
+                    "$ref": "#/definitions/.arena.service.v1.PositionInfo"
+                }
+            }
+        },
+        ".arena.service.v1.FSignUpRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "Core": {
+                    "type": "integer"
+                },
+                "Url": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.FWaitMatchReq": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.FWaitMatchRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "Join": {
+                    "type": "integer"
+                },
+                "Total": {
+                    "type": "integer"
+                },
+                "Url": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.GameUserInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.GameUserInfoRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "GameType": {
+                    "type": "integer"
+                },
+                "playerId": {
+                    "type": "integer"
+                },
+                "Count": {
+                    "type": "integer"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "Tips": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.GetAwardData": {
+            "type": "object",
+            "properties": {
+                "AwardId": {
+                    "type": "string"
+                },
+                "Phone": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.GetAwardReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "AwardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.GetAwardData"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.GetAwardRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "AwardIdList": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "AwardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Award"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.MatchStatusReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.MatchStatusRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Tips": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.MatchTips"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.MatchTips": {
+            "type": "object",
+            "properties": {
+                "GameType": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "TypeTips": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.PMatchInfo": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "TypeTips": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "JoinTimes": {
+                    "type": "integer"
+                },
+                "TotalTimes": {
+                    "type": "integer"
+                },
+                "Date": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "integer"
+                },
+                "ConditionList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Condition"
+                    }
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "TotalRank": {
+                    "type": "integer"
+                },
+                "Awards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Award"
+                    }
+                },
+                "AwardCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.PMatchListReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.PMatchListRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "MatchList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.PMatchInfo"
+                    }
+                }
+            }
+        },
+        ".arena.service.v1.PSignUpReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Head": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.PSignUpRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "Id": {
+                    "type": "integer"
+                },
+                "Money": {
+                    "type": "integer"
+                },
+                "Core": {
+                    "type": "integer"
+                },
+                "Url": {
+                    "type": "string"
+                }
+            }
+        },
+        ".arena.service.v1.PositionInfo": {
+            "type": "object",
+            "properties": {
+                "Latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Longitude": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        ".arena.service.v1.RankListInfo": {
+            "type": "object",
+            "properties": {
+                "StartRank": {
+                    "type": "integer"
+                },
+                "EndRank": {
+                    "type": "integer"
+                },
+                "UserType": {
+                    "type": "integer"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Icon": {
+                    "type": "string"
+                },
+                "Mark": {
+                    "type": "integer"
+                },
+                "AwardList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.Award"
+                    }
+                },
+                "Stars": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".arena.service.v1.RankListReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "ArenaType": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.RankListRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "ArenaType": {
+                    "type": "integer"
+                },
+                "RankList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.arena.service.v1.RankListInfo"
+                    }
+                },
+                "Rank": {
+                    "type": "integer"
+                },
+                "TotalRank": {
+                    "type": "integer"
+                },
+                "Mark": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.ShareStatusReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".arena.service.v1.ShareStatusRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "Core": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

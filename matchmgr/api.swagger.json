@@ -1,0 +1,1260 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/matchmgr.service.v1.MatchMgr/GetAward": {
+            "get": {
+                "summary": "/matchmgr.service.v1.MatchMgr/GetAward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCGetAward"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSGetAward"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr.service.v1.MatchMgr/GetAwardRecord": {
+            "get": {
+                "summary": "/matchmgr.service.v1.MatchMgr/GetAwardRecord",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCGetAwardRecord"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "playerId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gameId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr.service.v1.MatchMgr/MatchResult": {
+            "get": {
+                "summary": "/matchmgr.service.v1.MatchMgr/MatchResult",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCMatchResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr.service.v1.MatchMgr/Ping": {
+            "get": {
+                "summary": "/matchmgr.service.v1.MatchMgr/Ping",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr.service.v1.MatchMgr/UpdateBonus": {
+            "get": {
+                "summary": "以下接口内部使用",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCUpdateBonus"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "gameId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "field",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "value",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr.service.v1.MatchMgr/UpdateUserInfo": {
+            "get": {
+                "summary": "/matchmgr.service.v1.MatchMgr/UpdateUserInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCUpdateUserInfo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "playerId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gameId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "arenaId",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "icon",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nick",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "bigGiftId",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/BonusPool": {
+            "post": {
+                "summary": "/matchmgr/BonusPool",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHBonusPool"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHBonusPool"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/GetAllMatchCfg": {
+            "post": {
+                "summary": "/matchmgr/GetAllMatchCfg",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCMatchCfg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSMatchCfg"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/HistoryRank": {
+            "post": {
+                "summary": "/matchmgr/HistoryRank",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHHistoryRank"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHHistoryRank"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/LuckyInfo": {
+            "post": {
+                "summary": "/matchmgr/LuckyInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHLuckyInfo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHLuckyInfo"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/MatchInfo": {
+            "post": {
+                "summary": "/matchmgr/MatchInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHMatchInfo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHMatchInfo"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/MatchInfoTip": {
+            "post": {
+                "summary": "/matchmgr/MatchInfoTip",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHMatchInfoTip"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHMatchInfoTip"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/RankBar": {
+            "post": {
+                "summary": "/matchmgr/RankBar",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHRankBar"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHRankBar"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/RealRank": {
+            "post": {
+                "summary": "/matchmgr/RealRank",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHRealRank"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHRealRank"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        },
+        "/matchmgr/Reward": {
+            "post": {
+                "summary": "/matchmgr/Reward",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.matchmgr.service.v1.SCHReward"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.matchmgr.service.v1.CSHReward"
+                        }
+                    }
+                ],
+                "tags": [
+                    "matchmgr.service.v1.MatchMgr"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".google.protobuf.Empty": {
+            "type": "object",
+            "properties": {},
+            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
+        },
+        ".matchmgr.service.v1.AwardRecord": {
+            "type": "object",
+            "properties": {
+                "rank": {
+                    "type": "integer"
+                },
+                "match_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "lucky_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "split_award_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "match": {
+                    "$ref": "#/definitions/.matchmgr.service.v1.MatchIdentify"
+                },
+                "user3": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.UserInfo"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSGetAward": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "match": {
+                    "$ref": "#/definitions/.matchmgr.service.v1.MatchIdentify"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            },
+            "description": "领取奖励"
+        },
+        ".matchmgr.service.v1.CSGetAwardRecord": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHBonusPool": {
+            "type": "object",
+            "properties": {
+                "mathcId": {
+                    "type": "integer"
+                },
+                "timeId": {
+                    "type": "integer"
+                },
+                "playerId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHHistoryRank": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "matchId": {
+                    "type": "integer",
+                    "description": "比赛Id(1001:nvip日赛，1002:vip日赛，1003:nvip周赛，1004:vip周赛，1005:nvip月赛，1006:vip月赛)\n比赛Id(1011:積分賽底場日赛，1012:積分賽高場日赛，1013:積分賽底場周赛，1014:積分賽高場周赛，1015:積分賽底場月赛，1016:積分賽高場月赛)"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHLuckyInfo": {
+            "type": "object",
+            "properties": {
+                "matchId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHMatchInfo": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHMatchInfoTip": {
+            "type": "object",
+            "properties": {
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHRankBar": {
+            "type": "object",
+            "properties": {
+                "mathcId": {
+                    "type": "integer"
+                },
+                "timeId": {
+                    "type": "integer"
+                },
+                "playerId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHRealRank": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "mathcId": {
+                    "type": "integer"
+                },
+                "timeId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSHReward": {
+            "type": "object",
+            "properties": {
+                "mathcId": {
+                    "type": "integer"
+                },
+                "timeId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.CSMatchCfg": {
+            "type": "object",
+            "properties": {}
+        },
+        ".matchmgr.service.v1.CSMatchResult": {
+            "type": "object",
+            "properties": {},
+            "description": "请求自己未领取的奖励的结算界面信息"
+        },
+        ".matchmgr.service.v1.CSUpdateBonus": {
+            "type": "object",
+            "properties": {
+                "gameId": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "field": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "description": "-----------------服务内grpc接口"
+        },
+        ".matchmgr.service.v1.CSUpdateUserInfo": {
+            "type": "object",
+            "properties": {
+                "playerId": {
+                    "type": "integer"
+                },
+                "gameId": {
+                    "type": "integer"
+                },
+                "arenaId": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "nick": {
+                    "type": "string"
+                },
+                "bigGiftId": {
+                    "type": "string"
+                }
+            }
+        },
+        ".matchmgr.service.v1.HBonusPool": {
+            "type": "object",
+            "properties": {
+                "matchId": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.HistoryRank": {
+            "type": "object",
+            "properties": {
+                "idx": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "addition_source": {
+                    "type": "integer"
+                },
+                "addition": {
+                    "type": "integer"
+                },
+                "match_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "pack_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "lucky_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "bigGiftId": {
+                    "type": "string"
+                }
+            }
+        },
+        ".matchmgr.service.v1.LuckyInfo": {
+            "type": "object",
+            "properties": {
+                "lRange": {
+                    "type": "integer"
+                },
+                "rRange": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.MatchCfg": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer",
+                    "description": "游戏id"
+                },
+                "match_id": {
+                    "type": "integer",
+                    "description": "比赛id"
+                },
+                "match_type": {
+                    "type": "integer",
+                    "description": "比赛类型 0-流水赛（金牛赛）"
+                },
+                "show_begin_time": {
+                    "type": "string",
+                    "description": "比赛开始展示时间 2006-01-02 15:04:05"
+                },
+                "show_end_time": {
+                    "type": "string",
+                    "description": "比赛结束展示时间"
+                },
+                "match_begin_time": {
+                    "type": "string",
+                    "description": "比赛开始时间 08:20:00"
+                },
+                "match_end_time": {
+                    "type": "string",
+                    "description": "比赛结束时间 10:59:00"
+                }
+            }
+        },
+        ".matchmgr.service.v1.MatchIdentify": {
+            "type": "object",
+            "properties": {
+                "matchId": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "roundId": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.MatchInfoTip": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "mathcId": {
+                    "type": "integer"
+                },
+                "time": {
+                    "type": "string"
+                },
+                "goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.Object3": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.RealRank": {
+            "type": "object",
+            "properties": {
+                "idx": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "bigGiftId": {
+                    "type": "string"
+                }
+            }
+        },
+        ".matchmgr.service.v1.Reward": {
+            "type": "object",
+            "properties": {
+                "idxl": {
+                    "type": "integer"
+                },
+                "idxr": {
+                    "type": "integer"
+                },
+                "goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCGetAward": {
+            "type": "object",
+            "properties": {
+                "match_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "lucky_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                },
+                "split_award_goods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Object3"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCGetAwardRecord": {
+            "type": "object",
+            "properties": {
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.AwardRecord"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHBonusPool": {
+            "type": "object",
+            "properties": {
+                "pool": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.HBonusPool"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHHistoryRank": {
+            "type": "object",
+            "properties": {
+                "matchId": {
+                    "type": "integer"
+                },
+                "rank_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.HistoryRank"
+                    }
+                },
+                "oneself_rank": {
+                    "$ref": "#/definitions/.matchmgr.service.v1.HistoryRank"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHLuckyInfo": {
+            "type": "object",
+            "properties": {
+                "matchId": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.LuckyInfo"
+                    }
+                },
+                "split_data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.LuckyInfo"
+                    },
+                    "description": "没有数据说明瓜分奖未开启； 如果LuckyInfo.rScore = 0，说明无上限限制，在lScore以上"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHMatchInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "mathcId": {
+                    "type": "integer"
+                },
+                "timeId": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "down": {
+                    "type": "integer"
+                },
+                "time": {
+                    "type": "string"
+                },
+                "match_open": {
+                    "type": "boolean"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHMatchInfoTip": {
+            "type": "object",
+            "properties": {
+                "matchTips": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.MatchInfoTip"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHRankBar": {
+            "type": "object",
+            "properties": {
+                "idx": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                },
+                "reaward": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHRealRank": {
+            "type": "object",
+            "properties": {
+                "real_rank": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.RealRank"
+                    }
+                },
+                "onself_rank": {
+                    "$ref": "#/definitions/.matchmgr.service.v1.RealRank"
+                },
+                "total_num": {
+                    "type": "integer"
+                },
+                "score_addition": {
+                    "type": "integer"
+                },
+                "reward_addition": {
+                    "type": "integer"
+                },
+                "card_addition": {
+                    "type": "integer"
+                },
+                "vip_addition": {
+                    "type": "integer"
+                },
+                "split_award_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCHReward": {
+            "type": "object",
+            "properties": {
+                "rewards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.Reward"
+                    }
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCMatchCfg": {
+            "type": "object",
+            "properties": {
+                "match_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.MatchCfg"
+                    },
+                    "description": "比赛列表"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCMatchResult": {
+            "type": "object",
+            "properties": {
+                "match": {
+                    "$ref": "#/definitions/.matchmgr.service.v1.MatchIdentify"
+                },
+                "ranks": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "user3": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.matchmgr.service.v1.UserInfo"
+                    }
+                }
+            },
+            "description": "比赛结果推送"
+        },
+        ".matchmgr.service.v1.SCUpdateBonus": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        ".matchmgr.service.v1.SCUpdateUserInfo": {
+            "type": "object",
+            "properties": {}
+        },
+        ".matchmgr.service.v1.UserInfo": {
+            "type": "object",
+            "properties": {
+                "idx": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

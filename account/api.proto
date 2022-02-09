@@ -1,0 +1,129 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package account.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Account {
+	rpc GetLoginLimit (GetLoginLimitReq) returns (GetLoginLimitResp){
+        option (google.api.http) = {
+            post:"/account/get_login_limit"
+        };
+    };
+   // rpc GetLoginLimitURL(LoginLimitReq) returns (LoginLimitResp) {
+   //     option (google.api.http) = {
+   //         get:"/account/get_login_limit"
+   //     };
+   // };
+   rpc LoginLimit (LoginLimitReq) returns (LoginLimitResp){
+        option (google.api.http) = {
+            post:"/account/login_limit"
+        };
+    };
+   rpc IsOldUser(IsOldUserReq) returns (IsOldUserResp) {
+        option (google.api.http) = {
+            post:"/account/is_old_user"
+        };
+   };
+    rpc OnGetPlayerShowData (GetPlayerShowDataReq) returns (GetPlayerShowDataRsp){
+        option (google.api.http) = {
+            post:"/account/OnGetPlayerShowData"
+        };
+    };
+    rpc OnEditPlayerShowData (EditPlayerShowDataReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/account/OnEditPlayerShowData"
+        };
+    };
+    rpc OnModifyPassword (ModifyPasswordReq) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/account/OnModifyPassword"
+        };
+    };
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;
+}
+
+message LoginLimitReq {
+    int64 user_id = 1;
+    int32 limit =2;
+}
+
+message LoginLimitResp {
+    int32 status = 1;
+    string msg = 2;
+}
+
+message GetLoginLimitReq {
+    int64 user_id = 1;
+    int32 game_id = 2;
+    bool is_clear = 3;
+}
+
+message GetLoginLimitResp {
+    bool is_limit = 1;  //是否被封
+    string reason = 2;  //被封原因
+    int64 time = 3;     //限制登录时间
+}
+
+message IsOldUserReq {
+    int64 userid = 1  [(gogoproto.jsontag) = "userid", (gogoproto.moretags)='form:"Userid" validate:"required"'];
+}
+
+message IsOldUserResp {
+    int32 status = 1;
+    string msg = 2;
+    string registertime = 3;
+}
+
+
+message GetPlayerShowDataReq {
+    int64 PlayerID = 1;
+    int64 ShowPlayerId = 2;
+}
+
+message GetPlayerShowDataRsp {
+    int32 	code 		    = 1;
+    string 	message		    = 2;
+    int32	Sex			    = 3;	// 性别 0未设置 1 男 2女
+    int64	QQ			    = 4;	// QQ号
+    string	WeChat		    = 5;	// 微信号
+    string	Addr		    = 6;	// 定位地址
+    bool	Public		    = 7;	// 是否公开
+    string  WeChatNikname   = 8;    // 微信昵称
+    string  QPNickName      = 9;    // 亲朋昵称
+    string  IconURL         = 10;   // 头像URL
+    int32   VipGrade        = 11;    // Vip等级
+}
+
+message EditPlayerShowDataReq {
+    int64 	PlayerID 	= 1;
+    int32	Sex			= 2;	// 性别 0未设置 1 男 2女
+    int64	QQ			= 3;	// QQ号
+    string	WeChat		= 4;	// 微信号
+    string	Addr		= 5;	// 定位地址
+    bool	Public		= 6;	// 是否公开
+}
+
+message ModifyPasswordReq
+{
+    int64   PlayerID        = 1;
+    string  OldPasswordMd5  = 2;
+    string  NewPasswordMd5  = 3;
+    string  Memo            = 4;    // db的日志说明,比如:手机棋牌修改密码
+}

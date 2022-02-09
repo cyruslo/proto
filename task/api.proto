@@ -1,0 +1,524 @@
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package task.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Task {
+  //一局结束上报
+  rpc GameEnd (GameEndReq) returns (CommonResp){
+    option (google.api.http) = {
+      post:"/task/GameEnd"
+    };
+  };
+  //特殊动作上报 ， 棋牌打出 飞机 连队等 捕鱼 捕获特定的鱼等
+  rpc SpecialAction (SpecialActionReq) returns (SpecialActionResp){
+    option (google.api.http) = {
+      post:"/task/SpecialAction"
+    };
+  };
+  //购买道具上报
+  rpc BuyProps (BuyPropsReq) returns (CommonResp){
+    option (google.api.http) = {
+      post:"/task/BuyProps"
+    };
+  };
+  //充值上报
+  rpc PayMoney (PayMoneyReq) returns (CommonResp){
+    option (google.api.http) = {
+      post:"/task/PayMoney"
+    };
+  };
+  //获取任务列表
+  rpc GetTaskList (QueryTaskReq) returns (QueryTaskResp){
+    option (google.api.http) = {
+      post:"/task/GetTaskList"
+    };
+  };
+  //获取随机任务列表，目前海外地鼠在用
+  rpc GetRandTaskList (QueryTaskReq) returns (QueryTaskResp){
+    option (google.api.http) = {
+      post:"/task/GetRandTaskList"
+    };
+  };
+  //获取普通任务奖励
+  rpc GetTaskReward (GetTaskRewardReq) returns (RewardResp){
+    option (google.api.http) = {
+      post:"/task/GetTaskReward"
+    };
+  };
+  //获取活跃度奖励
+  rpc GetActivityReward (GetActivityRewardReq) returns (RewardResp){
+    option (google.api.http) = {
+      post:"/task/GetActivityReward"
+    };
+  };
+  //获取随机任务奖励，通过根据权重抽取
+  rpc GetRandReward (GetRandRewardReq) returns (RewardResp){
+    option (google.api.http) = {
+      post:"/task/GetRandReward"
+    };
+  };
+  //在线时长 推送用户上下线
+  rpc PushOnLineStatus (PushOnLineStatusReq) returns (CommonResp){
+    option (google.api.http) = {
+      post:"/task/PushOnLineStatus"
+    };
+  };
+  //大厅任务列表获取
+  rpc GetHallTaskList (GetHallTaskReq) returns (HallTaskListResp){
+    option (google.api.http) = {
+      post:"/task/GetHallTaskList"
+    };
+  };
+  //大厅任务奖励获取
+  rpc GetHallTaskReward (HallTaskRewardReq) returns (RewardResp){
+    option (google.api.http) = {
+      post:"/task/GetHallTaskReward"
+    };
+  };
+
+//////////////////////////////////////////////////////////////////////////
+
+  rpc ListHallMissions(ListHallMissionsReq) returns (ListHallMissionsResp) {
+    option (google.api.http) = {
+      post:"/task/ListHallMissions"
+    };
+  }
+
+  rpc ReceiveHallMissionReward(ReceiveHallMissionRewardReq) returns (ReceiveHallMissionRewardResp) {
+    option (google.api.http) = {
+      post:"/task/ReceiveHallMissionReward"
+    };
+  }
+
+  rpc ReportedRequirement (ReportedRequirementReq) returns (ReportedRequirementResp) {
+    option (google.api.http) = {
+      post:"/task/ReportedRequirement"
+    };
+  }
+
+}
+
+message UserDetails {
+  int64 user_id = 1;                          //用户ID
+  bool is_win = 2;                            //输赢结果
+  int32 role = 3;                             //角色
+}
+
+message GameEndReq {
+  int32 game_id = 1;                          //游戏ID
+  int32 arena_id = 2;                         //场ID
+  int32 table_id = 3;                         //牌局ID
+  repeated UserDetails user_list = 4;         //用户详情列表
+}
+
+message ActionDetails {
+  int32 type = 1;                             //触发的动作类型
+  int32 num = 2;                              //触发的动作次数
+}
+
+message SpecialActionReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  int32 arena_id = 3;                         //场ID
+  repeated ActionDetails action_list = 4;     //特定动作详情列表
+}
+
+message BuyPropsReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  int32 props_id = 3;                         //道具ID
+}
+
+message PayMoneyReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  int32 money = 3;                            //充值金额
+}
+
+message QueryTaskReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  string task_property = 3;                   //任务属性
+}
+
+message PropsDetails {
+  int32 id = 1;                               //道具ID
+  int32 num = 2;                              //道具数量
+  int32 weight = 3;                           //物品中奖概率权重
+
+  int64 type = 4;
+  string name = 5;
+
+}
+
+message ActivityDetails {
+  int32 num = 1;                              //活跃度
+  int32 state = 2;                            //领取状态
+  repeated PropsDetails props_list = 3;       //可领取的奖励道具
+}
+
+message TaskDetails {
+  string id = 1;                              //任务ID
+  string property = 2;                         //任务属性：日常、新手、成就
+  string type = 3;                            //任务类型：累计、连续、每天
+  string trigger = 4;                         //任务触发条件
+  int32 current = 5;                          //当前完成任务次数
+  int32 finish = 6;                           //领取奖励需完成任务次数
+  int32 state = 7;                            //任务状态
+  int32 order = 8;                             //客户端显示顺序
+  repeated PropsDetails props_list = 9;      //完成任务可领取的奖励道具
+  int32 arena_id = 10;                          //场ID
+  int32 everyday = 11;                          //每日任务满足任务局数点
+  Date TaskDate = 12;                          //任务的时间
+  OnlineDetail OnlineDetail = 13;              //在线时长的明细
+  string Desc = 14;                           //任务描述
+  string Image = 15;                            // 对应的任务图卡
+}
+message Date {
+  string StartTime = 1;
+  string EndTime = 2;
+}
+
+message QueryTaskResp {
+  int32 code = 1;
+  string message = 2;
+  int64 deadline = 3;                                 //新手截止日期，格式为时间戳
+  int32 current_activity = 4;                         //当前活跃度
+  repeated TaskDetails task_list = 5;                 //任务详情列表
+  repeated ActivityDetails activity_list = 6;         //活跃度详情列表
+}
+
+message GetTaskRewardReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  string task_id = 3;                         //任务ID
+}
+
+message RewardResp {
+  int32 code = 1;
+  string message = 2;
+  repeated PropsDetails props_list = 3;       //奖励道具列表
+}
+
+message GetActivityRewardReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  int32 activity = 3;                         //活跃度
+}
+
+message GetRandRewardReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  string task_property = 3;                   //任务属性
+}
+
+
+message CommonResp {
+  int32 code = 1;
+  string message = 2;
+}
+
+message SpecialActionResp {
+  int32 code = 1;
+  string message = 2;
+  bool is_continue = 3;
+}
+
+message PushOnLineStatusReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  bool is_online = 3;                         //是否在线
+  int32 arena_id = 4;                         //场ID
+}
+
+
+message OnlineDetail {
+  int64 leftTime = 1;                       //对应任务完成点的剩下的时间
+  int64 TargetTime = 2;                       //对应任务完成点的的时间
+  int32 task_stage = 3;
+}
+
+
+message GetHallTaskReq {
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  string task_property = 3;                   //任务属性
+  int32 vip = 4;                               //Vip等级
+}
+
+message HallTaskListResp {
+  int32 code = 1;
+  string message = 2;
+  int64 deadline = 3;                                 //新手截止日期，格式为时间戳
+  string ActiveBeginTime = 4;
+  string ActiveEndTime = 5;
+  int32 ActiveNowDay = 6;                             //当前为活动时间的第几天
+  int32 ActiveStatus = 7;                             //当前活动的状态
+  repeated TaskDetails task_list = 8;                 //任务详情列表
+}
+
+message  HallTaskRewardReq{
+  int64 user_id = 1;                          //用户ID
+  int32 game_id = 2;                          //游戏ID
+  string task_id = 3;                         //任务ID
+  int32 vip = 4;                               //Vip等级
+}
+
+
+
+////////////////////////////////////////////
+
+enum ErrCode {
+  Error_Code_Nil = 0;
+
+  Error_Code_Illegal_Params = 1;
+  Error_Code_Missing_Type = 4;              // 类型缺失
+  Error_Code_Group_Config_Error = 5;        // 配置文件分组异常
+  Error_Code_Item_Config_Error = 6;        // 奖品配置异常
+  Error_Code_Mission_Config_Error = 7;        // 任务配置异常
+
+  Error_Code_Limit_Not_Satisfied = 50;       // 限制条件未满足
+  Error_Code_Mission_Not_Finished_Or_Ended = 51;         // 任务未完成或已结束
+  Error_Code_Mission_Reward_Grant_Fail = 52;    // 任务奖励发放失败
+  Error_Code_Already_Received = 53;          // 任务奖励已领取
+
+
+
+}
+
+message Mission {
+  string id = 1; // 任务ID
+  int32 app_id = 2;  // 平台ID
+  int32 game_id = 3; // 所属游戏ID
+  int32 arena_id = 4; // 所属场次ID 0则匹配所有场次
+  int32 source_type = 5; // 道具来源ID, 由DB提供
+
+  enum Type {
+    Mission_Type_Nil = 0;
+    Mission_Type_Cycle = 1; // 周期循环任务
+    Mission_Type_Normal = 2; // 普通任务
+    Mission_Type_Novice = 3; // 新手任务
+    Mission_Type_Achievement = 4; // 成就
+    Mission_Type_Activity = 5; // 活动
+  }
+  int64 type = 10; // 任务类型 参考 enum Type
+
+  string name = 11; // 任务名称
+  string description = 12;    // 任务描述
+  string parent_id = 13;       // 父级任务ID
+  string icon = 14;           // 任务图标
+  bool is_need_join = 15;      // 任务是否需要手动参与
+  bool is_need_receive = 16;      // 任务是否需要手动领取
+  enum State {
+    Mission_State_Nil = 0;        // 未开始
+    Mission_State_Pre = 1;        // 预热中
+    Mission_State_Start = 2;      // 已开始
+    Mission_State_end = 3;        // 已结束, 还能领奖
+    Mission_State_Dead = 4;       // 彻底消失
+  }
+  int64 state = 17; // 参考State
+  int32 order = 18; // 客户端排序规则
+
+  string pre_time = 20;    // 预热时间
+  string start_time = 21;  // 开始时间
+  string end_time = 22;    // 结束时间,结束后还能领奖
+  string dead_time = 23;   // 领奖截止时间
+
+
+  int64 pre_timestamp = 24;    // 预热时间
+  int64 start_timestamp = 25;  // 开始时间
+  int64 end_timestamp = 26;    // 结束时间,结束后还能领奖
+  int64 dead_timestamp = 27;   // 领奖截止时间
+
+  enum CycleType {
+    Mission_Cycle_Type_Nil = 0;
+    Mission_Cycle_Type_Day = 1;    // 每天循环
+    Mission_Cycle_Type_Week = 2;   // 每周
+    Mission_Cycle_Type_Month = 3;  // 每月
+    Mission_Cycle_Type_Year = 4;   // 每年
+
+  }
+  int64 cycle_type = 30; // 参考 CycleType
+
+  int64 cycle_index = 31; // 周期开始时间  [cycleType = 2 && cycleIndex = 1 表示每周1刷新] [[cycleType = 3 && cycleIndex = 1 表示每月1号刷新]]
+
+
+  Groups limits = 40;       // 任务领奖限制
+  Groups activities = 41;   // 活跃度规则
+  Groups requirements = 43; // 完成条件
+  Groups rewards = 44; // 奖励
+}
+
+// 领奖限制类型 (未满足不能领取奖励)
+enum LimitType {
+  Limit_Type_Nil = 0;
+  Limit_Type_Vip = 1;           // vip等级
+  Limit_Type_Activity = 2;      // 活跃度等级
+  Limit_Type_Game_Count = 3;    // 游戏局数等级
+  Limit_Type_Match_Count = 4;   // 比赛局数等级
+  Limit_Type_Novice_Gift = 5;   // 是否购买新手礼包
+}
+
+// 活跃读限制类型 (未满足领取非活跃奖励)
+enum ActivityType {
+  Activity_Type_Nil = 0;    // 活跃度
+  Activity_Type_Game_Count = 1;  // 游戏局数
+  Activity_Type_Match_Count = 2; // 比赛局数
+}
+
+//
+message Groups {
+  repeated int64 target_ids = 1; //
+  repeated int64 counts = 2;      //
+  repeated int32 group_ids = 3;    //
+}
+
+// 任务完成条件
+message Requirement {
+  int64 id = 1; // 同一个游戏内唯一, 多个任务可能会有共享的完成条件
+  string desc = 3; // 任务条件简介
+
+  enum Type {
+    Requirement_Type_Nil = 0;
+    Requirement_Type_Cumulative = 1; // 连续
+    Requirement_Type_Continue = 2; // 累计
+  }
+  int64 type = 10; // 条件类型
+
+}
+
+message Requirements {
+  repeated int64 ids = 1;
+  repeated int64 counts = 2;
+  repeated int32 group_ids = 3;
+}
+
+message RequirementMap {
+  map<int64, Requirement> requirement_map = 1;
+}
+
+//任务完成奖励
+message Reward {
+  int64 id = 1;
+
+  enum Type {
+    Reward_Type_Nil = 0;
+    Reward_Type_Fixed = 1;  // 固定奖励
+    Reward_Type_Random = 2; // 随机奖励
+  }
+  int64 type = 3;
+
+  repeated int64 random_weights = 10; // 随机奖励权重, type=2时生效
+  repeated int64 random_left = 11;     // 随机奖品数量下限
+  repeated int64 random_right = 12;     // 随机奖品数量上限
+  repeated int64 random_item_ids = 13;     // 权重区间对应的物品
+  repeated int64 vip_range = 14;  //  [5    ,10   ,15   ,20   ,30 ]
+  repeated double factory = 15;   //  [1.0  ,1.25 ,1.5  ,1.75 ,2.0]
+
+  repeated int64 un_activity_random_weights = 20; // 非活跃 随机奖励权重, type=2时生效
+  repeated int64 un_activity_random_left = 21;  // 非活跃 随机奖品数量下限
+  repeated int64 un_activity_random_right = 22; // 非活跃 随机奖品数量上限
+  repeated int64 un_activity_random_item_ids = 23;     // 权重区间对应的物品
+  repeated int64 un_activity_vip_range = 24;  //  [5    ,10   ,15   ,20   ,30 ]
+  repeated double un_activity_factory = 25;   //  [1.0  ,1.25 ,1.5  ,1.75 ,2.0]
+
+
+
+  repeated int64 fixed_item_ids = 30; // 固定奖励ID
+  repeated int64 fixed_item_counts = 31; // 固定奖励数量
+
+  repeated int64 un_activity_fixed_item_ids = 40; // 非活跃 固定奖励ID
+  repeated int64 un_activity_fixed_item_counts = 41; // 非活跃 固定奖励数量
+}
+
+// 具体奖励物品
+message Item {
+  int64 id = 1; // 道具ID 1001: 金币, 1002: 奖票
+  string name = 2; // 道具名称
+  enum Type {
+    Item_Type_Nil = 0;
+    Item_Type_Coin = 1;         // 金币
+    Item_Type_Extend_Coin = 2;  // 扩展货币
+    Item_Type_Ticket = 3;       // 奖券
+  }
+  int64 type = 3;
+}
+
+message UserMissionStateMap {
+  map<string, int64> user_mission_state_map = 1;
+}
+
+enum UserMissionState {
+  User_Mission_State_nil = 0;
+  User_Mission_State_Going = 1;      // 进行中
+  User_Mission_State_Finished = 2;   // 已完成, 未领取
+  User_Mission_State_UnFinished = 3; // 未完成 (任务已结束)
+  User_Mission_State_Received = 4;   // 已领取
+}
+
+message ListHallMissionsReq {
+  int32 app_id = 1;
+  int64 user_id = 2;
+  repeated int32 game_ids = 3;
+  int64 mission_type = 4;
+}
+
+message Missions {
+  repeated Mission missions = 1;
+}
+
+message ListHallMissionsResp {
+  map<int32, Missions> mission_map = 1;
+  map<int32, ReportedDetailMap> reported_detail_map = 2;
+  map<int32, RequirementMap> requirement_map = 3;
+  map<int32, UserMissionStateMap> user_mission_state_map = 4;
+}
+
+message ReceiveHallMissionRewardReq {
+  int32 app_id = 1;
+  int64 user_id = 2;
+  int32 game_id = 3;
+  int32 arena_id = 4;
+  string mission_id = 5;
+  int32 group_id = 6;
+}
+
+message ReceiveHallMissionRewardResp {
+  repeated PropsDetails props_list = 1;       //奖励道具列表
+}
+
+message ReportedDetail {
+  int64 requirement_id = 1;
+  int64 count = 2;
+}
+
+message ReportedDetails {
+  repeated ReportedDetail reported_details = 1;
+}
+
+message ReportedDetailMap {
+  map<string, ReportedDetails> reported_detail_map = 1;
+}
+
+message ReportedRequirementReq {
+  int32 app_id = 1;
+  int64 user_id = 2;
+  int32 game_id = 3;
+  int32 arena_id = 4;
+
+  repeated ReportedDetail reported_details = 5;
+}
+
+message ReportedRequirementResp {
+  bool is_continue = 1;
+}

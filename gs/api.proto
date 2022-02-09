@@ -1,0 +1,124 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package gs.service.v1;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ 
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service Gs {
+	rpc OnUpdateKeyValues (UpdateKeyValues) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/gs/OnUpdateKeyValues"
+        };
+    };
+	rpc OnLoadValues (LoadValues) returns (LoadValuesResp){
+        option (google.api.http) = {
+            post:"/gs/OnLoadValues"
+        };
+    };
+    rpc OnSetPlayerIP (SetPlayerIP) returns (CommonResp){
+        option (google.api.http) = {
+            post:"/gs/OnSetPlayerIP"
+        };
+    };
+	rpc OnGetPlayerIP (GetPlayerIP) returns (GetPlayerIPResp){
+        option (google.api.http) = {
+            post:"/gs/OnGetPlayerIP"
+        };
+    };
+    rpc OnTurntableRecord (TurntableRecordReq) returns (TurntableRecordRsp){
+        option (google.api.http) = {
+            get:"/gs/OnTurntableRecord"
+        };
+    };
+    rpc OnTurntableRecordLog (TurntableRecordLogReq) returns (CommonResp){
+        option (google.api.http) = {
+            get:"/gs/OnTurntableRecordLog"
+        };
+    };
+    rpc OnTurntableRecordInster (TurntableRecordInsterReq) returns (CommonResp){
+        option (google.api.http) = {
+            get:"/gs/OnTurntableRecordInster"
+        };
+    };
+}
+
+message CommonResp {
+    int32 code = 1;
+    string message = 2;
+}
+
+// 附加数据
+message KeyValue{
+	string Key = 1 [(gogoproto.jsontag) = "Key", (gogoproto.moretags)='form:"Key" validate:"required"'];
+	string value = 2 [(gogoproto.jsontag) = "value", (gogoproto.moretags)='form:"value" validate:"required"'];
+}
+
+message UpdateKeyValues{
+	repeated KeyValue Items = 1 [(gogoproto.jsontag) = "Items", (gogoproto.moretags)='form:"Items"'];
+	int32 GameId = 2;
+}
+
+message LoadValues{
+	repeated string Keys = 1 [(gogoproto.jsontag) = "Keys", (gogoproto.moretags)='form:"Keys"'];
+	int32 GameId = 2;
+}
+
+message LoadValuesResp{
+    int32 code = 1;
+    string message = 2;
+	repeated KeyValue Items = 3;
+}
+
+message SetPlayerIP {
+	int64 PlayerId = 1;
+	string IP = 2;
+}
+
+message GetPlayerIP {
+	int64 PlayerId = 1;
+}
+
+message GetPlayerIPResp {
+	int32 code = 1;
+    string message = 2;
+	string IP = 3;
+}
+
+message TurntableRecordReq {
+    int32 PlayerID = 1;
+    int32 GameID = 2;
+    string GameUrl = 3;
+}
+
+message TurntableRecordLogReq {
+    int32 PlayerID = 1;
+    int32 Money = 2;
+    int32 Kind = 3;
+    int32 GameID = 4;
+    int32 ID = 5;
+}
+
+message TurntableRecordInsterReq {
+    int32 PlayerID = 1;
+    int32 Kind = 2;
+    int32 GameID = 3;
+    int32 ID = 4;
+}
+
+message TurntableRecordRsp{
+	int32 code = 1;
+    string message = 2;
+	int32 PlayerID =3;
+	int32 Kind = 4;
+	int32 ID = 5;
+}

@@ -1,0 +1,80 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package gamejob.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+// 游戏服玩家登录、退出通用请求
+message LoginOutReq {
+    int64 UserID = 1;
+    int32 GameID = 2; // 游戏ID，例如打旋，对应130
+    int32 GroupID = 3; // 例如新手场、中级场，每个"场",为一组，各自有个GroupID
+    string RoomID = 4; // 例如新手场开了10个游戏服来支撑，每个游戏服有个对应的RoomID
+    string Hostname = 5; // 游戏服的主机名称
+}
+
+message CommonResp {
+    int32 Result = 1; // 0 成功
+    string ErrorMsg = 2; // Result != 0时的错误信息
+    bytes Payload = 3; // 需要结果时赋值给此字段
+}
+
+message UserOpReq {
+    int64 UserID = 1; // 给用户发消息时
+    int32 Ops = 2; // 操作码
+    bytes Payload = 3;
+    int32 GameID = 4; // 游戏ID
+}
+
+message ServerOpReq {
+    int32 GameID = 1;
+    int32 ArenaID = 2;
+    int32 ServerID = 3;
+    int32 Ops = 4; // 操作码
+    bytes Payload = 5;
+}
+
+service GameJobService {
+    // 玩家登录游戏 grpc
+    rpc OnLogin(LoginOutReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/gamejobservice/onlogin"
+        };
+    };
+    // 玩家退出游戏 grpc
+    rpc OnLogout(LoginOutReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/gamejobservice/onlogout"
+        };
+    };
+
+    // 给指定用户发送消息
+    rpc SendToUser(UserOpReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/gamejobservice/sendtouser"
+        };
+    };
+    // 给指定服务器发送消息
+    rpc SendToGameServer(ServerOpReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/gamejobservice/sendtogameserver"
+        };
+    };
+
+    // 给指定服务器发送消息
+    rpc BroadcastToAllGameServer(ServerOpReq) returns (CommonResp) {
+        option (google.api.http) = {
+            post:"/gamejobservice/broadcasttoallgameserver"
+        };
+    };
+}
+
+

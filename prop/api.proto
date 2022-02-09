@@ -1,0 +1,120 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package prop.service.v1;
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service prop {
+    rpc AddProp (AddPropReq) returns (AddPropRsp){
+        option (google.api.http) = {
+            post:"/prop/AddProp"
+        };
+    };
+
+    rpc ExpendProp (ExpendPropReq) returns (ExpendPropRsp){
+        option (google.api.http) = {
+            post:"/prop/ExpendProp"
+        };
+    };
+
+    rpc QueryProp (QueryPropReq) returns (QueryPropRsp){
+        option (google.api.http) = {
+            post:"/prop/QueryProp"
+        };
+    };
+
+    rpc AppearExpendPropInfo (AppearExpendPropInfoReq) returns (AppearExpendPropInfoRsp){
+        option (google.api.http) = {
+            post:"/prop/AppearExpendPropInfo"
+        };
+    };
+
+    rpc GetExpendPropInfo (GetExpendPropInfoReq) returns (GetExpendPropInfoRsp){
+        option (google.api.http) = {
+            post:"/prop/GetExpendPropInfo"
+        };
+    };
+}
+
+message UseLimit {
+    int32 GameID = 1;
+}
+
+message AddPropReq {
+    int32 GameID = 1;		 	     //游戏ID
+    int32 PlayerID = 2;               //玩家ID
+    int32 PropID = 3;                 //道具ID
+    int32 PropCount = 4;              //道具数量
+    string SourceType = 5;            //道具源类型
+    string Remark = 6;	             //备注
+}
+
+message AddPropRsp {
+    int32 code = 1;
+    string message = 2;
+}
+
+message ExpendPropReq {
+    int32 GameID = 1;		   		             //游戏ID
+    int32 PlayerID = 2;                          //玩家ID
+    int32 PropID = 3;                            //道具ID
+    int32 PropCount = 4;                         //道具数量
+    string SourceType = 5;                       //道具源类型
+    string Remark = 6;	                         //备注
+}
+
+message ExpendPropRsp {
+    int32 code = 1;
+    string message = 2;
+}
+
+message QueryPropReq {
+    int32 GameID = 1;		  		          //游戏ID
+    int32 PlayerID = 2;                       //玩家ID
+}
+
+message Table {
+    int32 PlayerID = 1;                      //玩家ID
+    int32 PropID = 2;                        //道具ID
+    int32 PropCount = 3;                     //道具数量
+    string PropType = 4;                     //道具类型
+    string Validitstart = 5;         	     //有效期开始时间
+    string Validitend = 6;                   //有效期结束时间
+    string UserLimit = 7;                     //道具使用范围
+}
+
+message QueryPropRsp {
+    int32 code = 1;
+    string message = 2;
+    repeated Table tablelist = 3;
+}
+
+message AppearExpendPropInfoReq {
+    int32 PlayerID = 1;
+    int32 PropID = 2;
+    string Info = 3;
+}
+
+message AppearExpendPropInfoRsp {
+    int32 code = 1;
+    string message = 2;
+}
+
+message GetExpendPropInfoReq {
+    int32 PlayerID = 1;
+    int32 PropID = 2;
+}
+
+message GetExpendPropInfoRsp {
+    int32 code = 1;
+    string message = 2;
+    string Info = 3;
+}

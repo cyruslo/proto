@@ -1,0 +1,317 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/statistics/monster": {
+            "post": {
+                "summary": "/statistics/monster",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.statistic.service.v1.MonsterRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.statistic.service.v1.StatisticsMonsterReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "statistic.service.v1.Statistic"
+                ]
+            }
+        },
+        "/statistics/mutisystem": {
+            "post": {
+                "summary": "/statistics/mutisystem",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.statistic.service.v1.MutiSystemRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.statistic.service.v1.StatisticsMutiSystemReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "statistic.service.v1.Statistic"
+                ]
+            }
+        },
+        "/statistics/system": {
+            "post": {
+                "summary": "/statistics/system",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.statistic.service.v1.SystemRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.statistic.service.v1.StatisticsSystemReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "statistic.service.v1.Statistic"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".statistic.service.v1.MonsterRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".statistic.service.v1.MutiSystemRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        ".statistic.service.v1.StatisticsMonsterReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "room_id": {
+                    "type": "integer"
+                },
+                "monsters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.statistic.service.v1.StatisticsMonsterReq.MonsterDetail"
+                    }
+                }
+            },
+            "required": [
+                "game_id",
+                "arena_id"
+            ]
+        },
+        ".statistic.service.v1.StatisticsMonsterReq.MonsterDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tax": {
+                    "type": "integer"
+                },
+                "give": {
+                    "type": "integer"
+                },
+                "capture": {
+                    "type": "integer"
+                },
+                "cost": {
+                    "type": "integer"
+                },
+                "earn": {
+                    "type": "integer"
+                },
+                "hit": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        ".statistic.service.v1.StatisticsMutiSystemReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "room_id": {
+                    "type": "string"
+                },
+                "systems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.statistic.service.v1.StatisticsMutiSystemReq.SystemDetail"
+                    }
+                }
+            },
+            "required": [
+                "game_id",
+                "arena_id"
+            ]
+        },
+        ".statistic.service.v1.StatisticsMutiSystemReq.SystemDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "value",
+                "type"
+            ]
+        },
+        ".statistic.service.v1.StatisticsSystemReq": {
+            "type": "object",
+            "properties": {
+                "game_id": {
+                    "type": "integer"
+                },
+                "arena_id": {
+                    "type": "integer"
+                },
+                "room_id": {
+                    "type": "integer"
+                },
+                "systems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.statistic.service.v1.StatisticsSystemReq.SystemDetail"
+                    }
+                }
+            },
+            "required": [
+                "game_id",
+                "arena_id"
+            ]
+        },
+        ".statistic.service.v1.StatisticsSystemReq.SystemDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "cost": {
+                    "type": "integer"
+                },
+                "earn": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "cost",
+                "earn"
+            ]
+        },
+        ".statistic.service.v1.SystemRsp": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "integer"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
