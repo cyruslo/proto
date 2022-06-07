@@ -1,0 +1,179 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package dds_rank.service.v1;
+
+
+option go_package = "api";
+option (gogoproto.goproto_getters_all) = false;
+
+service DdsRank {
+    //更新排行榜分数
+    rpc UpdateScore (UpdateScoreReq) returns (UpdateScoreRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/UpdateScore"
+        };
+    };
+    //获取排行榜
+    rpc GetRank (GetRankReq) returns (GetRankRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/GetRank"
+        };
+    };
+    //获取上次锦鲤奖记录
+    rpc GetLuckyRecord (GetLuckyRecordReq) returns (GetLuckyRecordRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/GetLuckyRecord"
+        };
+    };
+    //获取奖池
+    rpc GetRewardPool (GetRewardPoolReq) returns (GetRewardPoolRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/GetRewardPool"
+        };
+    };
+    //更新奖池
+    rpc UpdateRewardPool (UpdateRewardPoolReq) returns (UpdateRewardPoolRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/UpdateRewardPool"
+        };
+    };
+    //获取奖励记录
+    rpc RewardRecord (RewardRecordReq) returns (RewardRecordRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/RewardRecord"
+        };
+    };
+    //领取奖励
+    rpc GetReward (GetRewardReq) returns (GetRewardRsp) {
+        option (google.api.http) = {
+            post:"/DdsRank/GetReward"
+        };
+    };
+}
+
+message PlayerInfo {
+    int64 playerID = 1;
+    //昵称
+    string nick = 2;
+}
+
+enum RankRewardType {
+    //锦鲤奖
+    RewardTypeLucky = 0;
+    //金奖
+    RewardTypeGold = 1;
+    //银奖
+    RewardTypeSilver = 2;
+    //铜奖
+    RewardTypeBronze = 3;
+    //普通奖
+    RewardTypeNormal = 4;
+}
+
+message RewardInfo {
+    //金币数量
+    int64 num = 1;
+    //奖池百分比
+    int32 percent = 2;
+    //奖励类型
+    RankRewardType type = 3;
+}
+
+message UpdateScoreReq {
+    int64 score = 1;
+    PlayerInfo playerInfo = 2;
+}
+
+message UpdateScoreRsp {
+    int64 curScore = 1;
+}
+
+message GetRankReq {
+    //是否获取上次排行榜
+    bool isLast = 1;
+    int64 playerID = 2;
+}
+
+message RankItem {
+    int32 rank = 1;
+    int64 score = 2;
+    PlayerInfo playerInfo = 3;
+    //可以同时获得排名奖和锦鲤奖
+    RewardInfo rewardInfo = 4;
+}
+
+message GetRankRsp {
+    repeated RankItem rankList = 1;
+    RankItem selfRank = 2;
+}
+
+message GetLuckyRecordReq {
+
+}
+
+message LuckyRecordItem {
+    int64 score = 1;
+    PlayerInfo playerInfo = 2;
+    RewardInfo rewardInfo = 3;
+}
+
+message GetLuckyRecordRsp {
+    repeated LuckyRecordItem recordList = 1;
+}
+
+message UpdateRewardPoolReq {
+    //增加奖励
+    int64 addReward = 1;
+}
+
+message UpdateRewardPoolRsp {
+    //当前奖励
+    int64 curReward = 1;
+}
+
+message GetRewardPoolReq {
+
+}
+
+message GetRewardPoolRsp {
+    //当前奖励
+    int64 curReward = 1;
+}
+
+message RewardRecord {
+    //奖励唯一id
+    string rewardID = 1;
+    //奖励内容
+    RewardInfo reward = 2;
+    //获奖排行
+    int64 rank = 3;
+    //获奖分数
+    int64 score = 4;
+}
+
+message RewardRecordReq {
+    int64 playerID = 1;
+}
+
+message RewardRecordRsp {
+    //奖励记录列表
+    repeated RewardRecord recordList = 1;
+}
+
+message GetRewardReq {
+    int64 playerID = 1;
+    //奖励ID
+    string rewardID = 2;
+}
+
+message GetRewardRsp {
+    //奖励信息
+    RewardRecord reward = 1;
+}

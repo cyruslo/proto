@@ -1,0 +1,495 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/DdsRank/GetLuckyRecord": {
+            "post": {
+                "summary": "获取上次锦鲤奖记录",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.GetLuckyRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.GetLuckyRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/GetRank": {
+            "post": {
+                "summary": "获取排行榜",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.GetRankRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.GetRankReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/GetReward": {
+            "post": {
+                "summary": "领取奖励",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.GetRewardRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.GetRewardReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/GetRewardPool": {
+            "post": {
+                "summary": "获取奖池",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.GetRewardPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.GetRewardPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/RewardRecord": {
+            "post": {
+                "summary": "获取奖励记录",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.RewardRecordRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.RewardRecordReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/UpdateRewardPool": {
+            "post": {
+                "summary": "更新奖池",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.UpdateRewardPoolRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.UpdateRewardPoolReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        },
+        "/DdsRank/UpdateScore": {
+            "post": {
+                "summary": "更新排行榜分数",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.dds_rank.service.v1.UpdateScoreRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.dds_rank.service.v1.UpdateScoreReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "dds_rank.service.v1.DdsRank"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".dds_rank.service.v1.GetLuckyRecordReq": {
+            "type": "object",
+            "properties": {}
+        },
+        ".dds_rank.service.v1.GetLuckyRecordRsp": {
+            "type": "object",
+            "properties": {
+                "recordList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.dds_rank.service.v1.LuckyRecordItem"
+                    }
+                }
+            }
+        },
+        ".dds_rank.service.v1.GetRankReq": {
+            "type": "object",
+            "properties": {
+                "isLast": {
+                    "type": "boolean",
+                    "description": "是否获取上次排行榜"
+                },
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".dds_rank.service.v1.GetRankRsp": {
+            "type": "object",
+            "properties": {
+                "rankList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.dds_rank.service.v1.RankItem"
+                    }
+                },
+                "selfRank": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.RankItem"
+                }
+            }
+        },
+        ".dds_rank.service.v1.GetRewardPoolReq": {
+            "type": "object",
+            "properties": {}
+        },
+        ".dds_rank.service.v1.GetRewardPoolRsp": {
+            "type": "object",
+            "properties": {
+                "curReward": {
+                    "type": "integer",
+                    "description": "当前奖励"
+                }
+            }
+        },
+        ".dds_rank.service.v1.GetRewardReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "rewardID": {
+                    "type": "string",
+                    "description": "奖励ID"
+                }
+            }
+        },
+        ".dds_rank.service.v1.GetRewardRsp": {
+            "type": "object",
+            "properties": {
+                "reward": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.RewardRecord",
+                    "description": "奖励信息"
+                }
+            }
+        },
+        ".dds_rank.service.v1.LuckyRecordItem": {
+            "type": "object",
+            "properties": {
+                "score": {
+                    "type": "integer"
+                },
+                "playerInfo": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.PlayerInfo"
+                },
+                "rewardInfo": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.RewardInfo"
+                }
+            }
+        },
+        ".dds_rank.service.v1.PlayerInfo": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                },
+                "nick": {
+                    "type": "string",
+                    "description": "昵称"
+                }
+            }
+        },
+        ".dds_rank.service.v1.RankItem": {
+            "type": "object",
+            "properties": {
+                "rank": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "playerInfo": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.PlayerInfo"
+                },
+                "rewardInfo": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.RewardInfo",
+                    "description": "可以同时获得排名奖和锦鲤奖"
+                }
+            }
+        },
+        ".dds_rank.service.v1.RewardInfo": {
+            "type": "object",
+            "properties": {
+                "num": {
+                    "type": "integer",
+                    "description": "金币数量"
+                },
+                "percent": {
+                    "type": "integer",
+                    "description": "奖池百分比"
+                },
+                "type": {
+                    "type": "integer",
+                    "description": "奖励类型"
+                }
+            }
+        },
+        ".dds_rank.service.v1.RewardRecord": {
+            "type": "object",
+            "properties": {
+                "rewardID": {
+                    "type": "string",
+                    "description": "奖励唯一id"
+                },
+                "reward": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.RewardInfo",
+                    "description": "奖励内容"
+                },
+                "rank": {
+                    "type": "integer",
+                    "description": "获奖排行"
+                },
+                "score": {
+                    "type": "integer",
+                    "description": "获奖分数"
+                }
+            }
+        },
+        ".dds_rank.service.v1.RewardRecordReq": {
+            "type": "object",
+            "properties": {
+                "playerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".dds_rank.service.v1.RewardRecordRsp": {
+            "type": "object",
+            "properties": {
+                "recordList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.dds_rank.service.v1.RewardRecord"
+                    },
+                    "description": "奖励记录列表"
+                }
+            }
+        },
+        ".dds_rank.service.v1.UpdateRewardPoolReq": {
+            "type": "object",
+            "properties": {
+                "addReward": {
+                    "type": "integer",
+                    "description": "增加奖励"
+                }
+            }
+        },
+        ".dds_rank.service.v1.UpdateRewardPoolRsp": {
+            "type": "object",
+            "properties": {
+                "curReward": {
+                    "type": "integer",
+                    "description": "当前奖励"
+                }
+            }
+        },
+        ".dds_rank.service.v1.UpdateScoreReq": {
+            "type": "object",
+            "properties": {
+                "score": {
+                    "type": "integer"
+                },
+                "playerInfo": {
+                    "$ref": "#/definitions/.dds_rank.service.v1.PlayerInfo"
+                }
+            }
+        },
+        ".dds_rank.service.v1.UpdateScoreRsp": {
+            "type": "object",
+            "properties": {
+                "curScore": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
